@@ -1,9 +1,8 @@
 import Link from 'next/link';
-import { CardFooter } from '@/components/ui/card';
 
 export default function CardFooterContent() {
   return (
-    <p className="text-sm text-center text-gray-700 w-full">
+    <p className="text-sm text-center text-default w-full">
       By clicking continue, you agree to our{' '}
       <Link
         href="/terms"

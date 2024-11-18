@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import { cn } from '@/lib/utils';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -7,6 +9,8 @@ export const metadata: Metadata = {
     'Streamline your productivity with our intuitive task management system. Organize, prioritize, and accomplish your goals with ease.',
 };
 
+const inter = Inter({ subsets: ['latin'] });
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -14,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="bg-slate-100">{children}</body>
+      <body className={(cn('bg-slate-100'), inter.className)}>{children}</body>
     </html>
   );
 }

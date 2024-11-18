@@ -8,7 +8,7 @@ export default function Home() {
         <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
           Personal Task Manager
         </h1>
-        <p className="text-xl text-gray-700">
+        <p className="text-xl text-default">
           Streamline your productivity with our intuitive task management
           system. Organize, prioritize, and accomplish your goals with ease.
         </p>
