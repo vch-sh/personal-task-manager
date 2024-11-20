@@ -1,6 +1,11 @@
 'use client';
 
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import { LoaderCircleIcon } from 'lucide-react';
+import FormStatus from '@/components/LoginRegisterPage/FormStatus';
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -12,9 +17,14 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { emailRegex, passwordRegex } from '@/utils/helpers';
+import FormStatusType from '@/types/FormStatus';
 import LoginFormData from '@/types/LoginFormData';
 
 export default function LoginForm() {
+  const [formStatus, setFormStatus] = useState<FormStatusType>({});
+
+  const router = useRouter();
+
   const formMethods = useForm<LoginFormData>({
     defaultValues: {
       email: '',
@@ -23,7 +33,26 @@ export default function LoginForm() {
   });
 
   async function onSubmit(data: LoginFormData) {
-    console.log('🚀 ~ onSubmit ~ data:', data);
+    setFormStatus({});
+
+    try {
+      const response = await signIn('credentials', {
+        redirect: false,
+        email: data.email,
+        password: data.password,
+      });
+
+      if (response?.error === 'Configuration') {
+        setFormStatus({ error: 'Invalid credentials' });
+      } else {
+        setFormStatus({ success: 'Login successful' });
+        router.push('/dashboard');
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        setFormStatus({ error: 'Something went wrong' });
+      }
+    }
   }
 
   return (
@@ -96,7 +125,16 @@ export default function LoginForm() {
           )}
         />
 
-        <Button type="submit" className="w-full font-semibold">
+        <FormStatus status={formStatus} />
+
+        <Button
+          type="submit"
+          className="w-full font-semibold"
+          disabled={formMethods.formState.isSubmitting}
+        >
+          {formMethods.formState.isSubmitting && (
+            <LoaderCircleIcon className="animate-spin" />
+          )}
           Login
         </Button>
       </form>

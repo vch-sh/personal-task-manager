@@ -1,5 +1,3 @@
-'use client';
-
-export default function DashboardPage() {
+export default async function DashboardPage() {
   return <div>DashboardPage</div>;
 }
