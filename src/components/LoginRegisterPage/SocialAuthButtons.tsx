@@ -7,7 +7,7 @@ export default function SocialAuthButtons() {
     <section className="w-full flex items-center justify-between gap-4">
       <Button
         variant="outline"
-        className="w-full"
+        className="w-full cursor-not-allowed"
         aria-label="Continue with Github"
       >
         <Github />
@@ -16,7 +16,7 @@ export default function SocialAuthButtons() {
 
       <Button
         variant="outline"
-        className="w-full"
+        className="w-full cursor-not-allowed"
         aria-label="Continue with Google"
       >
         <Mail />

@@ -1,6 +1,9 @@
 'use client';
 
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { LoaderCircleIcon } from 'lucide-react';
+import FormStatus from '@/components/LoginRegisterPage/FormStatus';
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -11,12 +14,17 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { register } from '@/actions/Register';
 import { emailRegex, passwordRegex } from '@/utils/helpers';
+import FormStatusType from '@/types/FormStatus';
 import RegisterFormData from '@/types/RegisterFormData';
 
 export default function RegisterForm() {
+  const [formStatus, setFormStatus] = useState<FormStatusType>({});
+
   const formMethods = useForm<RegisterFormData>({
     defaultValues: {
+      name: '',
       email: '',
       password: '',
       confirmPassword: '',
@@ -24,7 +32,20 @@ export default function RegisterForm() {
   });
 
   async function onSubmit(data: RegisterFormData) {
-    console.log('🚀 ~ onSubmit ~ data:', data);
+    setFormStatus({});
+
+    const response = await register(data);
+
+    if (response?.error) {
+      setFormStatus({ error: response.error });
+      return;
+    }
+
+    if (response?.success) {
+      setFormStatus({ success: response.success });
+      formMethods.reset();
+      return;
+    }
   }
 
   return (
@@ -35,12 +56,48 @@ export default function RegisterForm() {
       >
         <FormField
           control={formMethods.control}
+          name="name"
+          rules={{
+            required: 'Name is required',
+            minLength: {
+              value: 2,
+              message: 'Name is too short',
+            },
+            maxLength: {
+              value: 24,
+              message: 'Name is too long',
+            },
+          }}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel htmlFor="name" className="font-semibold">
+                Name
+              </FormLabel>
+              <FormControl>
+                <Input
+                  type="text"
+                  id="name"
+                  placeholder="John Doe"
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={formMethods.control}
           name="email"
           rules={{
             required: 'Email is required',
             pattern: {
               value: emailRegex,
               message: 'Please, enter a valid email',
+            },
+            maxLength: {
+              value: 35,
+              message: 'Email is too long',
             },
           }}
           render={({ field }) => (
@@ -133,7 +190,16 @@ export default function RegisterForm() {
           )}
         />
 
-        <Button type="submit" className="w-full font-semibold">
+        <FormStatus status={formStatus} />
+
+        <Button
+          type="submit"
+          className="w-full font-semibold"
+          disabled={formMethods.formState.isSubmitting}
+        >
+          {formMethods.formState.isSubmitting && (
+            <LoaderCircleIcon className="animate-spin" />
+          )}
           Create Account
         </Button>
       </form>
