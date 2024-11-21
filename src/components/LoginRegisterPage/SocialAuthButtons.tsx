@@ -1,10 +1,13 @@
+'use client';
+
+import { signIn } from 'next-auth/react';
 import { Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Github from '@/assets/github.svg';
 
 export default function SocialAuthButtons() {
   return (
-    <section className="w-full flex items-center justify-between gap-4">
+    <div className="w-full flex items-center justify-between gap-4">
       <Button
         variant="outline"
         className="w-full cursor-not-allowed"
@@ -16,12 +19,13 @@ export default function SocialAuthButtons() {
 
       <Button
         variant="outline"
-        className="w-full cursor-not-allowed"
+        className="w-full"
         aria-label="Continue with Google"
+        onClick={() => signIn('google', { redirectTo: '/dashboard' })}
       >
         <Mail />
         Google
       </Button>
-    </section>
+    </div>
   );
 }
