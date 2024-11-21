@@ -10,8 +10,9 @@ export default function SocialAuthButtons() {
     <div className="w-full flex items-center justify-between gap-4">
       <Button
         variant="outline"
-        className="w-full cursor-not-allowed"
+        className="w-full"
         aria-label="Continue with Github"
+        onClick={() => signIn('github', { redirectTo: '/dashboard' })}
       >
         <Github />
         Github
