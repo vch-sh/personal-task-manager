@@ -10,7 +10,11 @@
     "<THIRD_PARTY_MODULES>",
     "^@/app/(.*)$",
     "^@/components/(.*)$",
+    "^@/actions/(.*)$",
+    "^@/utils/(.*)$",
     "^@/lib/(.*)$",
+    "^@/types/(.*)$",
+    "^@/assets/(.*)$",
     "^./(.*)$"
   ],
   "importOrderSeparation": false,
