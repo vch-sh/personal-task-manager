@@ -8,6 +8,7 @@
     "^react",
     "^next",
     "<THIRD_PARTY_MODULES>",
+    "@/auth",
     "^@/app/(.*)$",
     "^@/components/(.*)$",
     "^@/actions/(.*)$",

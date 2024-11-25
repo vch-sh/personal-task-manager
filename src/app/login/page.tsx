@@ -9,7 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 export default function LoginRegisterPage() {
   return (
-    <main className="flex min-h-screen items-center justify-center p-4 min-w-[320px]">
+    <main className="flex min-h-screen items-center justify-center p-4 min-w-[320px] bg-slate-100">
       <Card className="w-full max-w-md">
         <FormHeader />
 
