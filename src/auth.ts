@@ -42,7 +42,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         }
 
         const user = {
-          id: JSON.parse(JSON.stringify(existingUser._id)),
           name: existingUser.name,
           email: existingUser.email,
         };
@@ -72,12 +71,19 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
       return true;
     },
-    async jwt({ token }) {
+    async jwt({ token, user }) {
+      if (user) {
+        const existingUser = await getUserByEmail(user?.email || '');
+
+        if (existingUser) {
+          token.id = existingUser._id.toString();
+        }
+      }
       return token;
     },
     async session({ token, session }) {
       if (token) {
-        session.user.id = token.sub;
+        session.user.id = token.id;
         session.user.iat = token.iat;
         session.user.exp = token.exp;
         session.user.jti = token.jti;
