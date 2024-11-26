@@ -23,7 +23,12 @@ export async function getUserById(
     const user = await collection?.findOne({ _id: new ObjectId(id) });
     return user;
   } catch (error) {
-    throw new Error('Failed to fetch a user by id');
+    if (error instanceof Error) {
+      return { error: 'Failed to fetch a user by id' };
+    }
+    return {
+      error: 'Unknown error occurred while connecting to the database',
+    };
   }
 }
 
