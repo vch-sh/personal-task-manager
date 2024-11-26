@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { LoaderCircleIcon } from 'lucide-react';
-import FormStatus from '@/components/LoginRegisterPage/FormStatus';
+import FormStatus from '@/components/general/forms/FormStatus';
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -51,6 +51,8 @@ export default function LoginForm() {
     } catch (error) {
       if (error instanceof Error) {
         setFormStatus({ error: 'Something went wrong' });
+      } else {
+        setFormStatus({ error: 'Unknown error occurred. Please try later.' });
       }
     }
   }

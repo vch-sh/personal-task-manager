@@ -1,3 +1,4 @@
+import { Collection, ObjectId } from 'mongodb';
 import User from '@/types/User';
 import { connectToDatabase } from './mongodb';
 
@@ -12,6 +13,18 @@ export async function getUserByEmail(email: string) {
   const user = await collection?.findOne({ email });
   await client?.close();
   return user;
+}
+
+export async function getUserById(
+  id: string,
+  collection: Collection<Document>,
+) {
+  try {
+    const user = await collection?.findOne({ _id: new ObjectId(id) });
+    return user;
+  } catch (error) {
+    throw new Error('Failed to fetch a user by id');
+  }
 }
 
 export async function createUser(userData: User) {

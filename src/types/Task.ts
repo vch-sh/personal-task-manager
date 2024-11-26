@@ -1,8 +1,10 @@
+import { ObjectId } from 'mongodb';
+
 type Task = {
-  id: string;
+  userId: ObjectId;
   text: string;
-  status: 'To Do' | 'In Progress' | 'Done';
-  priority: 'Low' | 'Medium' | 'High';
+  status: 'to-do' | 'in-progress' | 'done';
+  priority: 'low' | 'medium' | 'high';
   dueDate: Date | null;
 };
 

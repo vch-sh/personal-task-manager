@@ -20,7 +20,7 @@ export default function Filtering() {
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">All</SelectItem>
-            <SelectItem value="to-do">To-Do</SelectItem>
+            <SelectItem value="to-do">To Do</SelectItem>
             <SelectItem value="in-progress">In Progress</SelectItem>
             <SelectItem value="done">Done</SelectItem>
           </SelectContent>

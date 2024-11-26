@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import FormStatus from '../general/forms/FormStatus';
 import { LoaderCircleIcon } from 'lucide-react';
-import FormStatus from '@/components/LoginRegisterPage/FormStatus';
 import { Button } from '@/components/ui/button';
 import {
   Form,

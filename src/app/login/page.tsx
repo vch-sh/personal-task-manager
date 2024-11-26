@@ -1,9 +1,9 @@
-import DividerWithText from '@/components/DividerWithText';
 import CardFooterContent from '@/components/LoginRegisterPage/CardFooterContent';
 import FormHeader from '@/components/LoginRegisterPage/FormHeader';
 import LoginForm from '@/components/LoginRegisterPage/LoginForm';
 import RegisterForm from '@/components/LoginRegisterPage/RegisterForm';
 import SocialAuthButtons from '@/components/LoginRegisterPage/SocialAuthButtons';
+import DividerWithText from '@/components/general/DividerWithText';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
