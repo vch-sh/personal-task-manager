@@ -3,7 +3,8 @@ import Credentials from 'next-auth/providers/credentials';
 import Github from 'next-auth/providers/github';
 import Google from 'next-auth/providers/google';
 import bcryptjs from 'bcryptjs';
-import { connectToDatabase } from './lib/mongodb';
+import { createUser, getUserByEmail } from './lib/users';
+import LoginFormData from './types/LoginFormData';
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   session: { strategy: 'jwt' },
@@ -23,16 +24,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials) {
-        const { email, password } = credentials;
+        const { email, password } = credentials as LoginFormData;
 
-        const { client, collection, error } = await connectToDatabase(
-          'user_db',
-          'users',
-        );
-
-        if (error) throw new Error(error);
-
-        const existingUser = await collection?.findOne({ email });
+        const existingUser = await getUserByEmail(email);
 
         if (!existingUser) {
           throw new Error('Invalid credentials');
@@ -47,10 +41,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           throw new Error('Invalid credentials');
         }
 
-        await client?.close();
-
         const user = {
-          id: JSON.parse(JSON.stringify(existingUser._id)),
           name: existingUser.name,
           email: existingUser.email,
         };
@@ -60,12 +51,39 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     }),
   ],
   callbacks: {
-    async jwt({ token }) {
+    async signIn({ account, user }) {
+      if (account?.provider === 'credentials') {
+        return true;
+      }
+
+      const existingUser = await getUserByEmail(user?.email || '');
+
+      if (existingUser?.email === user?.email) {
+        return true;
+      }
+
+      await createUser({
+        name: user?.name || '',
+        email: user?.email || '',
+        password: null,
+        createdAt: new Date(),
+      });
+
+      return true;
+    },
+    async jwt({ token, user }) {
+      if (user) {
+        const existingUser = await getUserByEmail(user?.email || '');
+
+        if (existingUser) {
+          token.id = existingUser._id.toString();
+        }
+      }
       return token;
     },
     async session({ token, session }) {
       if (token) {
-        session.user.id = token.sub;
+        session.user.id = token.id;
         session.user.iat = token.iat;
         session.user.exp = token.exp;
         session.user.jti = token.jti;
