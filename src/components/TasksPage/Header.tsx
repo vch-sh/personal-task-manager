@@ -13,12 +13,18 @@ import {
 } from '@/components/ui/dialog';
 import AddTaskForm from './AddTaskForm';
 
-export default function Header() {
+type HeaderProps = {
+  tasksQuantity: number;
+};
+
+export default function Header({ tasksQuantity }: HeaderProps) {
   const [addTaskModalOpen, setAddTaskModalOpen] = useState(false);
 
   return (
     <div className="flex items-center justify-between mb-8">
-      <h2 className="text-3xl font-semibold tracking-tight">Tasks</h2>
+      <h2 className="text-3xl font-semibold tracking-tight">
+        Tasks {!!tasksQuantity && <span>({tasksQuantity})</span>}
+      </h2>
 
       <Dialog open={addTaskModalOpen} onOpenChange={setAddTaskModalOpen}>
         <DialogTrigger asChild>

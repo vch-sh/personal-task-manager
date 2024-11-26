@@ -1,5 +1,6 @@
 'use server';
 
+import { revalidatePath } from 'next/cache';
 import { connectToDatabase } from '@/lib/mongodb';
 import { getUserById } from '@/lib/users';
 import AddTaskFormData from '@/types/AddTaskFormData';
@@ -33,6 +34,8 @@ export async function addTask(data: AddTaskFormData) {
     }
 
     const task = await collection?.insertOne(data);
+
+    revalidatePath('/tasks');
 
     return {
       success: 'Task created successfully',

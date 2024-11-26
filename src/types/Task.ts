@@ -1,6 +1,7 @@
 import { ObjectId } from 'mongodb';
 
 type Task = {
+  _id: ObjectId;
   userId: ObjectId;
   text: string;
   status: 'to-do' | 'in-progress' | 'done';
