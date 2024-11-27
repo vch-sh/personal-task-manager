@@ -81,15 +81,15 @@ export default function AddTaskForm({ handleDialogClose }: AddTaskFormProps) {
           name="text"
           rules={{
             required: 'Required field',
-            maxLength: { value: 150, message: 'Maximum 150 characters' },
+            maxLength: { value: 200, message: 'Maximum 200 characters' },
           }}
           render={({ field }) => (
             <FormItem>
               <FormLabel htmlFor="text" className="flex items-center">
                 <span>Text</span>
-                {textLength >= 100 && (
+                {textLength >= 150 && (
                   <span className="text-xs ml-auto">
-                    {formMethods.watch('text').length}/150
+                    {formMethods.watch('text').length}/200
                   </span>
                 )}
               </FormLabel>
