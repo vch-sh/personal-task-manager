@@ -1,9 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import DialogCloseButton from '../general/DialogCloseButton';
-import { Button } from '../ui/button';
-import { Plus, X } from 'lucide-react';
+import { Plus } from 'lucide-react';
+import DialogCloseButton from '@/components/general/DialogCloseButton';
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
