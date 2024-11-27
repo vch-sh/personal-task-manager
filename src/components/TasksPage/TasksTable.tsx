@@ -9,6 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import { priority, status } from '@/lib/table';
 import Task from '@/types/Task';
 
 type TasksTableProps = {
@@ -23,53 +24,64 @@ export default function TasksTable({ tasks }: TasksTableProps) {
           No tasks were added
         </p>
       ) : (
-        <Table className="text-center">
+        <Table className="text-center mb-4">
           <TableHeader>
             <TableRow>
               <TableHead>Text</TableHead>
-              <TableHead className="w-28">Status</TableHead>
-              <TableHead className="hidden sm:table-cell w-5">
+              <TableHead className="w-4 px-2">Status</TableHead>
+              <TableHead className="hidden px-2 sm:table-cell w-4">
                 Priority
               </TableHead>
-              <TableHead className="hidden sm:table-cell w-32">
+              <TableHead className="hidden px-2 sm:table-cell w-20">
                 Due Date
               </TableHead>
-              <TableHead className="w-10">Actions</TableHead>
+              <TableHead className="w-4 px-2">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {tasks?.map((task) => {
-              const formattedDate = task.dueDate
-                ? format(new Date(task.dueDate), 'PP')
+              const dayMonth = task.dueDate
+                ? format(new Date(task.dueDate), 'LLL dd')
                 : 'n/a';
+              const year = task.dueDate
+                ? format(new Date(task.dueDate), 'yyyy')
+                : '';
 
               return (
-                <TableRow key={task._id.toString()}>
-                  <TableCell className="max-w-[100px] sm:max-w-sm break-words text-left">
+                <TableRow
+                  key={task._id.toString()}
+                  className={`${task.status === 'done' && 'bg-emerald-100'}`}
+                >
+                  <TableCell
+                    className={` max-w-[100px] sm:max-w-sm break-words text-justify`}
+                  >
                     {task.text}
                   </TableCell>
-                  <TableCell>{task.status}</TableCell>
+                  <TableCell className="">{status[task.status]}</TableCell>
                   <TableCell className="hidden sm:table-cell">
-                    {task.priority}
+                    {priority[task.priority]}
                   </TableCell>
                   <TableCell className="hidden sm:table-cell">
-                    {formattedDate}
+                    <p>{dayMonth}</p>
+                    <p>{year}</p>
                   </TableCell>
-                  <TableCell className="flex gap-2">
-                    <Button
-                      variant="outline"
-                      size="icon"
-                      className="cursor-not-allowed"
-                    >
-                      <Pen />
-                    </Button>
-                    <Button
-                      variant="outline"
-                      size="icon"
-                      className="cursor-not-allowed"
-                    >
-                      <Trash2 />
-                    </Button>
+                  <TableCell className="px-2">
+                    <div className="flex flex-col sm:flex-row gap-2 ">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="cursor-not-allowed p-2"
+                      >
+                        <Pen />
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="cursor-not-allowed p-2"
+                      >
+                        <Trash2 />
+                      </Button>
+                    </div>
                   </TableCell>
                 </TableRow>
               );
