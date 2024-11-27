@@ -108,7 +108,6 @@ export default function AddTaskForm({ handleDialogClose }: AddTaskFormProps) {
             </FormItem>
           )}
         />
-
         <FormField
           control={formMethods.control}
           name="status"
@@ -131,7 +130,6 @@ export default function AddTaskForm({ handleDialogClose }: AddTaskFormProps) {
             </FormItem>
           )}
         />
-
         <FormField
           control={formMethods.control}
           name="priority"
@@ -154,7 +152,6 @@ export default function AddTaskForm({ handleDialogClose }: AddTaskFormProps) {
             </FormItem>
           )}
         />
-
         <FormField
           control={formMethods.control}
           name="dueDate"
@@ -168,9 +165,7 @@ export default function AddTaskForm({ handleDialogClose }: AddTaskFormProps) {
             </FormItem>
           )}
         />
-
         <FormStatus status={formStatus} />
-
         <Button
           type="submit"
           className="w-full font-semibold"
