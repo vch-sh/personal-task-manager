@@ -6,8 +6,13 @@ export const status = {
   done: <CheckCircle2 size="21" className="opacity-60 block mx-auto" />,
 };
 
-export const priority = {
-  low: <div className="h-5 w-5 bg-green-500 rounded-full shadow-sm" />,
-  medium: <div className="h-5 w-5 bg-orange-500/70 rounded-full shadow-sm" />,
-  high: <div className="h-5 w-5 bg-red-500 rounded-full shadow-sm" />,
+const priorities = {
+  low: 'bg-green-500',
+  medium: 'bg-orange-500/70',
+  high: 'bg-red-500',
 };
+
+export function getPriority(priority: 'low' | 'medium' | 'high') {
+  const bgClass = priorities[priority] || 'bg-gray-500';
+  return <div className={`${bgClass} h-5 w-5 rounded-full shadow-sm`} />;
+}
