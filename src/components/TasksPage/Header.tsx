@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { MoveLeft, Plus } from 'lucide-react';
 import DialogCloseButton from '@/components/general/DialogCloseButton';
+import LogOutButton from '@/components/general/LogOutButton';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -49,14 +50,14 @@ export default function Header({ tasksQuantity }: HeaderProps) {
           </DialogContent>
         </Dialog>
 
-        <hr className="w-0.5 h-10 inline-block bg-black/30" />
-
         <Link href="/dashboard">
           <Button>
             <MoveLeft />
             Go To Dashboard
           </Button>
         </Link>
+
+        <LogOutButton />
       </div>
     </div>
   );
