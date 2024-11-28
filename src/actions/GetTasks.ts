@@ -21,9 +21,7 @@ export async function getTasks(id: string) {
     if (error instanceof Error) {
       return { error: error.message };
     }
-    return {
-      error: 'Unknown error occurred while connecting to the database',
-    };
+    return [];
   } finally {
     if (client) {
       await client.close();
