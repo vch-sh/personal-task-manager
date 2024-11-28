@@ -9,7 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { getPriority, status } from '@/lib/table';
+import { priorities, status } from '@/lib/table';
 import Task from '@/types/Task';
 
 type TasksTableProps = {
@@ -59,7 +59,7 @@ export default function TasksTable({ tasks }: TasksTableProps) {
                   </TableCell>
                   <TableCell>{status[task.status]}</TableCell>
                   <TableCell className="hidden sm:table-cell">
-                    {getPriority(task.priority)}
+                    {priorities[task.priority]}
                   </TableCell>
                   <TableCell className="hidden sm:table-cell">
                     <p>{dayMonth}</p>
