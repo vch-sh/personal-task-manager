@@ -24,16 +24,28 @@ export default function Header({ tasksQuantity }: HeaderProps) {
   const [addTaskModalOpen, setAddTaskModalOpen] = useState(false);
 
   return (
-    <div className="flex items-center mb-8">
-      <h2 className="text-3xl font-semibold tracking-tight">
-        Tasks {!!tasksQuantity && <span>({tasksQuantity})</span>}
-      </h2>
+    <>
+      <div className="flex flex-col sm:flex-row items-center mb-2">
+        <h2 className="text-center sm:text-left text-3xl font-semibold tracking-tight sm:mr-auto mb-4 sm:mb-0">
+          Tasks {!!tasksQuantity && <span>({tasksQuantity})</span>}
+        </h2>
 
-      <div className="ml-auto flex gap-4 items-center">
+        <div className="flex items-center w-full sm:w-auto">
+          <Link href="/dashboard" className="mr-2 w-full sm:w-auto">
+            <Button className="px-3 sm:px-4 w-full">
+              <MoveLeft />
+              Dashboard
+            </Button>
+          </Link>
+
+          <LogOutButton />
+        </div>
+      </div>
+      <div className="flex items-center justify-end gap-4">
         <Dialog open={addTaskModalOpen} onOpenChange={setAddTaskModalOpen}>
           <DialogTrigger asChild>
-            <Button>
-              <Plus className="mr-1" />
+            <Button className="px-[11px] w-full mt-1 mb-2 sm:mt-0 sm:mb-0 sm:w-auto">
+              <Plus />
               <span>Add Task</span>
             </Button>
           </DialogTrigger>
@@ -49,16 +61,7 @@ export default function Header({ tasksQuantity }: HeaderProps) {
             <AddTaskForm handleDialogClose={() => setAddTaskModalOpen(false)} />
           </DialogContent>
         </Dialog>
-
-        <Link href="/dashboard">
-          <Button>
-            <MoveLeft />
-            Go To Dashboard
-          </Button>
-        </Link>
-
-        <LogOutButton />
       </div>
-    </div>
+    </>
   );
 }

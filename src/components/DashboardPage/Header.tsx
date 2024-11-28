@@ -8,7 +8,7 @@ export default function Header() {
       <h2 className="text-3xl font-semibold tracking-tight">Dashboard</h2>
       <Link href="/tasks">
         <Button>
-          Go To Tasks
+          Tasks
           <MoveRight />
         </Button>
       </Link>

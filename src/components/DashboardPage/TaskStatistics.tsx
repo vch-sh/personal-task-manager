@@ -56,7 +56,7 @@ export default function TaskStatistics({
         </Card>
       </div>
 
-      <Card className="mt-4">
+      <Card className="my-4">
         <CardHeader>
           <CardTitle>Task Completion Progress</CardTitle>
         </CardHeader>
