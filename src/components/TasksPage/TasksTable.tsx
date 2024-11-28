@@ -50,7 +50,7 @@ export default function TasksTable({ tasks }: TasksTableProps) {
               return (
                 <TableRow
                   key={task._id.toString()}
-                  className={`${task.status === 'done' && 'bg-emerald-100'}`}
+                  className={`${task.status === 'done' && 'bg-emerald-100/70'}`}
                 >
                   <TableCell
                     className={` max-w-[100px] sm:max-w-sm break-words text-justify`}
