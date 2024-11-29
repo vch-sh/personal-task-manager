@@ -1,8 +1,9 @@
 'use server';
 
 import { connectToDatabase } from '@/lib/mongodb';
+import GetTasksResult from '@/types/GetTasksResult';
 
-export async function getTasks(id: string) {
+export async function getTasks(id: string): Promise<GetTasksResult> {
   let client;
   let collection;
 
@@ -12,14 +13,17 @@ export async function getTasks(id: string) {
     collection = connection.collection;
 
     if (!collection) {
-      throw new Error('Collection not found');
+      return { error: 'Collection not found' };
     }
 
     const userTasks = await collection.find({ userId: id }).toArray();
     return JSON.parse(JSON.stringify(userTasks)) || [];
   } catch (error) {
     if (error instanceof Error) {
-      return { error: error.message };
+      return {
+        error:
+          error.message || 'Failed to fetch tasks. Please, try again later.',
+      };
     }
     return [];
   } finally {

@@ -7,6 +7,7 @@ type Task = {
   status: 'to-do' | 'in-progress' | 'done';
   priority: 'low' | 'medium' | 'high';
   dueDate: Date | null;
+  createdAt: Date;
 };
 
 export default Task;

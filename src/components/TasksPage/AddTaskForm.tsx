@@ -44,6 +44,7 @@ export default function AddTaskForm({ handleDialogClose }: AddTaskFormProps) {
       status: 'to-do',
       priority: 'medium',
       dueDate: null,
+      createdAt: new Date(),
     },
     mode: 'onChange',
   });

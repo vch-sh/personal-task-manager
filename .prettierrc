@@ -16,7 +16,8 @@
     "^@/lib/(.*)$",
     "^@/types/(.*)$",
     "^@/assets/(.*)$",
-    "^./(.*)$"
+    "^./(.*)$",
+    "^../(.*)$"
   ],
   "importOrderSeparation": false,
   "importOrderSortSpecifiers": true

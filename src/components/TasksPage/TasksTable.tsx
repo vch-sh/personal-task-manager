@@ -1,5 +1,6 @@
 import { format } from 'date-fns';
 import { Pen, Trash2 } from 'lucide-react';
+import { FolderOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   Table,
@@ -20,11 +21,12 @@ export default function TasksTable({ tasks }: TasksTableProps) {
   return (
     <>
       {tasks.length === 0 ? (
-        <p className="text-xs font-bold text-default text-center">
-          No tasks were added
+        <p className="text-xs font-bold text-default flex items-center justify-center gap-2">
+          <FolderOpen />
+          It's empty here, add some tasks
         </p>
       ) : (
-        <Table className="text-center mb-4">
+        <Table className="text-center mb-8">
           <TableHeader>
             <TableRow>
               <TableHead>Text</TableHead>
@@ -40,6 +42,9 @@ export default function TasksTable({ tasks }: TasksTableProps) {
           </TableHeader>
           <TableBody>
             {tasks?.map((task) => {
+              const createdAt = task.createdAt
+                ? format(new Date(task.createdAt), '[PP]')
+                : '';
               const dayMonth = task.dueDate
                 ? format(new Date(task.dueDate), 'LLL dd')
                 : 'n/a';
@@ -50,12 +55,12 @@ export default function TasksTable({ tasks }: TasksTableProps) {
               return (
                 <TableRow
                   key={task._id.toString()}
-                  className={`${task.status === 'done' && 'bg-emerald-100/70'}`}
+                  className={`${task.status === 'done' && 'line-through'}`}
                 >
                   <TableCell
                     className={` max-w-[100px] sm:max-w-sm break-words text-justify`}
                   >
-                    {task.text}
+                    <b>{createdAt}</b> <p>{task.text}</p>
                   </TableCell>
                   <TableCell>{status[task.status]}</TableCell>
                   <TableCell className="hidden sm:table-cell">
