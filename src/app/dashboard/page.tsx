@@ -12,7 +12,7 @@ export default async function DashboardPage() {
     getDashboardData(tasks);
 
   return (
-    <main className="container mx-auto p-4 h-screen max-w-5xl min-w-[360px]">
+    <main className="container mx-auto px-4 py-8 sm:py-4 h-screen max-w-5xl min-w-[360px]">
       <Header />
 
       {tasks.length > 0 ? (
