@@ -31,11 +31,7 @@ export default function Header({ tasksQuantity }: HeaderProps) {
         </h2>
 
         <div className="flex items-center w-full sm:w-auto">
-          <Link
-            href="/dashboard"
-            prefetch={true}
-            className="mr-2 w-full sm:w-auto"
-          >
+          <Link href="/dashboard" className="mr-2 w-full sm:w-auto">
             <Button className="px-3 sm:px-4 w-full">
               <MoveLeft />
               Dashboard
