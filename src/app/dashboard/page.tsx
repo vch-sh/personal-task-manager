@@ -30,7 +30,7 @@ export default async function DashboardPage() {
           todoTasksQuantity={todoTasks.length}
         />
       ) : (
-        <p className="text-default text-sm flex items-center justify-center gap-2 font-semibold">
+        <p className="text-default text-xs flex items-center justify-center gap-2 font-semibold">
           <ChartColumn />
           Add your first task to get started with statistics
         </p>
