@@ -1,32 +1,44 @@
-'use client';
-
-import { signIn } from 'next-auth/react';
 import { Mail } from 'lucide-react';
+import { signIn } from '@/auth';
 import { Button } from '@/components/ui/button';
 import Github from '@/assets/github.svg';
 
 export default function SocialAuthButtons() {
   return (
     <div className="w-full flex items-center justify-between gap-4">
-      <Button
-        variant="outline"
+      <form
         className="w-full"
-        aria-label="Continue with Github"
-        onClick={() => signIn('github', { redirectTo: '/dashboard' })}
+        action={async () => {
+          'use server';
+          await signIn('github');
+        }}
       >
-        <Github />
-        Github
-      </Button>
+        <Button
+          variant="outline"
+          className="w-full"
+          aria-label="Continue with Github"
+        >
+          <Github />
+          Github
+        </Button>
+      </form>
 
-      <Button
-        variant="outline"
+      <form
         className="w-full"
-        aria-label="Continue with Google"
-        onClick={() => signIn('google', { redirectTo: '/dashboard' })}
+        action={async () => {
+          'use server';
+          await signIn('google');
+        }}
       >
-        <Mail />
-        Google
-      </Button>
+        <Button
+          variant="outline"
+          className="w-full"
+          aria-label="Continue with Google"
+        >
+          <Mail />
+          Google
+        </Button>
+      </form>
     </div>
   );
 }
