@@ -23,7 +23,7 @@ export default function TasksTable({ tasks }: TasksTableProps) {
       {tasks.length === 0 ? (
         <p className="text-xs font-bold text-default flex items-center justify-center gap-2">
           <FolderOpen />
-          It's empty here, add some tasks
+          It&apos;s empty here, add some tasks
         </p>
       ) : (
         <Table className="text-center mb-8">
