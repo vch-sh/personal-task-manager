@@ -1,19 +1,26 @@
+import { ChartColumn } from 'lucide-react';
 import { auth } from '@/auth';
 import { getDashboardData } from '@/app/data/getDashboardData';
 import Header from '@/components/DashboardPage/Header';
 import TaskStatistics from '@/components/DashboardPage/TaskStatistics';
+import ErrorMessage from '@/components/general/ErrorMessage';
 import { getTasks } from '@/actions/GetTasks';
-import Task from '@/types/Task';
+import GetTasksResult from '@/types/GetTasksResult';
 
 export default async function DashboardPage() {
   const session = await auth();
-  const tasks: Task[] = await getTasks(session?.user.id);
+  const tasks: GetTasksResult = await getTasks(session?.user.id);
+
+  if ('error' in tasks) {
+    return <ErrorMessage message={tasks.error} />;
+  }
+
   const { completedTasks, inProgressTasks, todoTasks } =
     getDashboardData(tasks);
 
   return (
     <main className="container mx-auto px-4 py-8 sm:py-4 h-screen max-w-5xl min-w-[360px]">
-      <Header />
+      <Header username={`Hi, ${session?.user.name}!` || 'Dashboard'} />
 
       {tasks.length > 0 ? (
         <TaskStatistics
@@ -23,7 +30,8 @@ export default async function DashboardPage() {
           todoTasksQuantity={todoTasks.length}
         />
       ) : (
-        <p className="text-default text-sm text-center font-semibold">
+        <p className="text-default text-sm flex items-center justify-center gap-2 font-semibold">
+          <ChartColumn />
           Add your first task to get started with statistics
         </p>
       )}
