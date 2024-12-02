@@ -1,10 +1,7 @@
 'use client';
 
-import { useState } from 'react';
 import { format } from 'date-fns';
-import { Pen, Trash2 } from 'lucide-react';
 import { FolderOpen } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import {
   Table,
   TableBody,
@@ -14,9 +11,10 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { priorities, status } from '@/lib/table';
+import { useFilterSortTasks } from '@/hooks/useFilterSortTasks';
 import Task from '@/types/Task';
 import Filtering from './Filtering';
-import { useFilterSortTasks } from '@/hooks/useFilterSortTasks';
+import TaskActions from './TaskActions';
 
 type TasksProps = {
   tasks: Task[];
@@ -49,7 +47,7 @@ export default function Tasks({ tasks }: TasksProps) {
               <TableHead className="hidden px-2 sm:table-cell w-4">
                 Priority
               </TableHead>
-              <TableHead className="hidden px-2 sm:table-cell w-20">
+              <TableHead className="hidden px-2 sm:table-cell w-[84px]">
                 Due Date
               </TableHead>
               <TableHead className="w-4 px-2">Actions</TableHead>
@@ -89,22 +87,7 @@ export default function Tasks({ tasks }: TasksProps) {
                     <p>{year}</p>
                   </TableCell>
                   <TableCell className="px-2">
-                    <div className="flex flex-col sm:flex-row gap-2 ">
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="cursor-not-allowed p-2"
-                      >
-                        <Pen />
-                      </Button>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="cursor-not-allowed p-2"
-                      >
-                        <Trash2 />
-                      </Button>
-                    </div>
+                    <TaskActions taskId={task._id.toString()} />
                   </TableCell>
                 </TableRow>
               );
