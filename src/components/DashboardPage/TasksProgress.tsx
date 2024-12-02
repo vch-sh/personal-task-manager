@@ -18,7 +18,7 @@ export default function TasksProgress({
   useEffect(() => {
     const timer = setTimeout(() => setProgress(completedTasksQuantity), 500);
     return () => clearTimeout(timer);
-  }, []);
+  }, [completedTasksQuantity]);
 
   return (
     <Card className="mt-4 mb-8">
