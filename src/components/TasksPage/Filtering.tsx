@@ -11,11 +11,13 @@ import {
 type FilteringProps = {
   tasksQuantity: number;
   setFilter: Dispatch<SetStateAction<string>>;
+  setSort: Dispatch<SetStateAction<string>>;
 };
 
 export default function Filtering({
   tasksQuantity,
   setFilter,
+  setSort,
 }: FilteringProps) {
   return (
     <>
@@ -42,7 +44,7 @@ export default function Filtering({
             <Label htmlFor="sort" className="w-full">
               Sort{' '}
             </Label>
-            <Select defaultValue="due-date">
+            <Select defaultValue="due-date" onValueChange={setSort}>
               <SelectTrigger id="sort">
                 <SelectValue />
               </SelectTrigger>

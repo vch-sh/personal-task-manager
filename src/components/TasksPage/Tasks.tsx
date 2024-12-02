@@ -23,17 +23,35 @@ type TasksProps = {
 
 export default function Tasks({ tasks }: TasksProps) {
   const [filter, setFilter] = useState('all');
+  const [sort, setSort] = useState('due-date');
 
-  const filteredTasks = tasks?.filter((task) => {
-    if (filter === 'all') return true;
-    return task.status === filter;
-  });
+  const filteredSortedTasks = tasks
+    ?.filter((task) => {
+      if (filter === 'all') return true;
+      return task.status === filter;
+    })
+    .sort((a, b) => {
+      if (sort === 'due-date') {
+        const dateA = new Date(a.dueDate || 0);
+        const dateB = new Date(b.dueDate || 0);
+        return dateA.getTime() - dateB.getTime();
+      }
+      if (sort === 'priority') {
+        const priorityOrder = { high: 0, medium: 1, low: 2 };
+        return priorityOrder[a.priority] - priorityOrder[b.priority];
+      }
+      return 0;
+    });
 
   return (
     <>
-      <Filtering tasksQuantity={tasks.length} setFilter={setFilter} />
+      <Filtering
+        tasksQuantity={tasks.length}
+        setFilter={setFilter}
+        setSort={setSort}
+      />
 
-      {filteredTasks.length === 0 ? (
+      {filteredSortedTasks.length === 0 ? (
         <p className="text-xs font-bold text-default flex items-center justify-center gap-2">
           <FolderOpen />
           It's empty here, add some tasks
@@ -54,7 +72,7 @@ export default function Tasks({ tasks }: TasksProps) {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {filteredTasks?.map((task) => {
+            {filteredSortedTasks?.map((task) => {
               const createdAt = task.createdAt
                 ? format(new Date(task.createdAt), '[PP]')
                 : '';
