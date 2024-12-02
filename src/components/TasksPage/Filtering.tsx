@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from 'react';
 import { Label } from '@/components/ui/label';
 import {
   Select,
@@ -9,9 +10,15 @@ import {
 
 type FilteringProps = {
   tasksQuantity: number;
+  setFilter: Dispatch<SetStateAction<string>>;
+  setSort: Dispatch<SetStateAction<string>>;
 };
 
-export default function Filtering({ tasksQuantity }: FilteringProps) {
+export default function Filtering({
+  tasksQuantity,
+  setFilter,
+  setSort,
+}: FilteringProps) {
   return (
     <>
       {!!tasksQuantity && (
@@ -20,7 +27,7 @@ export default function Filtering({ tasksQuantity }: FilteringProps) {
             <Label htmlFor="filter" className="w-full">
               Filter by Status{' '}
             </Label>
-            <Select defaultValue="all">
+            <Select defaultValue="all" onValueChange={setFilter}>
               <SelectTrigger id="filter">
                 <SelectValue />
               </SelectTrigger>
@@ -37,7 +44,7 @@ export default function Filtering({ tasksQuantity }: FilteringProps) {
             <Label htmlFor="sort" className="w-full">
               Sort{' '}
             </Label>
-            <Select defaultValue="due-date">
+            <Select defaultValue="due-date" onValueChange={setSort}>
               <SelectTrigger id="sort">
                 <SelectValue />
               </SelectTrigger>
