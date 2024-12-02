@@ -1,3 +1,6 @@
+'use client';
+
+import { useState } from 'react';
 import { format } from 'date-fns';
 import { Pen, Trash2 } from 'lucide-react';
 import { FolderOpen } from 'lucide-react';
@@ -12,15 +15,25 @@ import {
 } from '@/components/ui/table';
 import { priorities, status } from '@/lib/table';
 import Task from '@/types/Task';
+import Filtering from './Filtering';
 
-type TasksTableProps = {
+type TasksProps = {
   tasks: Task[];
 };
 
-export default function TasksTable({ tasks }: TasksTableProps) {
+export default function Tasks({ tasks }: TasksProps) {
+  const [filter, setFilter] = useState('all');
+
+  const filteredTasks = tasks?.filter((task) => {
+    if (filter === 'all') return true;
+    return task.status === filter;
+  });
+
   return (
     <>
-      {tasks.length === 0 ? (
+      <Filtering tasksQuantity={tasks.length} setFilter={setFilter} />
+
+      {filteredTasks.length === 0 ? (
         <p className="text-xs font-bold text-default flex items-center justify-center gap-2">
           <FolderOpen />
           It's empty here, add some tasks
@@ -41,7 +54,7 @@ export default function TasksTable({ tasks }: TasksTableProps) {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {tasks?.map((task) => {
+            {filteredTasks?.map((task) => {
               const createdAt = task.createdAt
                 ? format(new Date(task.createdAt), '[PP]')
                 : '';

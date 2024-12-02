@@ -1,7 +1,6 @@
 import { auth } from '@/auth';
-import Filtering from '@/components/TasksPage/Filtering';
 import Header from '@/components/TasksPage/Header';
-import TasksTable from '@/components/TasksPage/TasksTable';
+import Tasks from '@/components/TasksPage/Tasks';
 import ErrorMessage from '@/components/general/ErrorMessage';
 import { fetchTasks } from '@/utils/helpers';
 
@@ -21,8 +20,7 @@ export default async function TasksPage() {
   return (
     <main className="container mx-auto px-4 py-8 sm:py-4 h-screen max-w-5xl min-w-[360px]">
       <Header tasksQuantity={tasks.length} />
-      <Filtering tasksQuantity={tasks.length} />
-      <TasksTable tasks={tasks} />
+      <Tasks tasks={tasks} />
     </main>
   );
 }
