@@ -1,14 +1,14 @@
 import { ObjectId } from 'mongodb';
 
-type Task = {
-  _id: ObjectId;
-  userId: ObjectId;
+type AddEditFormData = {
   text: string;
   status: 'to-do' | 'in-progress' | 'done';
   priority: 'low' | 'medium' | 'high';
   dueDate: Date | null;
+  _id?: ObjectId;
+  userId?: ObjectId;
   createdAt?: Date;
   editedAt?: Date;
 };
 
-export default Task;
+export default AddEditFormData;

@@ -22,7 +22,7 @@ import {
 import { Textarea } from '@/components/ui/textarea';
 import { editTask } from '@/actions/EditTask';
 import { getTaskById } from '@/actions/GetTaskById';
-import EditTaskFormData from '@/types/EditTaskFormData';
+import AddEditFormData from '@/types/AddEditFormData';
 import FormStatusType from '@/types/FormStatus';
 
 type EditTaskFormProps = {
@@ -32,8 +32,8 @@ type EditTaskFormProps = {
 
 const defaultEditFormValues = async (
   taskId: string,
-): Promise<EditTaskFormData> => {
-  const response = await getTaskById(taskId);
+): Promise<AddEditFormData> => {
+  const response: AddEditFormData = await getTaskById(taskId);
 
   return {
     text: response.text,
@@ -51,12 +51,12 @@ export default function EditTaskForm({
   const [formStatus, setFormStatus] = useState<FormStatusType>({});
   const [textLength, setTextLength] = useState(0);
 
-  const formMethods = useForm<EditTaskFormData>({
+  const formMethods = useForm<AddEditFormData>({
     defaultValues: async () => await defaultEditFormValues(taskId),
     mode: 'onChange',
   });
 
-  async function onSubmit(data: EditTaskFormData) {
+  async function onSubmit(data: AddEditFormData) {
     try {
       const response = await editTask(taskId, data);
 

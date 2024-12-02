@@ -3,9 +3,9 @@
 import { revalidatePath } from 'next/cache';
 import { ObjectId } from 'mongodb';
 import { connectToDatabase } from '@/lib/mongodb';
-import EditTaskFormData from '@/types/EditTaskFormData';
+import AddEditFormData from '@/types/AddEditFormData';
 
-export async function editTask(taskId: string, data: EditTaskFormData) {
+export async function editTask(taskId: string, data: AddEditFormData) {
   if (!data) {
     return { error: 'Data is missing' };
   }
