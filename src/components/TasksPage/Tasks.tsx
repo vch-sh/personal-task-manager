@@ -16,32 +16,16 @@ import {
 import { priorities, status } from '@/lib/table';
 import Task from '@/types/Task';
 import Filtering from './Filtering';
+import { useFilterSortTasks } from '@/hooks/useFilterSortTasks';
 
 type TasksProps = {
   tasks: Task[];
 };
 
 export default function Tasks({ tasks }: TasksProps) {
-  const [filter, setFilter] = useState('all');
-  const [sort, setSort] = useState('due-date');
-
-  const filteredSortedTasks = tasks
-    ?.filter((task) => {
-      if (filter === 'all') return true;
-      return task.status === filter;
-    })
-    .sort((a, b) => {
-      if (sort === 'due-date') {
-        const dateA = new Date(a.dueDate || 0);
-        const dateB = new Date(b.dueDate || 0);
-        return dateA.getTime() - dateB.getTime();
-      }
-      if (sort === 'priority') {
-        const priorityOrder = { high: 0, medium: 1, low: 2 };
-        return priorityOrder[a.priority] - priorityOrder[b.priority];
-      }
-      return 0;
-    });
+  const { filteredSortedTasks, setFilter, setSort } = useFilterSortTasks({
+    tasks,
+  });
 
   return (
     <>
@@ -52,7 +36,7 @@ export default function Tasks({ tasks }: TasksProps) {
       />
 
       {filteredSortedTasks.length === 0 ? (
-        <p className="text-xs font-bold text-default flex items-center justify-center gap-2">
+        <p className="text-sm font-bold text-default flex items-center justify-center gap-2">
           <FolderOpen />
           Looks like your list is empty. Add a task to get started!
         </p>
