@@ -1,10 +1,7 @@
 'use client';
 
-import { useState } from 'react';
 import { format } from 'date-fns';
-import { Pen, Trash2 } from 'lucide-react';
 import { FolderOpen } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import {
   Table,
   TableBody,
@@ -14,34 +11,19 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { priorities, status } from '@/lib/table';
+import { useFilterSortTasks } from '@/hooks/useFilterSortTasks';
 import Task from '@/types/Task';
 import Filtering from './Filtering';
+import TaskActions from './TaskActions';
 
 type TasksProps = {
   tasks: Task[];
 };
 
 export default function Tasks({ tasks }: TasksProps) {
-  const [filter, setFilter] = useState('all');
-  const [sort, setSort] = useState('due-date');
-
-  const filteredSortedTasks = tasks
-    ?.filter((task) => {
-      if (filter === 'all') return true;
-      return task.status === filter;
-    })
-    .sort((a, b) => {
-      if (sort === 'due-date') {
-        const dateA = new Date(a.dueDate || 0);
-        const dateB = new Date(b.dueDate || 0);
-        return dateA.getTime() - dateB.getTime();
-      }
-      if (sort === 'priority') {
-        const priorityOrder = { high: 0, medium: 1, low: 2 };
-        return priorityOrder[a.priority] - priorityOrder[b.priority];
-      }
-      return 0;
-    });
+  const { filteredSortedTasks, setFilter, setSort } = useFilterSortTasks({
+    tasks,
+  });
 
   return (
     <>
@@ -52,7 +34,7 @@ export default function Tasks({ tasks }: TasksProps) {
       />
 
       {filteredSortedTasks.length === 0 ? (
-        <p className="text-xs font-bold text-default flex items-center justify-center gap-2">
+        <p className="text-sm font-bold text-default flex items-center justify-center gap-2">
           <FolderOpen />
           Looks like your list is empty. Add a task to get started!
         </p>
@@ -65,7 +47,7 @@ export default function Tasks({ tasks }: TasksProps) {
               <TableHead className="hidden px-2 sm:table-cell w-4">
                 Priority
               </TableHead>
-              <TableHead className="hidden px-2 sm:table-cell w-20">
+              <TableHead className="hidden px-2 sm:table-cell w-[84px]">
                 Due Date
               </TableHead>
               <TableHead className="w-4 px-2">Actions</TableHead>
@@ -105,22 +87,7 @@ export default function Tasks({ tasks }: TasksProps) {
                     <p>{year}</p>
                   </TableCell>
                   <TableCell className="px-2">
-                    <div className="flex flex-col sm:flex-row gap-2 ">
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="cursor-not-allowed p-2"
-                      >
-                        <Pen />
-                      </Button>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="cursor-not-allowed p-2"
-                      >
-                        <Trash2 />
-                      </Button>
-                    </div>
+                    <TaskActions taskId={task._id.toString()} />
                   </TableCell>
                 </TableRow>
               );
