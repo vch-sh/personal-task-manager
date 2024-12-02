@@ -1,6 +1,6 @@
 import { CheckCircle2, Circle, Clock, ListTodo } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Progress } from '@/components/ui/progress';
+import TasksProgress from './TasksProgress';
 
 type TaskStatisticsProps = {
   tasksQuantity: number;
@@ -56,21 +56,10 @@ export default function TaskStatistics({
         </Card>
       </div>
 
-      <Card className="mt-4 mb-8">
-        <CardHeader>
-          <CardTitle>Task Completion Progress</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <Progress
-            className="transition-all"
-            value={completedTasksQuantity}
-            max={tasksQuantity}
-          />
-          <p className="text-default text-sm mt-2">
-            {completedTasksQuantity} out of {tasksQuantity} tasks completed
-          </p>
-        </CardContent>
-      </Card>
+      <TasksProgress
+        tasksQuantity={tasksQuantity}
+        completedTasksQuantity={completedTasksQuantity}
+      />
     </>
   );
 }

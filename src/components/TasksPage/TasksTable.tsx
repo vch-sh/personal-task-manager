@@ -60,7 +60,10 @@ export default function TasksTable({ tasks }: TasksTableProps) {
                   <TableCell
                     className={` max-w-[100px] sm:max-w-sm break-words text-justify`}
                   >
-                    <b>{createdAt}</b> <p>{task.text}</p>
+                    <time dateTime={createdAt} className="font-semibold">
+                      {createdAt}
+                    </time>
+                    <p>{task.text}</p>
                   </TableCell>
                   <TableCell>{status[task.status]}</TableCell>
                   <TableCell className="hidden sm:table-cell">
