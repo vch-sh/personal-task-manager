@@ -4,12 +4,16 @@ import { getDashboardData } from '@/app/data/getDashboardData';
 import Header from '@/components/DashboardPage/Header';
 import TaskStatistics from '@/components/DashboardPage/TaskStatistics';
 import ErrorMessage from '@/components/general/ErrorMessage';
-import { getTasks } from '@/actions/GetTasks';
-import GetTasksResult from '@/types/GetTasksResult';
+import { fetchTasks } from '@/utils/helpers';
 
 export default async function DashboardPage() {
   const session = await auth();
-  const tasks: GetTasksResult = await getTasks(session?.user.id);
+
+  if (!session?.user?.id) {
+    return <ErrorMessage message="User is not authenticated" />;
+  }
+
+  const tasks = await fetchTasks(session.user.id);
 
   if ('error' in tasks) {
     return <ErrorMessage message={tasks.error} />;

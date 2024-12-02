@@ -36,6 +36,7 @@ export async function addTask(data: AddTaskFormData) {
     const task = await collection?.insertOne(data);
 
     revalidatePath('/tasks');
+    revalidatePath('/dashboard');
 
     return {
       success: 'Task created successfully',
