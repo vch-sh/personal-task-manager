@@ -2,7 +2,7 @@ import { auth } from '@/auth';
 import Header from '@/components/TasksPage/Header';
 import Tasks from '@/components/TasksPage/Tasks';
 import ErrorMessage from '@/components/general/ErrorMessage';
-import { fetchTasks } from '@/utils/helpers';
+import { fetchTasks } from '@/data/tasksData';
 
 export default async function TasksPage() {
   const session = await auth();

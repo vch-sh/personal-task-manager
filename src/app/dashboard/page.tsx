@@ -1,10 +1,10 @@
 import { ChartColumn } from 'lucide-react';
 import { auth } from '@/auth';
-import { getDashboardData } from '@/app/data/getDashboardData';
 import Header from '@/components/DashboardPage/Header';
 import TaskStatistics from '@/components/DashboardPage/TaskStatistics';
 import ErrorMessage from '@/components/general/ErrorMessage';
-import { fetchTasks } from '@/utils/helpers';
+import { getDashboardData } from '@/data/dashboardData';
+import { fetchTasks } from '@/data/tasksData';
 
 export default async function DashboardPage() {
   const session = await auth();

@@ -1,6 +1,6 @@
 import { LoaderCircleIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { getFormattedLabel } from '@/utils/helpers';
+import { getFormattedLabel } from '@/lib/helpers';
 
 type SubmitButtonProps = {
   label: string;

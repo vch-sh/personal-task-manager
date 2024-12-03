@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import FormStatus from '../general/forms/FormStatus';
 import { LoaderCircleIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
@@ -15,9 +14,10 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { register } from '@/actions/Register';
-import { emailRegex, passwordRegex } from '@/utils/helpers';
+import { emailRegex, passwordRegex } from '@/lib/helpers';
 import FormStatusType from '@/types/FormStatus';
 import RegisterFormData from '@/types/RegisterFormData';
+import FormStatus from '../general/forms/FormStatus';
 
 export default function RegisterForm() {
   const [formStatus, setFormStatus] = useState<FormStatusType>({});
