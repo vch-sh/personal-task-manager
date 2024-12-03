@@ -3,10 +3,9 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useSession } from 'next-auth/react';
-import { LoaderCircleIcon } from 'lucide-react';
 import DatePicker from '@/components/general/DatePicker';
 import FormStatus from '@/components/general/forms/FormStatus';
-import { Button } from '@/components/ui/button';
+import SubmitButton from '@/components/general/forms/SubmitButton';
 import {
   Form,
   FormControl,
@@ -15,7 +14,6 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
 import {
   Select,
   SelectContent,
@@ -23,10 +21,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { Textarea } from '@/components/ui/textarea';
 import { addTask } from '@/actions/AddTask';
 import AddTaskFormData from '@/types/AddTaskFormData';
 import FormStatusType from '@/types/FormStatus';
-import { Textarea } from '../ui/textarea';
 
 type AddTaskFormProps = {
   handleDialogClose: () => void;
@@ -116,7 +114,9 @@ export default function AddTaskForm({ handleDialogClose }: AddTaskFormProps) {
           name="status"
           render={({ field }) => (
             <FormItem>
-              <FormLabel htmlFor="status">Status</FormLabel>
+              <FormLabel htmlFor="status" className="block">
+                Status
+              </FormLabel>
               <FormControl>
                 <Select defaultValue="to-do" onValueChange={field.onChange}>
                   <SelectTrigger id="status">
@@ -138,7 +138,9 @@ export default function AddTaskForm({ handleDialogClose }: AddTaskFormProps) {
           name="priority"
           render={({ field }) => (
             <FormItem>
-              <FormLabel htmlFor="priority">Priority</FormLabel>
+              <FormLabel htmlFor="priority" className="block">
+                Priority
+              </FormLabel>
               <FormControl>
                 <Select defaultValue="medium" onValueChange={field.onChange}>
                   <SelectTrigger id="priority">
@@ -169,16 +171,10 @@ export default function AddTaskForm({ handleDialogClose }: AddTaskFormProps) {
           )}
         />
         <FormStatus status={formStatus} />
-        <Button
-          type="submit"
-          className="w-full font-semibold"
-          disabled={formMethods.formState.isSubmitting}
-        >
-          {formMethods.formState.isSubmitting && (
-            <LoaderCircleIcon className="animate-spin" />
-          )}
-          Add Task
-        </Button>
+        <SubmitButton
+          label="Add"
+          isSubmitting={formMethods.formState.isSubmitting}
+        />
       </form>
     </Form>
   );

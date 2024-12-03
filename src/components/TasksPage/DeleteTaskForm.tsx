@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { LoaderCircleIcon } from 'lucide-react';
 import FormStatus from '@/components/general/forms/FormStatus';
-import { Button } from '@/components/ui/button';
+import SubmitButton from '@/components/general/forms/SubmitButton';
 import { Form } from '@/components/ui/form';
 import { deleteTask } from '@/actions/DeleteTask';
 import FormStatusType from '@/types/FormStatus';
@@ -49,16 +48,10 @@ export default function DeleteTaskForm({
         className="flex flex-col gap-4"
       >
         <FormStatus status={formStatus} />
-        <Button
-          type="submit"
-          className="w-full font-semibold"
-          disabled={formMethods.formState.isSubmitting}
-        >
-          {formMethods.formState.isSubmitting && (
-            <LoaderCircleIcon className="animate-spin" />
-          )}
-          Delete Task
-        </Button>
+        <SubmitButton
+          label="Delete"
+          isSubmitting={formMethods.formState.isSubmitting}
+        />
       </form>
     </Form>
   );

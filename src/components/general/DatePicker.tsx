@@ -23,6 +23,7 @@ export default function DatePicker({ id, field }: DatePickerProps) {
     <Popover>
       <PopoverTrigger asChild>
         <Button
+          id={id}
           variant={'outline'}
           className={cn(
             'w-full justify-start text-left font-normal',
@@ -42,7 +43,6 @@ export default function DatePicker({ id, field }: DatePickerProps) {
           mode="single"
           selected={field.value || undefined}
           onSelect={field.onChange}
-          id={id}
         />
       </PopoverContent>
     </Popover>
