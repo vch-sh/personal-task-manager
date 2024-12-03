@@ -23,7 +23,7 @@ import {
 } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
 import { addTask } from '@/actions/AddTask';
-import AddTaskFormData from '@/types/AddTaskFormData';
+import AddEditTaskFormData from '@/types/AddEditFormData';
 import FormStatusType from '@/types/FormStatus';
 
 type AddTaskFormProps = {
@@ -36,7 +36,7 @@ export default function AddTaskForm({ handleDialogClose }: AddTaskFormProps) {
 
   const { data: session } = useSession();
 
-  const formMethods = useForm<AddTaskFormData>({
+  const formMethods = useForm<AddEditTaskFormData>({
     defaultValues: {
       userId: session?.user.id,
       text: '',
@@ -48,7 +48,7 @@ export default function AddTaskForm({ handleDialogClose }: AddTaskFormProps) {
     mode: 'onChange',
   });
 
-  async function onSubmit(data: AddTaskFormData) {
+  async function onSubmit(data: AddEditTaskFormData) {
     setFormStatus({});
 
     try {

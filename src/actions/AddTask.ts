@@ -3,9 +3,9 @@
 import { revalidatePath } from 'next/cache';
 import { connectToDatabase } from '@/lib/mongodb';
 import { getUserById } from '@/lib/users';
-import AddTaskFormData from '@/types/AddTaskFormData';
+import AddEditTaskFormData from '@/types/AddEditFormData';
 
-export async function addTask(data: AddTaskFormData) {
+export async function addTask(data: AddEditTaskFormData) {
   if (!data) {
     return { error: 'Data is missing' };
   }
@@ -25,7 +25,7 @@ export async function addTask(data: AddTaskFormData) {
     }
 
     const existingUser = await getUserById(
-      data.userId.toString(),
+      data.userId?.toString() || '',
       userCollection,
     );
 

@@ -12,10 +12,11 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import { cn } from '@/lib/utils';
+import AddEditTaskFormData from '@/types/AddEditFormData';
 
 type DatePickerProps = {
   id: string;
-  field: ControllerRenderProps<any, 'dueDate'>;
+  field: ControllerRenderProps<AddEditTaskFormData, 'dueDate'>;
 };
 
 export default function DatePicker({ id, field }: DatePickerProps) {
