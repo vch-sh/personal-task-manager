@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { LoaderCircleIcon } from 'lucide-react';
 import DatePicker from '@/components/general/DatePicker';
 import FormStatus from '@/components/general/forms/FormStatus';
-import { Button } from '@/components/ui/button';
+import SubmitButton from '@/components/general/forms/SubmitButton';
 import {
   Form,
   FormControl,
@@ -120,7 +119,9 @@ export default function EditTaskForm({
           name="status"
           render={({ field }) => (
             <FormItem>
-              <FormLabel htmlFor="status">Status</FormLabel>
+              <FormLabel htmlFor="status" className="block">
+                Status
+              </FormLabel>
               <FormControl>
                 <Select onValueChange={field.onChange} value={field.value}>
                   <SelectTrigger id="status">
@@ -142,7 +143,9 @@ export default function EditTaskForm({
           name="priority"
           render={({ field }) => (
             <FormItem>
-              <FormLabel htmlFor="priority">Priority</FormLabel>
+              <FormLabel htmlFor="priority" className="block">
+                Priority
+              </FormLabel>
               <FormControl>
                 <Select value={field.value} onValueChange={field.onChange}>
                   <SelectTrigger id="priority">
@@ -173,16 +176,10 @@ export default function EditTaskForm({
           )}
         />
         <FormStatus status={formStatus} />
-        <Button
-          type="submit"
-          className="w-full font-semibold"
-          disabled={formMethods.formState.isSubmitting}
-        >
-          {formMethods.formState.isSubmitting && (
-            <LoaderCircleIcon className="animate-spin" />
-          )}
-          Update Task
-        </Button>
+        <SubmitButton
+          label="Update"
+          isSubmitting={formMethods.formState.isSubmitting}
+        />
       </form>
     </Form>
   );

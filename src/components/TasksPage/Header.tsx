@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { MoveLeft, Plus } from 'lucide-react';
 import DialogCloseButton from '@/components/general/DialogCloseButton';
-import LogOutButton from '@/components/general/LogOutButton';
+import LogoutButton from '@/components/general/LogOutButton';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -38,7 +38,7 @@ export default function Header({ tasksQuantity }: HeaderProps) {
             </Button>
           </Link>
 
-          <LogOutButton />
+          <LogoutButton />
         </div>
       </div>
       <div className="flex items-center justify-end gap-4">
