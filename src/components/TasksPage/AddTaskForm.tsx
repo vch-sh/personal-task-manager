@@ -26,6 +26,7 @@ import {
 import { addTask } from '@/actions/AddTask';
 import AddTaskFormData from '@/types/AddTaskFormData';
 import FormStatusType from '@/types/FormStatus';
+import { Textarea } from '../ui/textarea';
 
 type AddTaskFormProps = {
   handleDialogClose: () => void;
@@ -95,9 +96,10 @@ export default function AddTaskForm({ handleDialogClose }: AddTaskFormProps) {
                 )}
               </FormLabel>
               <FormControl>
-                <Input
+                <Textarea
                   id="text"
                   placeholder="Enter your task..."
+                  className="h-40 sm:h-28"
                   {...field}
                   onChange={(e) => {
                     field.onChange(e);
