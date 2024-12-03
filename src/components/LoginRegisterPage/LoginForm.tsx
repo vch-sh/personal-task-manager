@@ -16,7 +16,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { emailRegex, passwordRegex } from '@/utils/helpers';
+import { emailRegex, passwordRegex } from '@/lib/helpers';
 import FormStatusType from '@/types/FormStatus';
 import LoginFormData from '@/types/LoginFormData';
 

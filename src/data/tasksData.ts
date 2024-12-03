@@ -1,19 +1,4 @@
 import GetTasksResult from '@/types/GetTasksResult';
-import Task from '@/types/Task';
-
-export const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/g;
-export const passwordRegex = /[!@#$%]+/;
-
-export function getFormattedLabel(label: string) {
-  if (label.endsWith('e')) {
-    return `${label.slice(0, -1)}ing...`;
-  }
-  return `${label}ing...`;
-}
-
-export function getTasksByStatus(tasks: Task[], value: string) {
-  return tasks.filter((task: Task) => task.status === value);
-}
 
 export async function fetchTasks(userId: string): Promise<GetTasksResult> {
   try {

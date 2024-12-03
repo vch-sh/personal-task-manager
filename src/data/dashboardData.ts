@@ -1,4 +1,4 @@
-import { getTasksByStatus } from '@/utils/helpers';
+import { getTasksByStatus } from '@/lib/helpers';
 import Task from '@/types/Task';
 
 export function getDashboardData(tasks: Task[]) {
