@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { Pen, Trash2 } from 'lucide-react';
+import DialogCloseButton from '@/components/general/DialogCloseButton';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -9,20 +10,21 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
+import DeleteTaskForm from './DeleteTaskForm';
 import EditTaskForm from './EditTaskForm';
-import DialogCloseButton from '../general/DialogCloseButton';
 
 type TaskActionsProps = {
   taskId: string;
 };
 
 export default function TaskActions({ taskId }: TaskActionsProps) {
-  const ref = useRef<HTMLButtonElement>(null);
+  const editButtonRef = useRef<HTMLButtonElement>(null);
+  const deleteButtonRef = useRef<HTMLButtonElement>(null);
 
   return (
     <div className="flex flex-col sm:flex-row gap-2 ">
       <Dialog>
-        <DialogTrigger asChild ref={ref}>
+        <DialogTrigger asChild ref={editButtonRef}>
           <Button variant="outline" size="sm" className="p-2">
             <Pen />
           </Button>
@@ -31,18 +33,36 @@ export default function TaskActions({ taskId }: TaskActionsProps) {
           <DialogHeader className="relative">
             <DialogTitle className="text-left">Update Task</DialogTitle>
             <DialogDescription></DialogDescription>
-            <DialogCloseButton handleClose={() => ref.current?.click()} />
+            <DialogCloseButton
+              handleClose={() => editButtonRef.current?.click()}
+            />
           </DialogHeader>
           <EditTaskForm
             taskId={taskId}
-            handleDialogClose={() => ref.current?.click()}
+            handleDialogClose={() => editButtonRef.current?.click()}
           />
         </DialogContent>
       </Dialog>
-
-      <Button variant="outline" size="sm" className="cursor-not-allowed p-2">
-        <Trash2 />
-      </Button>
+      <Dialog>
+        <DialogTrigger asChild ref={deleteButtonRef}>
+          <Button variant="outline" size="sm" className="p-2">
+            <Trash2 />
+          </Button>
+        </DialogTrigger>
+        <DialogContent>
+          <DialogHeader className="relative">
+            <DialogTitle className="text-left">Delete this task?</DialogTitle>
+            <DialogDescription></DialogDescription>
+            <DialogCloseButton
+              handleClose={() => deleteButtonRef.current?.click()}
+            />
+          </DialogHeader>
+          <DeleteTaskForm
+            id={taskId}
+            handleDialogClose={() => deleteButtonRef.current?.click()}
+          />
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
