@@ -29,7 +29,7 @@ export default function TaskActions({ taskId }: TaskActionsProps) {
         </DialogTrigger>
         <DialogContent>
           <DialogHeader className="relative">
-            <DialogTitle className="text-left">Edit Task</DialogTitle>
+            <DialogTitle className="text-left">Update Task</DialogTitle>
             <DialogDescription></DialogDescription>
             <DialogCloseButton handleClose={() => ref.current?.click()} />
           </DialogHeader>

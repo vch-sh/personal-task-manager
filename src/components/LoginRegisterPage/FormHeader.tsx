@@ -5,7 +5,8 @@ export default function FormHeader() {
     <CardHeader className="text-center">
       <CardTitle>Personal Task Manager</CardTitle>
       <CardDescription className="text-default">
-        Enter your email below to login or create your account
+        <p>Enter your email and password to log in</p>
+        <p>or create a new account</p>
       </CardDescription>
     </CardHeader>
   );
