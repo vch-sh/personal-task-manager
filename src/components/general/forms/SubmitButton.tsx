@@ -1,5 +1,6 @@
 import { LoaderCircleIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { getFormattedLabel } from '@/utils/helpers';
 
 type SubmitButtonProps = {
   label: string;
@@ -17,7 +18,7 @@ export default function SubmitButton({
       disabled={isSubmitting}
     >
       {isSubmitting && <LoaderCircleIcon className="animate-spin" />}
-      {isSubmitting ? `${label}ing...` : label}
+      {isSubmitting ? getFormattedLabel(label) : label}
     </Button>
   );
 }
