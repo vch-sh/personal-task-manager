@@ -4,7 +4,10 @@ import AuthProvider from '@/components/general/AuthProvider';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Personal Task Manager',
+  title: {
+    template: '%s | Personal Task Manager',
+    default: 'Personal Task Manager',
+  },
   description:
     'Streamline your productivity with our intuitive task management system. Organize, prioritize, and accomplish your goals with ease.',
 };
