@@ -8,7 +8,7 @@ export async function fetchTasks(userId: string): Promise<GetTasksResult> {
     );
 
     if (!res.ok) {
-      throw new Error(`Failed to fetch tasks: ${res.statusText}`);
+      return { error: 'Failed to fetch tasks' };
     }
 
     return await res.json();

@@ -13,14 +13,17 @@ import {
 import { priorities, status } from '@/lib/table';
 import { useFilterSortTasks } from '@/hooks/useFilterSortTasks';
 import Task from '@/types/Task';
+import TaskCategory from '@/types/TaskCategory';
 import Filtering from './Filtering';
 import TaskActions from './TaskActions';
+import TaskCategories from './TaskCategories';
 
 type TasksProps = {
   tasks: Task[];
+  taskCategories: TaskCategory[];
 };
 
-export default function Tasks({ tasks }: TasksProps) {
+export default function Tasks({ tasks, taskCategories }: TasksProps) {
   const { filteredSortedTasks, setFilter, setSort } = useFilterSortTasks({
     tasks,
   });
@@ -32,6 +35,8 @@ export default function Tasks({ tasks }: TasksProps) {
         setFilter={setFilter}
         setSort={setSort}
       />
+
+      <TaskCategories taskCategories={taskCategories} />
 
       {filteredSortedTasks.length === 0 ? (
         <p className="text-sm font-bold text-default flex items-center justify-center gap-2">
