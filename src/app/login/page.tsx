@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import CardFooterContent from '@/components/LoginRegisterPage/CardFooterContent';
 import FormHeader from '@/components/LoginRegisterPage/FormHeader';
 import LoginForm from '@/components/LoginRegisterPage/LoginForm';
@@ -6,6 +7,10 @@ import SocialAuthButtons from '@/components/LoginRegisterPage/SocialAuthButtons'
 import DividerWithText from '@/components/general/DividerWithText';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+
+export const metadata: Metadata = {
+  title: 'Login or Register',
+};
 
 export default function LoginRegisterPage() {
   return (

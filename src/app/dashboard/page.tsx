@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import { ChartColumn } from 'lucide-react';
 import { auth } from '@/auth';
 import Header from '@/components/DashboardPage/Header';
@@ -5,6 +6,10 @@ import TaskStatistics from '@/components/DashboardPage/TaskStatistics';
 import ErrorMessage from '@/components/general/ErrorMessage';
 import { getDashboardData } from '@/data/dashboardData';
 import { fetchTasks } from '@/data/tasksData';
+
+export const metadata: Metadata = {
+  title: 'Dashboard',
+};
 
 export default async function DashboardPage() {
   const session = await auth();
