@@ -24,9 +24,10 @@ type TasksProps = {
 };
 
 export default function Tasks({ tasks, taskCategories }: TasksProps) {
-  const { filteredSortedTasks, setFilter, setSort } = useFilterSortTasks({
-    tasks,
-  });
+  const { filteredSortedTasks, category, setCategory, setFilter, setSort } =
+    useFilterSortTasks({
+      tasks,
+    });
 
   return (
     <>
@@ -36,12 +37,18 @@ export default function Tasks({ tasks, taskCategories }: TasksProps) {
         setSort={setSort}
       />
 
-      {!!tasks.length && <TaskCategories taskCategories={taskCategories} />}
+      {!!tasks.length && (
+        <TaskCategories
+          taskCategories={taskCategories}
+          category={category}
+          setCategory={setCategory}
+        />
+      )}
 
       {filteredSortedTasks.length === 0 ? (
         <p className="text-sm font-bold text-default flex items-center justify-center gap-2">
           <FolderOpen />
-          Looks like your list is empty. Add a task to get started!
+          Looks like your list is empty
         </p>
       ) : (
         <Table className="text-center mb-8">
