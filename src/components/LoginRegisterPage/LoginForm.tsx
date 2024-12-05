@@ -4,9 +4,8 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import { LoaderCircleIcon } from 'lucide-react';
 import FormStatus from '@/components/general/forms/FormStatus';
-import { Button } from '@/components/ui/button';
+import SubmitButton from '@/components/general/forms/SubmitButton';
 import {
   Form,
   FormControl,
@@ -129,16 +128,10 @@ export default function LoginForm() {
 
         <FormStatus status={formStatus} />
 
-        <Button
-          type="submit"
-          className="w-full font-semibold"
-          disabled={formMethods.formState.isSubmitting}
-        >
-          {formMethods.formState.isSubmitting && (
-            <LoaderCircleIcon className="animate-spin" />
-          )}
-          Login
-        </Button>
+        <SubmitButton
+          label="Login"
+          isSubmitting={formMethods.formState.isSubmitting}
+        />
       </form>
     </Form>
   );

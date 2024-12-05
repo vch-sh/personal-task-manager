@@ -18,7 +18,7 @@ export default async function TasksPage() {
   }
 
   const tasks = await fetchTasks(session.user.id);
-  const taskCategories = await fetchTaskCategories();
+  const taskCategories = await fetchTaskCategories(session.user.id);
 
   if ('error' in tasks) {
     return <ErrorMessage message={tasks.error} />;

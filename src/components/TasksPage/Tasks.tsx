@@ -36,7 +36,7 @@ export default function Tasks({ tasks, taskCategories }: TasksProps) {
         setSort={setSort}
       />
 
-      <TaskCategories taskCategories={taskCategories} />
+      {!!tasks.length && <TaskCategories taskCategories={taskCategories} />}
 
       {filteredSortedTasks.length === 0 ? (
         <p className="text-sm font-bold text-default flex items-center justify-center gap-2">

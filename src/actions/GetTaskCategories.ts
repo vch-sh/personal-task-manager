@@ -1,9 +1,8 @@
 'use server';
 
 import { connectToDatabase } from '@/lib/mongodb';
-import GetTasksResult from '@/types/GetTasksResult';
 
-export async function getTaskCategories() {
+export async function getTaskCategories(id: string) {
   let client;
   let collection;
 
@@ -16,7 +15,9 @@ export async function getTaskCategories() {
       return { error: 'Collection not found' };
     }
 
-    const taskCategories = await collection.find().toArray();
+    const taskCategories = await collection
+      .find({ $or: [{ name: 'all' }, { userId: id }] })
+      .toArray();
     return JSON.parse(JSON.stringify(taskCategories)) || [];
   } catch (error) {
     if (error instanceof Error) {
