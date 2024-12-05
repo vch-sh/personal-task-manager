@@ -25,6 +25,7 @@ export async function editTask(taskId: string, data: AddEditTaskFormData) {
           text: data.text,
           status: data.status,
           priority: data.priority,
+          category: data.category,
           dueDate: data.dueDate,
           editedAt: data.editedAt,
         },

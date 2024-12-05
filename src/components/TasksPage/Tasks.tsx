@@ -92,7 +92,10 @@ export default function Tasks({ tasks, taskCategories }: TasksProps) {
                     <p>{year}</p>
                   </TableCell>
                   <TableCell className="px-2">
-                    <TaskActions taskId={task._id.toString()} />
+                    <TaskActions
+                      taskId={task._id.toString()}
+                      taskCategories={taskCategories}
+                    />
                   </TableCell>
                 </TableRow>
               );
