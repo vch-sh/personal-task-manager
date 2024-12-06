@@ -15,25 +15,21 @@ export default function AddTaskCategoryDialog() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <>
-      <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogTrigger>
-          <PlusCircle
-            className="opacity-70 cursor-pointer"
-            onClick={() => setIsOpen(true)}
-          />
-        </DialogTrigger>
-        <DialogContent>
-          <DialogHeader className="relative">
-            <DialogTitle className="text-left">
-              Add New Task Category
-            </DialogTitle>
-            <DialogDescription></DialogDescription>
-            <DialogCloseButton handleClose={() => setIsOpen(false)} />
-          </DialogHeader>
-          <AddTaskCategoryForm handleDialogClose={() => setIsOpen(false)} />
-        </DialogContent>
-      </Dialog>
-    </>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+      <DialogTrigger>
+        <PlusCircle
+          className="opacity-70 cursor-pointer"
+          onClick={() => setIsOpen(true)}
+        />
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader className="relative">
+          <DialogTitle className="text-left">Add New Task Category</DialogTitle>
+          <DialogDescription></DialogDescription>
+          <DialogCloseButton handleClose={() => setIsOpen(false)} />
+        </DialogHeader>
+        <AddTaskCategoryForm handleDialogClose={() => setIsOpen(false)} />
+      </DialogContent>
+    </Dialog>
   );
 }
