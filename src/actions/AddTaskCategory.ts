@@ -34,6 +34,7 @@ export async function addTaskCategory(data: AddTaskCategoryFormData) {
     }
 
     const existingCategory = await collection?.findOne({
+      userId: data.userId,
       name: data.name,
     });
 
