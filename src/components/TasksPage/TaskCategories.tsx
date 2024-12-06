@@ -40,7 +40,7 @@ export default function TaskCategories({
             })
           }
         >
-          {taskCategory.name.toLowerCase()}
+          {taskCategory.name}
         </Badge>
       ))}
       <AddTaskCategoryDialog />

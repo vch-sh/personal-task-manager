@@ -90,6 +90,10 @@ export default function AddTaskCategoryForm({
                   id="name"
                   placeholder="Enter category name..."
                   {...field}
+                  onChange={(e) => {
+                    const lowercaseValue = e.target.value.toLowerCase();
+                    formMethods.setValue('name', lowercaseValue);
+                  }}
                 />
               </FormControl>
               <FormMessage />
