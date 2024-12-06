@@ -8,11 +8,20 @@ type useFilterSortTasksProps = {
 export function useFilterSortTasks({ tasks }: useFilterSortTasksProps) {
   const [filter, setFilter] = useState('all');
   const [sort, setSort] = useState('due-date');
+  const [category, setCategory] = useState({
+    _id: 'all',
+    name: 'all',
+    color: '',
+  });
 
   const filteredSortedTasks = tasks
     ?.filter((task) => {
+      if (category._id === 'all') return true;
+      return category._id === task.category;
+    })
+    ?.filter((task) => {
       if (filter === 'all') return true;
-      return task.status === filter;
+      return filter === task.status;
     })
     .sort((a, b) => {
       if (sort === 'due-date') {
@@ -27,5 +36,5 @@ export function useFilterSortTasks({ tasks }: useFilterSortTasksProps) {
       return 0;
     });
 
-  return { filteredSortedTasks, setFilter, setSort };
+  return { filteredSortedTasks, category, setCategory, setFilter, setSort };
 }

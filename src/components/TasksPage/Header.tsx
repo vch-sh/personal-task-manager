@@ -14,13 +14,15 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
+import TaskCategory from '@/types/TaskCategory';
 import AddTaskForm from './AddTaskForm';
 
 type HeaderProps = {
   tasksQuantity: number;
+  taskCategories: TaskCategory[];
 };
 
-export default function Header({ tasksQuantity }: HeaderProps) {
+export default function Header({ tasksQuantity, taskCategories }: HeaderProps) {
   const [addTaskModalOpen, setAddTaskModalOpen] = useState(false);
 
   return (
@@ -58,7 +60,10 @@ export default function Header({ tasksQuantity }: HeaderProps) {
                 handleClose={() => setAddTaskModalOpen(false)}
               />
             </DialogHeader>
-            <AddTaskForm handleDialogClose={() => setAddTaskModalOpen(false)} />
+            <AddTaskForm
+              taskCategories={taskCategories}
+              handleDialogClose={() => setAddTaskModalOpen(false)}
+            />
           </DialogContent>
         </Dialog>
       </div>

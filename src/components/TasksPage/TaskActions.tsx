@@ -12,12 +12,14 @@ import {
 } from '@/components/ui/dialog';
 import DeleteTaskForm from './DeleteTaskForm';
 import EditTaskForm from './EditTaskForm';
+import TaskCategory from '@/types/TaskCategory';
 
 type TaskActionsProps = {
   taskId: string;
+  taskCategories: TaskCategory[];
 };
 
-export default function TaskActions({ taskId }: TaskActionsProps) {
+export default function TaskActions({ taskId,   taskCategories }: TaskActionsProps) {
   const editButtonRef = useRef<HTMLButtonElement>(null);
   const deleteButtonRef = useRef<HTMLButtonElement>(null);
 
@@ -39,6 +41,7 @@ export default function TaskActions({ taskId }: TaskActionsProps) {
           </DialogHeader>
           <EditTaskForm
             taskId={taskId}
+            taskCategories={taskCategories}
             handleDialogClose={() => editButtonRef.current?.click()}
           />
         </DialogContent>

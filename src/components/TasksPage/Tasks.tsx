@@ -13,17 +13,21 @@ import {
 import { priorities, status } from '@/lib/table';
 import { useFilterSortTasks } from '@/hooks/useFilterSortTasks';
 import Task from '@/types/Task';
+import TaskCategory from '@/types/TaskCategory';
 import Filtering from './Filtering';
 import TaskActions from './TaskActions';
+import TaskCategories from './TaskCategories';
 
 type TasksProps = {
   tasks: Task[];
+  taskCategories: TaskCategory[];
 };
 
-export default function Tasks({ tasks }: TasksProps) {
-  const { filteredSortedTasks, setFilter, setSort } = useFilterSortTasks({
-    tasks,
-  });
+export default function Tasks({ tasks, taskCategories }: TasksProps) {
+  const { filteredSortedTasks, category, setCategory, setFilter, setSort } =
+    useFilterSortTasks({
+      tasks,
+    });
 
   return (
     <>
@@ -33,10 +37,18 @@ export default function Tasks({ tasks }: TasksProps) {
         setSort={setSort}
       />
 
+      {!!tasks.length && (
+        <TaskCategories
+          taskCategories={taskCategories}
+          category={category}
+          setCategory={setCategory}
+        />
+      )}
+
       {filteredSortedTasks.length === 0 ? (
         <p className="text-sm font-bold text-default flex items-center justify-center gap-2">
           <FolderOpen />
-          Looks like your list is empty. Add a task to get started!
+          Looks like your list is empty
         </p>
       ) : (
         <Table className="text-center mb-8">
@@ -87,7 +99,10 @@ export default function Tasks({ tasks }: TasksProps) {
                     <p>{year}</p>
                   </TableCell>
                   <TableCell className="px-2">
-                    <TaskActions taskId={task._id.toString()} />
+                    <TaskActions
+                      taskId={task._id.toString()}
+                      taskCategories={taskCategories}
+                    />
                   </TableCell>
                 </TableRow>
               );

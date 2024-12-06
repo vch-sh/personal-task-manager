@@ -23,9 +23,11 @@ import { editTask } from '@/actions/EditTask';
 import { getTaskById } from '@/actions/GetTaskById';
 import AddEditTaskFormData from '@/types/AddEditFormData';
 import FormStatusType from '@/types/FormStatus';
+import TaskCategory from '@/types/TaskCategory';
 
 type EditTaskFormProps = {
   taskId: string;
+  taskCategories: TaskCategory[];
   handleDialogClose: () => void;
 };
 
@@ -38,6 +40,7 @@ const defaultEditFormValues = async (
     text: response.text,
     status: response.status,
     priority: response.priority,
+    category: response.category,
     dueDate: response.dueDate || null,
     editedAt: new Date(),
   };
@@ -45,6 +48,7 @@ const defaultEditFormValues = async (
 
 export default function EditTaskForm({
   taskId,
+  taskCategories,
   handleDialogClose,
 }: EditTaskFormProps) {
   const [formStatus, setFormStatus] = useState<FormStatusType>({});
@@ -155,6 +159,35 @@ export default function EditTaskForm({
                     <SelectItem value="low">Low</SelectItem>
                     <SelectItem value="medium">Medium</SelectItem>
                     <SelectItem value="high">High</SelectItem>
+                  </SelectContent>
+                </Select>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={formMethods.control}
+          name="category"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel htmlFor="category" className="block">
+                Category
+              </FormLabel>
+              <FormControl>
+                <Select value={field.value} onValueChange={field.onChange}>
+                  <SelectTrigger id="category">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {taskCategories.map((taskCategory) => (
+                      <SelectItem
+                        key={taskCategory._id.toString()}
+                        value={taskCategory._id.toString()}
+                      >
+                        {taskCategory.name}
+                      </SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
               </FormControl>
