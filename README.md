@@ -4,7 +4,7 @@ Personal Task Manager is a comprehensive web application designed to help users 
 
 ## Project Status
 
-As of December 6, 2024 - `in development`
+As of December 7, 2024 - `in development`
 
 ## Features
 
@@ -61,6 +61,7 @@ Here's an overview of the main directories and files:
   - `assets/`: Static assets.
   - `components/`: Reusable React components.
     - `ui/`: UI components from shadcn/ui.
+  - `contexts/`: Contains React Contexts for managing global state across the application.
   - `data/`: Contains utility functions for retrieving and processing task data.
   - `hooks/`: Custom React hooks.
   - `lib/`: Utility functions and helpers.
