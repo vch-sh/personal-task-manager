@@ -9,9 +9,9 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import AddTaskCategoryForm from './AddTaskCategoryForm';
+import AddCategoryForm from './AddCategoryForm';
 
-export default function AddTaskCategoryDialog() {
+export default function AddCategoryDialog() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -28,7 +28,7 @@ export default function AddTaskCategoryDialog() {
           <DialogDescription></DialogDescription>
           <DialogCloseButton handleClose={() => setIsOpen(false)} />
         </DialogHeader>
-        <AddTaskCategoryForm handleDialogClose={() => setIsOpen(false)} />
+        <AddCategoryForm handleDialogClose={() => setIsOpen(false)} />
       </DialogContent>
     </Dialog>
   );

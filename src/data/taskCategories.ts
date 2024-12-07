@@ -1,8 +1,8 @@
-import GetTaskCategoriesResult from '@/types/GetTaskCategoriesResult';
+import GetCategoriesResult from '@/types/GetCategoriesResult';
 
 export async function fetchTaskCategories(
   userId: string,
-): Promise<GetTaskCategoriesResult> {
+): Promise<GetCategoriesResult> {
   try {
     const res = await fetch(
       `${process.env.NEXTAUTH_URL}/api/task-categories?userId=${encodeURIComponent(userId)}`,

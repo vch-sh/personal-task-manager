@@ -4,7 +4,7 @@ import { revalidatePath } from 'next/cache';
 import { ObjectId } from 'mongodb';
 import { connectToDatabase } from '@/lib/mongodb';
 
-export async function deleteTaskCategory(categoryId: string) {
+export async function deleteCategory(categoryId: ObjectId | 'all') {
   if (!categoryId) {
     return { error: 'Category ID is required' };
   }

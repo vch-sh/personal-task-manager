@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Task from '@/types/Task';
+import { useTaskCategory } from './useTaskCategory';
 
 type useFilterSortTasksProps = {
   tasks: Task[];
@@ -8,16 +9,13 @@ type useFilterSortTasksProps = {
 export function useFilterSortTasks({ tasks }: useFilterSortTasksProps) {
   const [filter, setFilter] = useState('all');
   const [sort, setSort] = useState('due-date');
-  const [category, setCategory] = useState({
-    _id: 'all',
-    name: 'all',
-    color: '',
-  });
+
+  const { category, setCategory } = useTaskCategory();
 
   const filteredSortedTasks = tasks
     ?.filter((task) => {
       if (category._id === 'all') return true;
-      return category._id === task.category;
+      return category._id.toString() === task.category;
     })
     ?.filter((task) => {
       if (filter === 'all') return true;

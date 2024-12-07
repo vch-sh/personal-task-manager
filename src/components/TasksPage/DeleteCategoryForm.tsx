@@ -1,35 +1,27 @@
-import { Dispatch, SetStateAction, useState } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import FormStatus from '@/components/general/forms/FormStatus';
 import SubmitButton from '@/components/general/forms/SubmitButton';
 import { Form } from '@/components/ui/form';
-import { deleteTaskCategory } from '@/actions/DeleteTaskCategory';
+import { deleteCategory } from '@/actions/DeleteCategory';
+import { useTaskCategory } from '@/hooks/useTaskCategory';
 import FormStatusType from '@/types/FormStatus';
 
-type DeleteTaskCategoryFormProps = {
-  id: string;
+type DeleteCategoryFormProps = {
   handleDialogClose: () => void;
-  setCategory: Dispatch<
-    SetStateAction<{
-      _id: string;
-      name: string;
-      color: string;
-    }>
-  >;
 };
 
-export default function DeleteTaskCategoryForm({
-  id,
+export default function DeleteCategoryForm({
   handleDialogClose,
-  setCategory,
-}: DeleteTaskCategoryFormProps) {
+}: DeleteCategoryFormProps) {
   const [formStatus, setFormStatus] = useState<FormStatusType>({});
+  const { category, setCategory } = useTaskCategory();
 
   const formMethods = useForm();
 
   async function onSubmit() {
     try {
-      const response = await deleteTaskCategory(id);
+      const response = await deleteCategory(category._id);
 
       if (response?.error) {
         setFormStatus({ error: response.error });
@@ -41,7 +33,7 @@ export default function DeleteTaskCategoryForm({
         setCategory({
           _id: 'all',
           name: 'all',
-          color: '',
+          color: 'black',
         });
         return;
       }

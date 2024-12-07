@@ -1,9 +1,9 @@
 import { ObjectId } from 'mongodb';
 
-type AddTaskCategoryFormData = {
+type AddCategoryFormData = {
   userId: ObjectId;
   name: string;
   color: string;
 };
 
-export default AddTaskCategoryFormData;
+export default AddCategoryFormData;

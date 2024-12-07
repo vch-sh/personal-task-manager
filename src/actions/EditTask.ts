@@ -5,7 +5,7 @@ import { ObjectId } from 'mongodb';
 import { connectToDatabase } from '@/lib/mongodb';
 import AddEditTaskFormData from '@/types/AddEditFormData';
 
-export async function editTask(taskId: string, data: AddEditTaskFormData) {
+export async function editTask(data: AddEditTaskFormData, taskId?: string) {
   if (!data) {
     return { error: 'Data is missing' };
   }
@@ -42,10 +42,7 @@ export async function editTask(taskId: string, data: AddEditTaskFormData) {
 
     return {
       success: 'Task updated successfully',
-      updatedTask: {
-        ...result,
-        _id: result?._id.toString(),
-      },
+      taskId: result?._id.toString(),
     };
   } catch (error) {
     if (error instanceof Error) {
