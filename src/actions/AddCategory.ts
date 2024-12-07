@@ -3,9 +3,9 @@
 import { revalidatePath } from 'next/cache';
 import { connectToDatabase } from '@/lib/mongodb';
 import { getUserById } from '@/lib/users';
-import AddTaskCategoryFormData from '@/types/AddTaskCategoryFormData';
+import AddCategoryFormData from '@/types/AddCategoryFormData';
 
-export async function addTaskCategory(data: AddTaskCategoryFormData) {
+export async function addCategory(data: AddCategoryFormData) {
   if (!data) {
     return { error: 'Data is missing' };
   }

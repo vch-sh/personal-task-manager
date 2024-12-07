@@ -14,23 +14,23 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { addTaskCategory } from '@/actions/AddTaskCategory';
+import { addCategory } from '@/actions/AddCategory';
 import { colorVariants } from '@/lib/taskCategoriesColors';
-import AddTaskCategoryFormData from '@/types/AddTaskCategoryFormData';
+import AddCategoryFormData from '@/types/AddCategoryFormData';
 import FormStatusType from '@/types/FormStatus';
 
-type AddTaskCategoryFormProps = {
+type AddCategoryFormProps = {
   handleDialogClose: () => void;
 };
 
-export default function AddTaskCategoryForm({
+export default function AddCategoryForm({
   handleDialogClose,
-}: AddTaskCategoryFormProps) {
+}: AddCategoryFormProps) {
   const [formStatus, setFormStatus] = useState<FormStatusType>({});
 
   const { data: session } = useSession();
 
-  const formMethods = useForm<AddTaskCategoryFormData>({
+  const formMethods = useForm<AddCategoryFormData>({
     defaultValues: {
       userId: session?.user.id,
       name: '',
@@ -39,11 +39,11 @@ export default function AddTaskCategoryForm({
     mode: 'onChange',
   });
 
-  async function onSubmit(data: AddTaskCategoryFormData) {
+  async function onSubmit(data: AddCategoryFormData) {
     setFormStatus({});
 
     try {
-      const response = await addTaskCategory(data);
+      const response = await addCategory(data);
 
       if (response?.error) {
         setFormStatus({ error: response.error });

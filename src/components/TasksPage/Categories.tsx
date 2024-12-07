@@ -2,10 +2,10 @@ import { Dispatch, SetStateAction } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { colorVariants } from '@/lib/taskCategoriesColors';
 import TaskCategory from '@/types/TaskCategory';
-import AddTaskCategoryDialog from './AddTaskCategoryDialog';
-import DeleteTaskCategoryDialog from './DeleteTaskCategoryDialog';
+import AddTaskCategoryDialog from './AddCategoryDialog';
+import DeleteCategoryDialog from './DeleteCategoryDialog';
 
-type TaskCategoriesProps = {
+type CategoriesProps = {
   taskCategories: TaskCategory[];
   category: {
     _id: string;
@@ -21,11 +21,11 @@ type TaskCategoriesProps = {
   >;
 };
 
-export default function TaskCategories({
+export default function Categories({
   taskCategories,
   category,
   setCategory,
-}: TaskCategoriesProps) {
+}: CategoriesProps) {
   return (
     <section className="mb-6 flex flex-wrap justify-normal items-center gap-2 sm:gap-1">
       {taskCategories?.map((taskCategory) => (
@@ -45,10 +45,7 @@ export default function TaskCategories({
       ))}
       <AddTaskCategoryDialog />
       {category.name !== 'all' && (
-        <DeleteTaskCategoryDialog
-          category={category}
-          setCategory={setCategory}
-        />
+        <DeleteCategoryDialog category={category} setCategory={setCategory} />
       )}
     </section>
   );

@@ -3,10 +3,10 @@ import { useForm } from 'react-hook-form';
 import FormStatus from '@/components/general/forms/FormStatus';
 import SubmitButton from '@/components/general/forms/SubmitButton';
 import { Form } from '@/components/ui/form';
-import { deleteTaskCategory } from '@/actions/DeleteTaskCategory';
+import { deleteCategory } from '@/actions/DeleteCategory';
 import FormStatusType from '@/types/FormStatus';
 
-type DeleteTaskCategoryFormProps = {
+type DeleteCategoryFormProps = {
   id: string;
   handleDialogClose: () => void;
   setCategory: Dispatch<
@@ -18,18 +18,18 @@ type DeleteTaskCategoryFormProps = {
   >;
 };
 
-export default function DeleteTaskCategoryForm({
+export default function DeleteCategoryForm({
   id,
   handleDialogClose,
   setCategory,
-}: DeleteTaskCategoryFormProps) {
+}: DeleteCategoryFormProps) {
   const [formStatus, setFormStatus] = useState<FormStatusType>({});
 
   const formMethods = useForm();
 
   async function onSubmit() {
     try {
-      const response = await deleteTaskCategory(id);
+      const response = await deleteCategory(id);
 
       if (response?.error) {
         setFormStatus({ error: response.error });

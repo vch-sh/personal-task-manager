@@ -10,9 +10,9 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import DeleteTaskCategoryForm from './DeleteTaskCategoryForm';
+import DeleteTaskCategoryForm from './DeleteCategoryForm';
 
-type DeleteTaskCategoryDialogProps = {
+type DeleteCategoryDialogProps = {
   category: {
     _id: string;
     name: string;
@@ -27,15 +27,15 @@ type DeleteTaskCategoryDialogProps = {
   >;
 };
 
-export default function DeleteTaskCategoryDialog({
+export default function DeleteCategoryDialog({
   category,
   setCategory,
-}: DeleteTaskCategoryDialogProps) {
+}: DeleteCategoryDialogProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogTrigger className="ml-auto">
+      <DialogTrigger>
         <FolderX className="opacity-70" />
       </DialogTrigger>
       <DialogContent>

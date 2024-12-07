@@ -14,9 +14,9 @@ import { priorities, status } from '@/lib/table';
 import { useFilterSortTasks } from '@/hooks/useFilterSortTasks';
 import Task from '@/types/Task';
 import TaskCategory from '@/types/TaskCategory';
+import Categories from './Categories';
 import Filtering from './Filtering';
 import TaskActions from './TaskActions';
-import TaskCategories from './TaskCategories';
 
 type TasksProps = {
   tasks: Task[];
@@ -38,7 +38,7 @@ export default function Tasks({ tasks, taskCategories }: TasksProps) {
       />
 
       {!!tasks.length && (
-        <TaskCategories
+        <Categories
           taskCategories={taskCategories}
           category={category}
           setCategory={setCategory}
