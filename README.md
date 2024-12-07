@@ -13,8 +13,14 @@ As of December 7, 2024 - `in development`
   - OAuth integration with Google and GitHub for easy sign-in.
 - **Responsive Design**: Fully responsive interface that works on desktop and mobile devices.
 - **Dashboard**: View task statistics, including total tasks, completed tasks, tasks in progress, and to-do tasks, along with progress tracking.
-- **Task Management**: Create, edit, and delete tasks with ease.
-- **Task Sorting**: Filter tasks by status, priority, or date.
+- **Task Management**:
+  - Create, edit, and delete tasks with ease.
+  - Filter and sort tasks by status, priority, or due date.
+  - Organize tasks into **categories** for better management and filtering.
+- **Task Categories**:
+  - Add and delete custom categories.
+  - Assign tasks to specific categories.
+  - Filter tasks by selected category.
 
 **Note: This project is actively being developed. Many more exciting features are planned and will be added in future updates!**
 
@@ -113,19 +119,52 @@ Here's an overview of the main directories and files:
 
 ## Usage
 
-1. Register for a new account or log in if you already have one. You can use your email and password, Google account, or GitHub account for authentication.
-2. Use the navigation bar to access different sections of the app:
+**Authentication**:
 
-   - `Dashboard`: View task statistics and overall progress
-   - `Tasks`: Manage your tasks (add, edit, delete)
+- Register for a new account or log in using:
+  - Email and password.
+  - Google or GitHub account via OAuth.
 
-3. On the `Tasks` page, you can:
-   - Add a new task by clicking the "Add Task" button.
-   - Edit or delete existing tasks.
-   - Sort tasks by:
-     - `Status`: Done, to do, or in progress.
-     - `Date`: By task completion date.
-     - `Priority`: High, medium, or low.
+**Navigation**:
+
+- Use the navigation bar to switch between sections:
+  - **Dashboard**: View task statistics, including:
+    - Total tasks.
+    - Completed tasks.
+    - Tasks in progress.
+    - Tasks to do.
+  - **Tasks**: Manage your tasks:
+    - Add new tasks.
+    - Edit existing tasks.
+    - Delete tasks.
+  - **Categories**: Organize tasks into categories:
+    - Create new categories.
+    - Assign tasks to specific categories.
+    - Filter tasks by category.
+
+**Task Management**:
+
+- **Adding Tasks**:
+  - Click the "Add Task" button.
+  - Provide details like title, priority, status, category, and due date.
+- **Editing Tasks**:
+  - Click on the edit icon.
+  - Make changes and save.
+- **Deleting Tasks**:
+  - Select a task and click the delete button.
+- **Sorting Tasks**:
+  - By status: Done, In Progress, To Do.
+  - By priority: High, Medium, Low.
+  - By due date.
+
+**Managing Categories**:
+
+- Add new categories in the **Categories** section.
+- Use categories to filter tasks on the **Tasks** page.
+
+**Mobile and Desktop Friendly**:
+
+- The application offers a fully responsive design, ensuring seamless use on both desktop and mobile devices.
 
 ## Contributing
 
