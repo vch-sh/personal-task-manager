@@ -24,10 +24,9 @@ type TasksProps = {
 };
 
 export default function Tasks({ tasks, taskCategories }: TasksProps) {
-  const { filteredSortedTasks, category, setCategory, setFilter, setSort } =
-    useFilterSortTasks({
-      tasks,
-    });
+  const { filteredSortedTasks, setFilter, setSort } = useFilterSortTasks({
+    tasks,
+  });
 
   return (
     <>
@@ -37,13 +36,7 @@ export default function Tasks({ tasks, taskCategories }: TasksProps) {
         setSort={setSort}
       />
 
-      {!!tasks.length && (
-        <Categories
-          taskCategories={taskCategories}
-          category={category}
-          setCategory={setCategory}
-        />
-      )}
+      {!!tasks.length && <Categories taskCategories={taskCategories} />}
 
       {filteredSortedTasks.length === 0 ? (
         <p className="text-sm font-bold text-default flex items-center justify-center gap-2">

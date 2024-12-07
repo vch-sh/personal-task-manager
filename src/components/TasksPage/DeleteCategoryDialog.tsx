@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from 'react';
+import { useState } from 'react';
 import { FolderX, ShieldAlert } from 'lucide-react';
 import 'lucide-react';
 import DialogCloseButton from '@/components/general/DialogCloseButton';
@@ -10,28 +10,12 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
+import { useTaskCategory } from '@/hooks/useTaskCategory';
 import DeleteTaskCategoryForm from './DeleteCategoryForm';
 
-type DeleteCategoryDialogProps = {
-  category: {
-    _id: string;
-    name: string;
-    color: string;
-  };
-  setCategory: Dispatch<
-    SetStateAction<{
-      _id: string;
-      name: string;
-      color: string;
-    }>
-  >;
-};
-
-export default function DeleteCategoryDialog({
-  category,
-  setCategory,
-}: DeleteCategoryDialogProps) {
+export default function DeleteCategoryDialog() {
   const [isOpen, setIsOpen] = useState(false);
+  const { category } = useTaskCategory();
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -55,11 +39,7 @@ export default function DeleteCategoryDialog({
           </DialogDescription>
           <DialogCloseButton handleClose={() => setIsOpen(false)} />
         </DialogHeader>
-        <DeleteTaskCategoryForm
-          id={category._id}
-          handleDialogClose={() => setIsOpen(false)}
-          setCategory={setCategory}
-        />
+        <DeleteTaskCategoryForm handleDialogClose={() => setIsOpen(false)} />
       </DialogContent>
     </Dialog>
   );
