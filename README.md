@@ -4,7 +4,7 @@ Personal Task Manager is a comprehensive web application designed to help users 
 
 ## Project Status
 
-As of December 7, 2024 - `in development`
+As of December 9, 2024 - `in development`
 
 ## Features
 
@@ -16,7 +16,8 @@ As of December 7, 2024 - `in development`
 - **Task Management**:
   - Create, edit, and delete tasks with ease.
   - Filter and sort tasks by status, priority, or due date.
-  - Organize tasks into **categories** for better management and filtering.
+  - Organize tasks into categories for better management and filtering.
+  - Hide Completed Tasks: Easily toggle visibility of completed tasks for a cleaner and more focused interface.
 - **Task Categories**:
   - Add and delete custom categories.
   - Assign tasks to specific categories.
@@ -152,10 +153,14 @@ Here's an overview of the main directories and files:
   - Make changes and save.
 - **Deleting Tasks**:
   - Select a task and click the delete button.
+- **Filtering Tasks**:
+  - By status: To Do, In Progress, Done.
+  - By category.
 - **Sorting Tasks**:
-  - By status: Done, In Progress, To Do.
+  - By due date (default sorting).
   - By priority: High, Medium, Low.
-  - By due date.
+- **Hide Completed Tasks**:
+  - Enable the "Hide completed" checkbox to hide all tasks marked as "done."
 
 **Managing Categories**:
 
