@@ -18,7 +18,7 @@ export default function FilterSortToggle({ children }: PropsWithChildren) {
         >
           {isShown ? 'Hide Filters & Sorting' : 'Show Filters & Sorting'}
         </AccordionTrigger>
-        <AccordionContent className="mx-1">{children}</AccordionContent>
+        <AccordionContent className="mx-2">{children}</AccordionContent>
       </AccordionItem>
     </Accordion>
   );

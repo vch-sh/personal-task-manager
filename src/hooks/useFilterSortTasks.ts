@@ -1,6 +1,7 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Task from '@/types/Task';
 import { useCompletedTasks } from './useCompletedTasks';
+import { useFilteredTasksQuantity } from './useFilteredTasksQuantity';
 import { useTaskCategory } from './useTaskCategory';
 
 type useFilterSortTasksProps = {
@@ -13,6 +14,7 @@ export function useFilterSortTasks({ tasks }: useFilterSortTasksProps) {
 
   const { category, setCategory } = useTaskCategory();
   const { isCompletedHidden } = useCompletedTasks();
+  const { setFilteredTasksQuantity } = useFilteredTasksQuantity();
 
   const filterByCompleted = useCallback(
     (task: Task) => (isCompletedHidden ? task.status !== 'done' : task),
@@ -65,6 +67,10 @@ export function useFilterSortTasks({ tasks }: useFilterSortTasksProps) {
       }
       return 0;
     });
+
+  useEffect(() => {
+    setFilteredTasksQuantity(filteredSortedTasks.length);
+  }, [filteredSortedTasks, setFilteredTasksQuantity]);
 
   return {
     filteredSortedTasks,

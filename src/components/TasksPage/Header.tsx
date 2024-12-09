@@ -14,22 +14,24 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
+import { useFilteredTasksQuantity } from '@/hooks/useFilteredTasksQuantity';
 import TaskCategory from '@/types/TaskCategory';
 import AddTaskForm from './AddTaskForm';
 
 type HeaderProps = {
-  tasksQuantity: number;
   taskCategories: TaskCategory[];
 };
 
-export default function Header({ tasksQuantity, taskCategories }: HeaderProps) {
+export default function Header({ taskCategories }: HeaderProps) {
   const [addTaskModalOpen, setAddTaskModalOpen] = useState(false);
+  const { filteredTasksQuantity } = useFilteredTasksQuantity();
 
   return (
     <>
       <div className="flex flex-col sm:flex-row items-center mb-2">
         <h2 className="text-center sm:text-left text-3xl font-semibold tracking-tight sm:mr-auto mb-4 sm:mb-0">
-          Tasks {!!tasksQuantity && <span>({tasksQuantity})</span>}
+          Tasks{' '}
+          {!!filteredTasksQuantity && <span>({filteredTasksQuantity})</span>}
         </h2>
 
         <div className="flex items-center w-full sm:w-auto">
