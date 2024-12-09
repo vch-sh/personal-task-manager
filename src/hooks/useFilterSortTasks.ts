@@ -66,5 +66,13 @@ export function useFilterSortTasks({ tasks }: useFilterSortTasksProps) {
       return 0;
     });
 
-  return { filteredSortedTasks, category, setCategory, setFilter, setSort };
+  return {
+    filteredSortedTasks,
+    filter,
+    sort,
+    category,
+    setCategory,
+    setFilter,
+    setSort,
+  };
 }

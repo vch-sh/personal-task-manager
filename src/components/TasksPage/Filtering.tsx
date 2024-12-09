@@ -10,12 +10,16 @@ import {
 
 type FilteringProps = {
   tasksQuantity: number;
+  filter: string;
+  sort: string;
   setFilter: Dispatch<SetStateAction<string>>;
   setSort: Dispatch<SetStateAction<string>>;
 };
 
 export default function Filtering({
   tasksQuantity,
+  filter,
+  sort,
   setFilter,
   setSort,
 }: FilteringProps) {
@@ -27,7 +31,7 @@ export default function Filtering({
             <Label htmlFor="filter" className="w-full">
               Filter by Status{' '}
             </Label>
-            <Select defaultValue="all" onValueChange={setFilter}>
+            <Select defaultValue={filter} onValueChange={setFilter}>
               <SelectTrigger id="filter">
                 <SelectValue />
               </SelectTrigger>
@@ -44,7 +48,7 @@ export default function Filtering({
             <Label htmlFor="sort" className="w-full">
               Sort{' '}
             </Label>
-            <Select defaultValue="due-date" onValueChange={setSort}>
+            <Select defaultValue={sort} onValueChange={setSort}>
               <SelectTrigger id="sort">
                 <SelectValue />
               </SelectTrigger>

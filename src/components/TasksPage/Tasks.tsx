@@ -3,6 +3,7 @@
 import { format } from 'date-fns';
 import { FolderOpen } from 'lucide-react';
 import Categories from '@/components/TasksPage/Categories';
+import FilterSortToggle from '@/components/TasksPage/FilterSortToggle';
 import Filtering from '@/components/TasksPage/Filtering';
 import HideCompleted from '@/components/TasksPage/HideCompleted';
 import TaskActions from '@/components/TasksPage/TaskActions';
@@ -25,23 +26,28 @@ type TasksProps = {
 };
 
 export default function Tasks({ tasks, taskCategories }: TasksProps) {
-  const { filteredSortedTasks, setFilter, setSort } = useFilterSortTasks({
-    tasks,
-  });
+  const { filteredSortedTasks, filter, sort, setFilter, setSort } =
+    useFilterSortTasks({
+      tasks,
+    });
 
   return (
     <>
-      <Filtering
-        tasksQuantity={tasks.length}
-        setFilter={setFilter}
-        setSort={setSort}
-      />
+      {!!tasks.length && (
+        <FilterSortToggle>
+          <Filtering
+            tasksQuantity={tasks.length}
+            filter={filter}
+            sort={sort}
+            setFilter={setFilter}
+            setSort={setSort}
+          />
+          <HideCompleted />
+          <Categories taskCategories={taskCategories} />
+        </FilterSortToggle>
+      )}
 
-      <HideCompleted />
-
-      {!!tasks.length && <Categories taskCategories={taskCategories} />}
-
-      {filteredSortedTasks.length === 0 ? (
+      {filteredSortedTasks?.length === 0 ? (
         <p className="text-sm font-bold text-default flex items-center justify-center gap-2">
           <FolderOpen />
           Looks like your list is empty

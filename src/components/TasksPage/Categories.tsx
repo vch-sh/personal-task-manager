@@ -13,7 +13,7 @@ export default function Categories({ taskCategories }: CategoriesProps) {
   const { category, setCategory } = useTaskCategory();
 
   return (
-    <section className="mb-6 flex flex-wrap justify-normal items-center gap-2 sm:gap-1">
+    <section className="flex flex-wrap justify-normal items-center gap-2 sm:gap-1">
       {taskCategories?.map((taskCategory) => (
         <Badge
           key={taskCategory._id.toString()}
