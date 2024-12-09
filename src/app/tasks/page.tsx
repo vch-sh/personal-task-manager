@@ -5,6 +5,7 @@ import Tasks from '@/components/TasksPage/Tasks';
 import ErrorMessage from '@/components/general/ErrorMessage';
 import { fetchTaskCategories } from '@/data/taskCategories';
 import { fetchTasks } from '@/data/tasksData';
+import { CompletedTasksContextProvider } from '@/contexts/CompletedTasksContextProvider';
 import { TaskCategoryContextProvider } from '@/contexts/TaskCategoryContextProvider';
 
 export const metadata: Metadata = {
@@ -30,11 +31,16 @@ export default async function TasksPage() {
   }
 
   return (
-    <TaskCategoryContextProvider>
-      <main className="container mx-auto px-4 py-8 sm:py-4 h-screen max-w-5xl min-w-[360px]">
-        <Header tasksQuantity={tasks.length} taskCategories={taskCategories} />
-        <Tasks tasks={tasks} taskCategories={taskCategories} />
-      </main>
-    </TaskCategoryContextProvider>
+    <CompletedTasksContextProvider>
+      <TaskCategoryContextProvider>
+        <main className="container mx-auto px-4 py-8 sm:py-4 h-screen max-w-5xl min-w-[360px]">
+          <Header
+            tasksQuantity={tasks.length}
+            taskCategories={taskCategories}
+          />
+          <Tasks tasks={tasks} taskCategories={taskCategories} />
+        </main>
+      </TaskCategoryContextProvider>
+    </CompletedTasksContextProvider>
   );
 }
