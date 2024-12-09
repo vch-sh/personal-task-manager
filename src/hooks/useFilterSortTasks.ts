@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Task from '@/types/Task';
+import { useCompletedTasks } from './useCompletedTasks';
 import { useTaskCategory } from './useTaskCategory';
 
 type useFilterSortTasksProps = {
@@ -11,13 +12,15 @@ export function useFilterSortTasks({ tasks }: useFilterSortTasksProps) {
   const [sort, setSort] = useState('due-date');
 
   const { category, setCategory } = useTaskCategory();
+  const { isCompletedHidden } = useCompletedTasks();
 
   const filteredSortedTasks = tasks
-    ?.filter((task) => {
+    .filter((task) => (isCompletedHidden ? task.status !== 'done' : task))
+    .filter((task) => {
       if (category._id === 'all') return true;
       return category._id.toString() === task.category;
     })
-    ?.filter((task) => {
+    .filter((task) => {
       if (filter === 'all') return true;
       return filter === task.status;
     })

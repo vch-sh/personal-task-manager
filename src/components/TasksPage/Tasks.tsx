@@ -2,6 +2,10 @@
 
 import { format } from 'date-fns';
 import { FolderOpen } from 'lucide-react';
+import Categories from '@/components/TasksPage/Categories';
+import Filtering from '@/components/TasksPage/Filtering';
+import HideCompleted from '@/components/TasksPage/HideCompleted';
+import TaskActions from '@/components/TasksPage/TaskActions';
 import {
   Table,
   TableBody,
@@ -14,9 +18,6 @@ import { priorities, status } from '@/lib/table';
 import { useFilterSortTasks } from '@/hooks/useFilterSortTasks';
 import Task from '@/types/Task';
 import TaskCategory from '@/types/TaskCategory';
-import Categories from './Categories';
-import Filtering from './Filtering';
-import TaskActions from './TaskActions';
 
 type TasksProps = {
   tasks: Task[];
@@ -35,6 +36,8 @@ export default function Tasks({ tasks, taskCategories }: TasksProps) {
         setFilter={setFilter}
         setSort={setSort}
       />
+
+      <HideCompleted />
 
       {!!tasks.length && <Categories taskCategories={taskCategories} />}
 
