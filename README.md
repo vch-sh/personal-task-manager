@@ -18,6 +18,7 @@ As of December 9, 2024 - `in development`
   - Filter and sort tasks by status, priority, or due date.
   - Organize tasks into categories for better management and filtering.
   - Hide Completed Tasks: Easily toggle visibility of completed tasks for a cleaner and more focused interface.
+  - Toggle Filter & Sorting Section: Collapse or expand the filtering and sorting options to make the task management interface cleaner and more focused.
 - **Task Categories**:
   - Add and delete custom categories.
   - Assign tasks to specific categories.
@@ -138,6 +139,9 @@ Here's an overview of the main directories and files:
     - Add new tasks.
     - Edit existing tasks.
     - Delete tasks.
+    - Filter and Sort: Filter tasks by status, category, and due date. Sort tasks by priority or due date.
+    - Toggle Filter & Sorting Section: You can expand or collapse the filter and sorting section by clicking the "Show Filters & Sorting" button. This helps clean up the interface when not needed.
+    - Hide Completed Tasks: Enable the "Hide completed" checkbox to hide all tasks marked as "done."
   - **Categories**: Organize tasks into categories:
     - Create new categories.
     - Assign tasks to specific categories.
