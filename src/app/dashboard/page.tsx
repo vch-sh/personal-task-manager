@@ -5,6 +5,7 @@ import Header from '@/components/DashboardPage/Header';
 import TaskStatistics from '@/components/DashboardPage/TaskStatistics';
 import ErrorMessage from '@/components/general/ErrorMessage';
 import { getDashboardData } from '@/data/dashboardData';
+import { fetchTaskCategories } from '@/data/taskCategories';
 import { fetchTasks } from '@/data/tasksData';
 
 export const metadata: Metadata = {
@@ -19,13 +20,22 @@ export default async function DashboardPage() {
   }
 
   const tasks = await fetchTasks(session.user.id);
+  const taskCategories = await fetchTaskCategories(session.user.id);
 
   if ('error' in tasks) {
     return <ErrorMessage message={tasks.error} />;
   }
 
-  const { completedTasks, inProgressTasks, todoTasks } =
-    getDashboardData(tasks);
+  if ('error' in taskCategories) {
+    return <ErrorMessage message={taskCategories.error} />;
+  }
+
+  const {
+    completedTasks,
+    inProgressTasks,
+    todoTasks,
+    tasksQuantityByCategory,
+  } = getDashboardData(tasks, taskCategories);
 
   return (
     <main className="container mx-auto px-4 py-8 sm:py-4 h-screen max-w-5xl min-w-[360px]">
@@ -37,6 +47,7 @@ export default async function DashboardPage() {
           completedTasksQuantity={completedTasks.length}
           inProgressTasksQuantity={inProgressTasks.length}
           todoTasksQuantity={todoTasks.length}
+          tasksQuantityByCategory={tasksQuantityByCategory.slice(1)}
         />
       ) : (
         <p className="text-default text-sm flex items-center justify-center gap-2 font-semibold">
