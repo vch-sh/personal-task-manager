@@ -10,6 +10,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
+import { colorVariants } from '@/lib/taskCategoriesColors';
 import { useTaskCategory } from '@/hooks/useTaskCategory';
 import DeleteTaskCategoryForm from './DeleteCategoryForm';
 
@@ -27,7 +28,7 @@ export default function DeleteCategoryDialog() {
           <DialogTitle className="flex items-center justify-start gap-2 mb-3">
             Delete category{' '}
             <span
-              className={`bg-${category.color}-500 text-white text-sm px-2.5 py-0.5 rounded-full bg-gray-500`}
+              className={`${colorVariants[category.color]} text-white text-sm px-2.5 py-0.5 rounded-full bg-gray-500`}
             >
               {category.name}
             </span>{' '}
