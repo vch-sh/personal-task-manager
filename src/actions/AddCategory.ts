@@ -24,10 +24,7 @@ export async function addCategory(data: AddCategoryFormData) {
       return { error: 'Failed to connect to the user collection' };
     }
 
-    const existingUser = await getUserById(
-      data.userId?.toString() || '',
-      userCollection,
-    );
+    const existingUser = await getUserById(data.userId || '', userCollection);
 
     if (!existingUser) {
       return { error: 'User not found' };

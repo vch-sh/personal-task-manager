@@ -81,7 +81,7 @@ export default function Tasks({ tasks, taskCategories }: TasksProps) {
 
               return (
                 <TableRow
-                  key={task._id.toString()}
+                  key={task._id}
                   className={`${task.status === 'done' && 'line-through'}`}
                 >
                   <TableCell
@@ -102,7 +102,7 @@ export default function Tasks({ tasks, taskCategories }: TasksProps) {
                   </TableCell>
                   <TableCell className="px-2">
                     <TaskActions
-                      taskId={task._id.toString()}
+                      taskId={task._id}
                       taskCategories={taskCategories}
                     />
                   </TableCell>

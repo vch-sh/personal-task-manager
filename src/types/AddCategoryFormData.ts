@@ -1,7 +1,5 @@
-import { ObjectId } from 'mongodb';
-
 type AddCategoryFormData = {
-  userId: ObjectId;
+  userId: string;
   name: string;
   color: string;
 };

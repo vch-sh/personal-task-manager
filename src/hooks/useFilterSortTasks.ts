@@ -24,7 +24,7 @@ export function useFilterSortTasks({ tasks }: useFilterSortTasksProps) {
   const filterByCategory = useCallback(
     (task: Task) => {
       if (category._id === 'all') return true;
-      return category._id.toString() === task.category;
+      return category._id === task.category;
     },
     [category._id],
   );

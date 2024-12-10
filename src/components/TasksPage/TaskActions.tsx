@@ -10,16 +10,19 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
+import TaskCategory from '@/types/TaskCategory';
 import DeleteTaskForm from './DeleteTaskForm';
 import EditTaskForm from './EditTaskForm';
-import TaskCategory from '@/types/TaskCategory';
 
 type TaskActionsProps = {
   taskId: string;
   taskCategories: TaskCategory[];
 };
 
-export default function TaskActions({ taskId,   taskCategories }: TaskActionsProps) {
+export default function TaskActions({
+  taskId,
+  taskCategories,
+}: TaskActionsProps) {
   const editButtonRef = useRef<HTMLButtonElement>(null);
   const deleteButtonRef = useRef<HTMLButtonElement>(null);
 
