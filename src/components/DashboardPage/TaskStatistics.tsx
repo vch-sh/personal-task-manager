@@ -1,12 +1,19 @@
 import { CheckCircle2, Circle, Clock, ListTodo } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { colorVariants } from '@/lib/taskCategoriesColors';
 import TasksProgress from './TasksProgress';
+import TasksQuantityByCategory from './TasksQuantityByCategory';
 
 type TaskStatisticsProps = {
   tasksQuantity: number;
   completedTasksQuantity: number;
   inProgressTasksQuantity: number;
   todoTasksQuantity: number;
+  tasksQuantityByCategory: {
+    category: string;
+    color: keyof typeof colorVariants;
+    count: number;
+  }[];
 };
 
 export default function TaskStatistics({
@@ -14,6 +21,7 @@ export default function TaskStatistics({
   completedTasksQuantity,
   inProgressTasksQuantity,
   todoTasksQuantity,
+  tasksQuantityByCategory,
 }: TaskStatisticsProps) {
   return (
     <>
@@ -59,6 +67,10 @@ export default function TaskStatistics({
       <TasksProgress
         tasksQuantity={tasksQuantity}
         completedTasksQuantity={completedTasksQuantity}
+      />
+
+      <TasksQuantityByCategory
+        tasksQuantityByCategory={tasksQuantityByCategory}
       />
     </>
   );

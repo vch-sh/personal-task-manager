@@ -220,7 +220,7 @@ export default function AddEditTaskForm({
         />
         <FormStatus status={formStatus} />
         <SubmitButton
-          label="Add"
+          label={taskId ? 'Update' : 'Add'}
           isSubmitting={formMethods.formState.isSubmitting}
         />
       </form>
