@@ -192,8 +192,8 @@ export default function AddEditTaskForm({
                   <SelectContent>
                     {taskCategories.map((taskCategory) => (
                       <SelectItem
-                        key={taskCategory._id.toString()}
-                        value={taskCategory._id.toString()}
+                        key={taskCategory._id}
+                        value={taskCategory._id}
                       >
                         {taskCategory.name}
                       </SelectItem>

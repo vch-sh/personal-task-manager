@@ -33,7 +33,7 @@ export default function TasksQuantityByCategory({
             {tasksQuantityByCategory.map((task, index) => (
               <div
                 key={`${task}_${index}`}
-                className={`${colorVariants[task.color] || 'bg-gray-500 text-gray-900'} opacity-${opacity} transition mb-2 text-white p-2 rounded-md shadow-md`}
+                className={`${colorVariants[task.color]} ${opacity === 100 ? 'opacity-100' : 'opacity-0'} transition mb-2 text-white p-2 rounded-md shadow-md`}
               >
                 <p>
                   {task.category} {task.count}

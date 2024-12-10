@@ -1,6 +1,7 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
+import { ObjectId } from 'mongodb';
 import { connectToDatabase } from '@/lib/mongodb';
 import { getUserById } from '@/lib/users';
 import AddEditTaskFormData from '@/types/AddEditFormData';
@@ -25,7 +26,7 @@ export async function addTask(data: AddEditTaskFormData) {
     }
 
     const existingUser = await getUserById(
-      data.userId?.toString() || '',
+      data.userId || '',
       userCollection,
     );
 
@@ -33,7 +34,16 @@ export async function addTask(data: AddEditTaskFormData) {
       return { error: 'User not found' };
     }
 
-    const task = await collection?.insertOne(data);
+    const task = await collection?.insertOne({
+      _id: new ObjectId(data._id),
+      userId: data.userId,
+      text: data.text,
+      status: data.status,
+      priority: data.priority,
+      category: data.category,
+      dueDate: data.dueDate,
+      createdAt: data.createdAt,
+    });
 
     revalidatePath('/tasks');
     revalidatePath('/dashboard');

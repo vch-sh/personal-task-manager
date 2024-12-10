@@ -1,8 +1,6 @@
-import { ObjectId } from 'mongodb';
-
 type Task = {
-  _id: ObjectId;
-  userId: ObjectId;
+  _id: string;
+  userId: string;
   text: string;
   status: 'to-do' | 'in-progress' | 'done';
   priority: 'low' | 'medium' | 'high';

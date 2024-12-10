@@ -34,7 +34,7 @@ export default function AddCategoryForm({
     defaultValues: {
       userId: session?.user.id,
       name: '',
-      color: '',
+      color: 'default',
     },
     mode: 'onChange',
   });

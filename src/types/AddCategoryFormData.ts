@@ -1,9 +1,9 @@
-import { ObjectId } from 'mongodb';
+import { colorVariants } from '@/lib/taskCategoriesColors';
 
 type AddCategoryFormData = {
-  userId: ObjectId;
+  userId: string;
   name: string;
-  color: string;
+  color: keyof typeof colorVariants;
 };
 
 export default AddCategoryFormData;
