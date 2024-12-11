@@ -4,7 +4,7 @@ Personal Task Manager is a comprehensive web application designed to help users 
 
 ## Project Status
 
-As of December 10, 2024 - `in development`
+As of December 11, 2024 - `in development`
 
 ## Features
 
@@ -23,7 +23,7 @@ As of December 10, 2024 - `in development`
   - Hide Completed Tasks: Easily toggle visibility of completed tasks for a cleaner and more focused interface.
   - Toggle Filter & Sorting Section: Collapse or expand the filtering and sorting options to make the task management interface cleaner and more focused.
 - **Task Categories**:
-  - Add and delete custom categories.
+  - Add, update, and delete custom categories.
   - Assign tasks to specific categories.
   - Filter tasks by selected category.
 
@@ -147,7 +147,8 @@ Here's an overview of the main directories and files:
     - Hide Completed Tasks: Enable the "Hide completed" checkbox to hide all tasks marked as "done."
   - **Categories**: Organize tasks into categories:
     - Create new categories.
-    - Assign tasks to specific categories.
+    - Assign tasks to categories.
+    - Edit or update existing categories.
     - Filter tasks by category.
 
 **Task Management**:
@@ -172,6 +173,7 @@ Here's an overview of the main directories and files:
 **Managing Categories**:
 
 - Add new categories in the **Categories** section.
+- Edit or update existing categories to better organize tasks.
 - Use categories to filter tasks on the **Tasks** page.
 
 **Mobile and Desktop Friendly**:

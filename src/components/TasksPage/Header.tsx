@@ -16,7 +16,7 @@ import {
 } from '@/components/ui/dialog';
 import { useFilteredTasksQuantity } from '@/hooks/useFilteredTasksQuantity';
 import TaskCategory from '@/types/TaskCategory';
-import AddTaskForm from './AddTaskForm';
+import AddTask from './AddTask';
 
 type HeaderProps = {
   taskCategories: TaskCategory[];
@@ -62,7 +62,7 @@ export default function Header({ taskCategories }: HeaderProps) {
                 handleClose={() => setAddTaskModalOpen(false)}
               />
             </DialogHeader>
-            <AddTaskForm
+            <AddTask
               taskCategories={taskCategories}
               handleDialogClose={() => setAddTaskModalOpen(false)}
             />

@@ -1,9 +1,10 @@
 import { colorVariants } from '@/lib/taskCategoriesColors';
 
-type AddCategoryFormData = {
+type AddEditCategoryFormData = {
+  _id: string;
   userId: string;
   name: string;
   color: keyof typeof colorVariants;
 };
 
-export default AddCategoryFormData;
+export default AddEditCategoryFormData;
