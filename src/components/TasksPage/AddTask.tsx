@@ -7,15 +7,15 @@ import AddEditTaskFormData from '@/types/AddEditFormData';
 import TaskCategory from '@/types/TaskCategory';
 import AddEditTaskForm from './AddEditTaskForm';
 
-type AddTaskFormProps = {
+type AddTaskProps = {
   taskCategories: TaskCategory[];
   handleDialogClose: () => void;
 };
 
-export default function AddTaskForm({
+export default function AddTask({
   taskCategories,
   handleDialogClose,
-}: AddTaskFormProps) {
+}: AddTaskProps) {
   const { data: session } = useSession();
 
   const formMethods = useForm<AddEditTaskFormData>({

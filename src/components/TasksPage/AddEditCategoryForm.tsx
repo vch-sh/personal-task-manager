@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { useSession } from 'next-auth/react';
+import { useFormContext } from 'react-hook-form';
 import FormStatus from '@/components/general/forms/FormStatus';
 import SubmitButton from '@/components/general/forms/SubmitButton';
 import {
@@ -14,36 +13,43 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { addCategory } from '@/actions/AddCategory';
 import { colorVariants } from '@/lib/taskCategoriesColors';
-import AddCategoryFormData from '@/types/AddCategoryFormData';
+import { useTaskCategory } from '@/hooks/useTaskCategory';
+import AddEditCategoryFormData from '@/types/AddEditCategoryFormData';
 import FormStatusType from '@/types/FormStatus';
 
-type AddCategoryFormProps = {
+type AddEditCategoryFormProps = {
+  id?: string;
   handleDialogClose: () => void;
+  action: (data: AddEditCategoryFormData) => Promise<
+    | {
+        error: string;
+        success?: undefined;
+        categoryId?: undefined;
+      }
+    | {
+        success: string;
+        categoryId: string | undefined;
+        error?: undefined;
+      }
+  >;
 };
 
-export default function AddCategoryForm({
+export default function AddEditCategoryForm({
   handleDialogClose,
-}: AddCategoryFormProps) {
+  action,
+}: AddEditCategoryFormProps) {
   const [formStatus, setFormStatus] = useState<FormStatusType>({});
+  const [textLength, setTextLength] = useState(0);
+  const { setCategory } = useTaskCategory();
 
-  const { data: session } = useSession();
+  const formMethods = useFormContext<AddEditCategoryFormData>();
 
-  const formMethods = useForm<AddCategoryFormData>({
-    defaultValues: {
-      userId: session?.user.id,
-      name: '',
-      color: 'default',
-    },
-    mode: 'onChange',
-  });
-
-  async function onSubmit(data: AddCategoryFormData) {
+  async function onSubmit(data: AddEditCategoryFormData) {
     setFormStatus({});
 
     try {
-      const response = await addCategory(data);
+      const response = await action(data);
 
       if (response?.error) {
         setFormStatus({ error: response.error });
@@ -53,6 +59,11 @@ export default function AddCategoryForm({
       if (response?.success) {
         setFormStatus({ success: response.success });
         handleDialogClose();
+        setCategory({
+          _id: response.categoryId || '',
+          name: data.name,
+          color: data.color,
+        });
         return;
       }
     } catch (error) {
@@ -76,23 +87,35 @@ export default function AddCategoryForm({
           rules={{
             required: 'Name is required',
             maxLength: {
-              value: 30,
-              message: 'Max 30 characters',
+              value: 25,
+              message: 'Max 25 characters',
             },
           }}
           render={({ field }) => (
             <FormItem>
-              <FormLabel htmlFor="name" className="font-semibold">
-                Name
+              <FormLabel
+                htmlFor="name"
+                className="font-semibold flex items-center"
+              >
+                <span>Name</span>
+                {textLength >= 20 && (
+                  <span className="text-xs ml-auto">
+                    {formMethods.watch('name').length}/25
+                  </span>
+                )}
               </FormLabel>
               <FormControl>
                 <Input
                   id="name"
                   placeholder="Enter category name..."
                   {...field}
+                  value={field.value || ''}
                   onChange={(e) => {
                     const lowercaseValue = e.target.value.toLowerCase();
                     formMethods.setValue('name', lowercaseValue);
+
+                    field.onChange(e);
+                    setTextLength(e.target.value.length);
                   }}
                 />
               </FormControl>
@@ -112,6 +135,7 @@ export default function AddCategoryForm({
               <FormControl>
                 <RadioGroup
                   {...field}
+                  value={field.value || ''}
                   onValueChange={(value) => field.onChange(value)}
                   className="flex flex-wrap justify-between"
                 >
@@ -144,7 +168,7 @@ export default function AddCategoryForm({
         <FormStatus status={formStatus} />
 
         <SubmitButton
-          label="Add"
+          label={action.name === 'editCategory' ? 'Update' : 'Add'}
           isSubmitting={formMethods.formState.isSubmitting}
         />
       </form>

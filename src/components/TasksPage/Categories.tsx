@@ -30,7 +30,10 @@ export default function Categories({ taskCategories }: CategoriesProps) {
         </Badge>
       ))}
       <AddEditCategoryDialog label="Add" />
-      <AddEditCategoryDialog label="Update" />
+
+      {category.name !== 'all' && (
+        <AddEditCategoryDialog label="Update" id={category._id} />
+      )}
       {category.name !== 'all' && <DeleteCategoryDialog />}
     </section>
   );

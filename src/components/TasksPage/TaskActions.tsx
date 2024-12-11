@@ -12,7 +12,7 @@ import {
 } from '@/components/ui/dialog';
 import TaskCategory from '@/types/TaskCategory';
 import DeleteTaskForm from './DeleteTaskForm';
-import EditTaskForm from './EditTaskForm';
+import EditTask from './EditTask';
 
 type TaskActionsProps = {
   taskId: string;
@@ -42,7 +42,7 @@ export default function TaskActions({
               handleClose={() => editButtonRef.current?.click()}
             />
           </DialogHeader>
-          <EditTaskForm
+          <EditTask
             taskId={taskId}
             taskCategories={taskCategories}
             handleDialogClose={() => editButtonRef.current?.click()}

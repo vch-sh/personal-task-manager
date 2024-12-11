@@ -5,13 +5,13 @@ import AddEditTaskFormData from '@/types/AddEditFormData';
 import TaskCategory from '@/types/TaskCategory';
 import AddEditTaskForm from './AddEditTaskForm';
 
-type EditTaskFormProps = {
+type EditTaskProps = {
   taskId: string | undefined;
   taskCategories: TaskCategory[];
   handleDialogClose: () => void;
 };
 
-const defaultEditFormValues = async (
+const defaultFormValues = async (
   taskId: string | undefined,
 ): Promise<AddEditTaskFormData> => {
   const response = await getTaskById(taskId || '');
@@ -30,9 +30,9 @@ export default function EditTaskForm({
   taskId,
   taskCategories,
   handleDialogClose,
-}: EditTaskFormProps) {
+}: EditTaskProps) {
   const formMethods = useForm<AddEditTaskFormData>({
-    defaultValues: async () => await defaultEditFormValues(taskId),
+    defaultValues: async () => await defaultFormValues(taskId),
     mode: 'onChange',
   });
 

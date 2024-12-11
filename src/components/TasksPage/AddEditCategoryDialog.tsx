@@ -9,14 +9,17 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import AddCategoryForm from './AddCategoryForm';
+import AddCategory from './AddCategory';
+import EditCategory from './EditCategory';
 
 type AddEditCategoryDialogProps = {
   label: string;
+  id?: string;
 };
 
 export default function AddEditCategoryDialog({
   label,
+  id,
 }: AddEditCategoryDialogProps) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -34,7 +37,14 @@ export default function AddEditCategoryDialog({
           <DialogDescription></DialogDescription>
           <DialogCloseButton handleClose={() => setIsOpen(false)} />
         </DialogHeader>
-        <AddCategoryForm handleDialogClose={() => setIsOpen(false)} />
+        {label === 'Add' ? (
+          <AddCategory handleDialogClose={() => setIsOpen(false)} />
+        ) : (
+          <EditCategory
+            handleDialogClose={() => setIsOpen(false)}
+            id={id || ''}
+          />
+        )}
       </DialogContent>
     </Dialog>
   );
