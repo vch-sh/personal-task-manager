@@ -2,7 +2,7 @@ import { Badge } from '@/components/ui/badge';
 import { colorVariants } from '@/lib/taskCategoriesColors';
 import { useTaskCategory } from '@/hooks/useTaskCategory';
 import TaskCategory from '@/types/TaskCategory';
-import AddTaskCategoryDialog from './AddCategoryDialog';
+import AddEditCategoryDialog from './AddEditCategoryDialog';
 import DeleteCategoryDialog from './DeleteCategoryDialog';
 
 type CategoriesProps = {
@@ -29,7 +29,8 @@ export default function Categories({ taskCategories }: CategoriesProps) {
           {taskCategory.name}
         </Badge>
       ))}
-      <AddTaskCategoryDialog />
+      <AddEditCategoryDialog label="Add" />
+      <AddEditCategoryDialog label="Update" />
       {category.name !== 'all' && <DeleteCategoryDialog />}
     </section>
   );

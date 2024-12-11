@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { PlusCircle } from 'lucide-react';
+import { Pen, PlusCircle } from 'lucide-react';
 import DialogCloseButton from '@/components/general/DialogCloseButton';
 import {
   Dialog,
@@ -11,20 +11,26 @@ import {
 } from '@/components/ui/dialog';
 import AddCategoryForm from './AddCategoryForm';
 
-export default function AddCategoryDialog() {
+type AddEditCategoryDialogProps = {
+  label: string;
+};
+
+export default function AddEditCategoryDialog({
+  label,
+}: AddEditCategoryDialogProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogTrigger>
-        <PlusCircle
-          className="opacity-70 cursor-pointer"
-          onClick={() => setIsOpen(true)}
-        />
+      <DialogTrigger
+        className="opacity-70 cursor-pointer"
+        onClick={() => setIsOpen(true)}
+      >
+        {label === 'Add' ? <PlusCircle /> : <Pen />}
       </DialogTrigger>
       <DialogContent>
         <DialogHeader className="relative">
-          <DialogTitle className="text-left">Add New Task Category</DialogTitle>
+          <DialogTitle className="text-left">{label} Task Category</DialogTitle>
           <DialogDescription></DialogDescription>
           <DialogCloseButton handleClose={() => setIsOpen(false)} />
         </DialogHeader>
