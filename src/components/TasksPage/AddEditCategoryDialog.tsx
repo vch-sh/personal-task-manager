@@ -26,7 +26,7 @@ export default function AddEditCategoryDialog({
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger
-        className="opacity-70 cursor-pointer"
+        className="cursor-pointer opacity-70"
         onClick={() => setIsOpen(true)}
       >
         {label === 'Add' ? <PlusCircle /> : <Pen />}

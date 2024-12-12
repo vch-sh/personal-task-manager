@@ -4,7 +4,7 @@ Personal Task Manager is a comprehensive web application designed to help users 
 
 ## Project Status
 
-As of December 11, 2024 - `in development`
+As of December 12, 2024 - `in development`
 
 ## Features
 
@@ -12,6 +12,8 @@ As of December 11, 2024 - `in development`
   - Secure login and registration system.
   - OAuth integration with Google and GitHub for easy sign-in.
 - **Responsive Design**: Fully responsive interface that works on desktop and mobile devices.
+- **User Menu** (in development):
+  - Access profile settings and manage your account via a dropdown menu.
 - **Dashboard**:
   - View task statistics, including total tasks, completed tasks, tasks in progress, and to-do tasks.
   - Progress tracking to see how much work has been completed.
@@ -130,27 +132,6 @@ Here's an overview of the main directories and files:
   - Email and password.
   - Google or GitHub account via OAuth.
 
-**Navigation**:
-
-- Use the navigation bar to switch between sections:
-  - **Dashboard**: View task statistics, including:
-    - Total tasks.
-    - Completed tasks.
-    - Tasks in progress.
-    - Tasks to do.
-  - **Tasks**: Manage your tasks:
-    - Add new tasks.
-    - Edit existing tasks.
-    - Delete tasks.
-    - Filter and Sort: Filter tasks by status, category, and due date. Sort tasks by priority or due date.
-    - Toggle Filter & Sorting Section: You can expand or collapse the filter and sorting section by clicking the "Show Filters & Sorting" button. This helps clean up the interface when not needed.
-    - Hide Completed Tasks: Enable the "Hide completed" checkbox to hide all tasks marked as "done."
-  - **Categories**: Organize tasks into categories:
-    - Create new categories.
-    - Assign tasks to categories.
-    - Edit or update existing categories.
-    - Filter tasks by category.
-
 **Task Management**:
 
 - **Adding Tasks**:
@@ -175,10 +156,6 @@ Here's an overview of the main directories and files:
 - Add new categories in the **Categories** section.
 - Edit or update existing categories to better organize tasks.
 - Use categories to filter tasks on the **Tasks** page.
-
-**Mobile and Desktop Friendly**:
-
-- The application offers a fully responsive design, ensuring seamless use on both desktop and mobile devices.
 
 ## Contributing
 

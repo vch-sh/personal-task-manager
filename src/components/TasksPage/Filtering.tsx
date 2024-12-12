@@ -26,7 +26,7 @@ export default function Filtering({
   return (
     <>
       {!!tasksQuantity && (
-        <div className="flex items-center justify-between gap-4 mb-4">
+        <div className="mb-4 flex items-center justify-between gap-4">
           <fieldset className="w-full">
             <Label htmlFor="filter" className="w-full">
               Filter by Status{' '}
@@ -44,7 +44,7 @@ export default function Filtering({
             </Select>
           </fieldset>
 
-          <fieldset className="w-full hidden sm:block">
+          <fieldset className="hidden w-full sm:block">
             <Label htmlFor="sort" className="w-full">
               Sort{' '}
             </Label>

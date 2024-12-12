@@ -35,7 +35,7 @@ export default async function TasksPage() {
     <CompletedTasksContextProvider>
       <TaskCategoryContextProvider>
         <FilteredTasksQuantityContextProvider>
-          <main className="container mx-auto px-4 py-8 sm:py-4 h-screen max-w-5xl min-w-[360px]">
+          <main className="container mx-auto min-h-screen min-w-[360px] max-w-5xl px-4 py-8 sm:py-4">
             <Header taskCategories={taskCategories} />
             <Tasks tasks={tasks} taskCategories={taskCategories} />
           </main>

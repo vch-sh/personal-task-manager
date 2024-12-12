@@ -79,7 +79,7 @@ export default function AddEditCategoryForm({
     <Form {...formMethods}>
       <form
         onSubmit={formMethods.handleSubmit(onSubmit)}
-        className="flex flex-col gap-4 "
+        className="flex flex-col gap-4"
       >
         <FormField
           control={formMethods.control}
@@ -95,11 +95,11 @@ export default function AddEditCategoryForm({
             <FormItem>
               <FormLabel
                 htmlFor="name"
-                className="font-semibold flex items-center"
+                className="flex items-center font-semibold"
               >
                 <span>Name</span>
                 {textLength >= 20 && (
-                  <span className="text-xs ml-auto">
+                  <span className="ml-auto text-xs">
                     {formMethods.watch('name').length}/25
                   </span>
                 )}
@@ -137,7 +137,7 @@ export default function AddEditCategoryForm({
                   {...field}
                   value={field.value || ''}
                   onValueChange={(value) => field.onChange(value)}
-                  className="flex flex-wrap justify-between"
+                  className="flex flex-wrap justify-center gap-4 sm:justify-between"
                 >
                   {Object.entries(colorVariants).map(([key, value], index) => (
                     <fieldset
@@ -153,8 +153,8 @@ export default function AddEditCategoryForm({
                         htmlFor={`${key}${value}-${index}`}
                         className={`${value} ${
                           field.value === key &&
-                          'ring-2 ring-offset-2 ring-gray-600'
-                        } h-8 w-8 shadow-md rounded-sm focus:ring-2 ring-offset-2 focus:ring-gray-500 focus:outline-none cursor-pointer `}
+                          'ring-2 ring-gray-600 ring-offset-2'
+                        } h-10 w-10 cursor-pointer rounded-sm shadow-md ring-offset-2 focus:outline-none focus:ring-2 focus:ring-gray-500 sm:h-8 sm:w-8`}
                       />
                     </fieldset>
                   ))}

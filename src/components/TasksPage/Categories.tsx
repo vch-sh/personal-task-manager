@@ -13,11 +13,11 @@ export default function Categories({ taskCategories }: CategoriesProps) {
   const { category, setCategory } = useTaskCategory();
 
   return (
-    <section className="flex flex-wrap justify-normal items-center gap-2 sm:gap-1">
+    <section className="flex flex-wrap items-center justify-normal gap-2 sm:gap-1">
       {taskCategories?.map((taskCategory) => (
         <Badge
           key={taskCategory._id}
-          className={`${taskCategory.name === category.name && 'scale-105 underline underline-offset-2 transition-all'} ${colorVariants[taskCategory.color]} text-white cursor-pointer shadow-md px-3.5 py-1 sm:px-2.5 sm:py-0.5`}
+          className={`${taskCategory.name.toLowerCase() === category.name.toLowerCase() && 'scale-105 underline underline-offset-2 transition-all'} ${colorVariants[taskCategory.color]} cursor-pointer px-3.5 py-1 text-white shadow-md sm:px-2.5 sm:py-0.5`}
           onClick={() =>
             setCategory({
               _id: taskCategory._id,
@@ -26,15 +26,17 @@ export default function Categories({ taskCategories }: CategoriesProps) {
             })
           }
         >
-          {taskCategory.name}
+          {taskCategory.name.toLowerCase()}
         </Badge>
       ))}
-      <AddEditCategoryDialog label="Add" />
-
-      {category.name !== 'all' && (
-        <AddEditCategoryDialog label="Update" id={category._id} />
-      )}
-      {category.name !== 'all' && <DeleteCategoryDialog />}
+      <span className="mx-2 hidden h-6 w-0.5 bg-gray-300 sm:block"></span>
+      <div className="flex items-center gap-5 sm:gap-3">
+        <AddEditCategoryDialog label="Add" />
+        {category.name !== 'all' && (
+          <AddEditCategoryDialog label="Update" id={category._id} />
+        )}
+        {category.name !== 'all' && <DeleteCategoryDialog />}
+      </div>
     </section>
   );
 }

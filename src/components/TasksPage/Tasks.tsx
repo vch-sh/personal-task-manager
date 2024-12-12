@@ -48,20 +48,20 @@ export default function Tasks({ tasks, taskCategories }: TasksProps) {
       )}
 
       {filteredSortedTasks?.length === 0 ? (
-        <p className="text-sm font-bold text-default flex items-center justify-center gap-2">
+        <p className="text-default mt-12 flex items-center justify-center gap-2 text-sm font-bold">
           <FolderOpen />
           Looks like your list is empty
         </p>
       ) : (
-        <Table className="text-center mb-8">
+        <Table className="text-center">
           <TableHeader>
             <TableRow>
               <TableHead>Text</TableHead>
               <TableHead className="w-4 px-2">Status</TableHead>
-              <TableHead className="hidden px-2 sm:table-cell w-4">
+              <TableHead className="hidden w-4 px-2 sm:table-cell">
                 Priority
               </TableHead>
-              <TableHead className="hidden px-2 sm:table-cell w-[84px]">
+              <TableHead className="hidden w-[84px] px-2 sm:table-cell">
                 Due Date
               </TableHead>
               <TableHead className="w-4 px-2">Actions</TableHead>
@@ -85,7 +85,7 @@ export default function Tasks({ tasks, taskCategories }: TasksProps) {
                   className={`${task.status === 'done' && 'line-through'}`}
                 >
                   <TableCell
-                    className={` max-w-[100px] sm:max-w-sm break-words text-justify`}
+                    className={`max-w-[100px] break-words text-justify sm:max-w-sm`}
                   >
                     <time dateTime={createdAt} className="font-semibold">
                       {createdAt}
