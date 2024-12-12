@@ -11,7 +11,7 @@ export function getDashboardData(
   const todoTasks: Task[] = getTasksByStatus(tasks, 'to-do');
 
   const tasksQuantityByCategory = taskCategories.map((taskCategory) => ({
-    category: taskCategory.name,
+    category: taskCategory.name.toLowerCase(),
     color: taskCategory.color,
     count: tasks.filter((task) => task.category === taskCategory._id).length,
   }));

@@ -25,16 +25,16 @@ export default function DeleteCategoryDialog() {
       </DialogTrigger>
       <DialogContent>
         <DialogHeader className="relative">
-          <DialogTitle className="flex items-center justify-start gap-2 mb-3">
+          <DialogTitle className="mb-3 flex items-center justify-start gap-2">
             Delete category{' '}
             <span
-              className={`${colorVariants[category.color]} text-white text-sm px-2.5 py-0.5 rounded-full bg-gray-500`}
+              className={`${colorVariants[category.color]} rounded-full bg-gray-500 px-2.5 py-0.5 text-sm text-white`}
             >
               {category.name}
             </span>{' '}
             ?
           </DialogTitle>
-          <DialogDescription className="font-bold text-red-500 flex items-center gap-1">
+          <DialogDescription className="flex items-center gap-1 font-bold text-red-500">
             <ShieldAlert />
             All tasks in this category will be removed
           </DialogDescription>

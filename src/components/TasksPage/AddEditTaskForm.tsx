@@ -95,7 +95,7 @@ export default function AddEditTaskForm({
               <FormLabel htmlFor="text" className="flex items-center">
                 <span>Text</span>
                 {textLength >= 150 && (
-                  <span className="text-xs ml-auto">
+                  <span className="ml-auto text-xs">
                     {formMethods.watch('text').length}/200
                   </span>
                 )}
@@ -195,7 +195,7 @@ export default function AddEditTaskForm({
                         key={taskCategory._id}
                         value={taskCategory._id}
                       >
-                        {taskCategory.name}
+                        {taskCategory.name.toLowerCase()}
                       </SelectItem>
                     ))}
                   </SelectContent>

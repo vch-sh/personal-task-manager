@@ -25,7 +25,7 @@ export default function TasksQuantityByCategory({
   return (
     <>
       {tasksQuantityByCategory.length > 0 && (
-        <Card className="w-full mb-8">
+        <Card className="w-full">
           <CardHeader className="flex flex-row items-center justify-between gap-2">
             <CardTitle className="font-semibold">Tasks By Category</CardTitle>
           </CardHeader>
