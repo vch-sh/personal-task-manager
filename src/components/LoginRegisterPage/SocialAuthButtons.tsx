@@ -5,7 +5,7 @@ import Github from '@/assets/github.svg';
 
 export default function SocialAuthButtons() {
   return (
-    <div className="w-full flex items-center justify-between gap-4">
+    <div className="flex w-full items-center justify-between gap-4">
       <form
         className="w-full"
         action={async () => {

@@ -8,10 +8,12 @@ type HeaderProps = {
 
 export default function Header({ username }: HeaderProps) {
   return (
-    <div className="flex items-center justify-between mb-8">
-      <h2 className="text-3xl font-semibold tracking-tight">{username}</h2>
+    <div className="mb-8 flex items-center justify-between">
+      <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+        {username}
+      </h2>
       <Link href="/tasks">
-        <Button>
+        <Button className="transition-all active:scale-90">
           Tasks
           <MoveRight />
         </Button>
