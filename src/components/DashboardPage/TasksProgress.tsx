@@ -21,7 +21,7 @@ export default function TasksProgress({
   }, [completedTasksQuantity]);
 
   return (
-    <Card className="mt-4 mb-8">
+    <Card className="my-4">
       <CardHeader>
         <CardTitle>Task Completion Progress</CardTitle>
       </CardHeader>
@@ -31,7 +31,7 @@ export default function TasksProgress({
           value={progress}
           max={tasksQuantity}
         />
-        <p className="text-default text-sm mt-2">
+        <p className="text-default mt-2 text-sm">
           {completedTasksQuantity} out of {tasksQuantity} tasks completed
         </p>
       </CardContent>

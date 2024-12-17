@@ -30,7 +30,7 @@ export default function DeleteCategoryDialog() {
             <span
               className={`${colorVariants[category.color]} rounded-full bg-gray-500 px-2.5 py-0.5 text-sm text-white`}
             >
-              {category.name}
+              {category.name.toLowerCase()}
             </span>{' '}
             ?
           </DialogTitle>
