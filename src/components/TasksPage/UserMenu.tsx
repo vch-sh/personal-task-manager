@@ -1,8 +1,8 @@
 import { useSession } from 'next-auth/react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { Edit, User } from 'lucide-react';
 import LogoutButton from '@/components/general/LogOutButton';
+import UserImage from '@/components/general/UserImage';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -12,7 +12,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import DefaultUserImage from '@/assets/default-user-image.webp';
 
 export default function UserMenu() {
   const { data: session } = useSession();
@@ -28,16 +27,9 @@ export default function UserMenu() {
         <DropdownMenuLabel className="p-0">
           <Link
             href="profile"
-            className="flex h-16 cursor-not-allowed items-center gap-3 rounded-md p-2 hover:bg-neutral-100"
-            onClick={(e) => e.preventDefault()}
+            className="flex h-16 items-center gap-3 rounded-md p-2 hover:bg-neutral-100"
           >
-            <Image
-              src={session?.user.image ?? DefaultUserImage}
-              alt="user image"
-              width={50}
-              height={50}
-              className="rounded-full"
-            />
+            <UserImage width={50} height={50} />
             <span className="text-default">{session?.user.email}</span>
             <Edit className="opacity-70" />
           </Link>

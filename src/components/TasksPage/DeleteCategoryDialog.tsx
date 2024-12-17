@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { FolderX, ShieldAlert } from 'lucide-react';
-import 'lucide-react';
 import DialogCloseButton from '@/components/general/DialogCloseButton';
 import {
   Dialog,

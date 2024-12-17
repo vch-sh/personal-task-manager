@@ -129,7 +129,7 @@ export default function LoginForm() {
         <FormStatus status={formStatus} />
 
         <SubmitButton
-          label="Login"
+          label="Log in"
           isSubmitting={formMethods.formState.isSubmitting}
         />
       </form>
