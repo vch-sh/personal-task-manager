@@ -1,8 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+// import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import FormStatus from '@/components/general/forms/FormStatus';
+// import FormStatus from '@/components/general/forms/FormStatus';
 import SubmitButton from '@/components/general/forms/SubmitButton';
 import {
   Form,
@@ -14,13 +14,13 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { emailRegex } from '@/lib/helpers';
-import FormStatusType from '@/types/FormStatus';
+// import FormStatusType from '@/types/FormStatus';
 import UpdateProfileSettingsFormData from '@/types/UpdateProfileSettingsFormData';
 import ChangePassword from './ChangePassword';
 import SessionFormDataProvider from './SessionFormDataProvider';
 
 export default function UpdateProfileForm() {
-  const [formStatus, setFormStatus] = useState<FormStatusType>({});
+  // const [formStatus, setFormStatus] = useState<FormStatusType>({});
 
   const formMethods = useForm<UpdateProfileSettingsFormData>({
     defaultValues: {
@@ -84,7 +84,7 @@ export default function UpdateProfileForm() {
             )}
           />
           <ChangePassword />
-          <FormStatus status={formStatus} />
+          {/* <FormStatus status={formStatus} /> */}
           <SubmitButton
             label="Update"
             isSubmitting={formMethods.formState.isSubmitting}

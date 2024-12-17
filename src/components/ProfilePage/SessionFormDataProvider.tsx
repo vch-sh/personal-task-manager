@@ -4,7 +4,7 @@ import { useSession } from 'next-auth/react';
 import UpdateProfileSettingsFormData from '@/types/UpdateProfileSettingsFormData';
 
 type SessionFormDataProviderProps = {
-  formMethods: UseFormReturn<UpdateProfileSettingsFormData, any, undefined>;
+  formMethods: UseFormReturn<UpdateProfileSettingsFormData>;
 } & PropsWithChildren;
 
 export default function SessionFormDataProvider({
