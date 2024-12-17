@@ -1,6 +1,6 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import FormStatus from '@/components/general/forms/FormStatus';
+// import FormStatus from '@/components/general/forms/FormStatus';
 import SubmitButton from '@/components/general/forms/SubmitButton';
 import {
   Form,
@@ -13,10 +13,11 @@ import {
 import { Input } from '@/components/ui/input';
 import { passwordRegex } from '@/lib/helpers';
 import ChangePasswordFormData from '@/types/ChangePasswordFormData';
-import FormStatusType from '@/types/FormStatus';
+
+// import FormStatusType from '@/types/FormStatus';
 
 export default function ChangePasswordForm() {
-  const [formStatus, setFormStatus] = useState<FormStatusType>({});
+  // const [formStatus, setFormStatus] = useState<FormStatusType>({});
 
   const formMethods = useForm({
     defaultValues: {
@@ -125,7 +126,7 @@ export default function ChangePasswordForm() {
             </FormItem>
           )}
         />
-        <FormStatus status={formStatus} />
+        {/* <FormStatus status={formStatus} /> */}
         <SubmitButton
           label="Change Password"
           isSubmitting={formMethods.formState.isSubmitting}
