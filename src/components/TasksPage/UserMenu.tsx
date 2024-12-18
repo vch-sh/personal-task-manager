@@ -36,20 +36,19 @@ export default function UserMenu() {
         </DropdownMenuLabel>
         <DropdownMenuSeparator className="mx-[1px]" />
         <DropdownMenuItem className="flex justify-center p-0">
-          <Link href="/dashboard">
+          <Link href="/dashboard" className="w-full text-center">
             <Button variant="link">Dashboard</Button>
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem className="flex justify-center p-0">
-          <Link
+          {/* <Link
             href="/settings"
-            className="cursor-not-allowed"
-            onClick={(e) => e.preventDefault()}
-          >
-            <Button variant="link" disabled>
-              Settings
-            </Button>
-          </Link>
+            className="w-full text-center"
+          > */}
+          <Button variant="link" disabled>
+            Settings
+          </Button>
+          {/* </Link> */}
         </DropdownMenuItem>
         <DropdownMenuSeparator className="mx-[1px]" />
         <DropdownMenuItem className="p-0">
