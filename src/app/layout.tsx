@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import AuthProvider from '@/components/general/AuthProvider';
+import LoadingIndicator from '@/components/general/LoadingIndicator';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -22,6 +23,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <LoadingIndicator />
         <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
