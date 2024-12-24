@@ -13,13 +13,14 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { updateNameEmailForCredentials } from '@/actions/UpdateNameEmailForCredentials';
 import { updateNameOAuth2 } from '@/actions/UpdateNameOAuth2';
 import { emailRegex } from '@/lib/helpers';
 import FormStatusType from '@/types/FormStatus';
 import UpdateProfileSettingsFormData from '@/types/UpdateProfileSettingsFormData';
 import User from '@/types/User';
 import ChangePassword from './ChangePassword';
-import SessionFormDataProvider from './SessionFormDataProvider';
+import FormDataProvider from './FormDataProvider';
 
 type UpdateProfileFormProps = { isOAuth2: boolean; user: User };
 
@@ -46,6 +47,8 @@ export default function UpdateProfileForm({
       response = await updateNameOAuth2(data);
     }
 
+    response = await updateNameEmailForCredentials(data);
+
     if (response?.error) {
       setFormStatus({ error: response.error });
       return;
@@ -58,7 +61,7 @@ export default function UpdateProfileForm({
   }
 
   return (
-    <SessionFormDataProvider formMethods={formMethods} user={user}>
+    <FormDataProvider formMethods={formMethods} user={user}>
       <Form {...formMethods}>
         <form
           onSubmit={formMethods.handleSubmit(onSubmit)}
@@ -124,6 +127,6 @@ export default function UpdateProfileForm({
           />
         </form>
       </Form>
-    </SessionFormDataProvider>
+    </FormDataProvider>
   );
 }

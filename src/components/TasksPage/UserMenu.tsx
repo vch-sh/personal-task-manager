@@ -1,6 +1,5 @@
-import { useSession } from 'next-auth/react';
 import Link from 'next/link';
-import { Edit, User } from 'lucide-react';
+import { Edit, UserIcon } from 'lucide-react';
 import LogoutButton from '@/components/general/LogOutButton';
 import UserImage from '@/components/general/UserImage';
 import { Button } from '@/components/ui/button';
@@ -12,19 +11,19 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import User from '@/types/User';
 
 type UserMenuProps = {
   profileImageUrl?: string;
+  user: User;
 };
 
-export default function UserMenu({ profileImageUrl }: UserMenuProps) {
-  const { data: session } = useSession();
-
+export default function UserMenu({ user }: UserMenuProps) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
         <Button variant="ghost" className="p-2" size="icon" asChild>
-          <User className="h-10 w-10 opacity-70" />
+          <UserIcon className="h-10 w-10 opacity-70" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
@@ -36,9 +35,9 @@ export default function UserMenu({ profileImageUrl }: UserMenuProps) {
             <UserImage
               width={50}
               height={50}
-              profileImageUrl={profileImageUrl}
+              profileImageUrl={user.profileImage}
             />
-            <span className="text-default">{session?.user.email}</span>
+            <span className="text-default">{user.email}</span>
             <Edit className="opacity-70" />
           </Link>
         </DropdownMenuLabel>

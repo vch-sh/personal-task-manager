@@ -20,8 +20,8 @@ export default function SessionFormDataProvider({
     if (status === 'authenticated' && session?.user) {
       formMethods.reset({
         userId: session.user.id,
-        name: user.name || session.user.name || '',
-        email: user.email || session.user.email || '',
+        name: user?.name || session?.user.name,
+        email: user?.email || session?.user.email,
       });
     }
   }, [status, session, formMethods]);

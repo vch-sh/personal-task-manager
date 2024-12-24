@@ -1,25 +1,26 @@
 'use client';
 
 import TaskCategory from '@/types/TaskCategory';
+import User from '@/types/User';
 import AddTaskDialog from './AddTaskDialog';
 import HeaderTitle from './HeaderTitle';
 import UserMenu from './UserMenu';
 
 type HeaderProps = {
   taskCategories: TaskCategory[];
-  profileImageUrl?: string;
+  user: User;
 };
 
 export default function Header({
   taskCategories,
-  profileImageUrl,
+  user,
 }: HeaderProps) {
   return (
     <header className="flex items-center justify-between">
       <HeaderTitle />
       <div className="flex items-center gap-4">
         <AddTaskDialog taskCategories={taskCategories} />
-        <UserMenu profileImageUrl={profileImageUrl} />
+        <UserMenu user={user} />
       </div>
     </header>
   );
