@@ -8,10 +8,22 @@ export function getFormattedLabel(label: string) {
     return `${label.slice(0, -1)}ing...`;
   } else if (label === 'Log in' || label === 'Change Password') {
     return label;
+  } else if (label === 'Submit') {
+    return `${label}ting...`;
   }
   return `${label}ing...`;
 }
 
 export function getTasksByStatus(tasks: Task[], value: string) {
   return tasks.filter((task: Task) => task.status === value);
+}
+
+export function isAcceptedFileExtension(fileName: string) {
+  const acceptedFileExtensions = ['jpg', 'jpeg', 'png'];
+
+  const isFileExtensionValid = acceptedFileExtensions.filter(
+    (acceptedFileExtension) => fileName.endsWith(acceptedFileExtension),
+  );
+
+  return isFileExtensionValid[0] ?? '';
 }

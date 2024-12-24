@@ -3,6 +3,7 @@ import { auth } from '@/auth';
 import Header from '@/components/TasksPage/Header';
 import Tasks from '@/components/TasksPage/Tasks';
 import ErrorMessage from '@/components/general/ErrorMessage';
+import { getUserByEmail } from '@/lib/users';
 import { fetchTaskCategories } from '@/data/taskCategories';
 import { fetchTasks } from '@/data/tasksData';
 import { CompletedTasksContextProvider } from '@/contexts/CompletedTasksContextProvider';
@@ -22,6 +23,7 @@ export default async function TasksPage() {
 
   const tasks = await fetchTasks(session.user.id);
   const taskCategories = await fetchTaskCategories(session.user.id);
+  const user = await getUserByEmail(session?.user.email);
 
   if ('error' in tasks) {
     return <ErrorMessage message={tasks.error} />;
@@ -36,7 +38,10 @@ export default async function TasksPage() {
       <TaskCategoryContextProvider>
         <FilteredTasksQuantityContextProvider>
           <main className="container mx-auto min-h-screen min-w-[360px] max-w-5xl px-4 py-8 sm:py-4">
-            <Header taskCategories={taskCategories} />
+            <Header
+              taskCategories={taskCategories}
+              profileImageUrl={user?.profileImage}
+            />
             <Tasks tasks={tasks} taskCategories={taskCategories} />
           </main>
         </FilteredTasksQuantityContextProvider>

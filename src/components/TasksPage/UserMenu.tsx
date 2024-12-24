@@ -13,7 +13,11 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 
-export default function UserMenu() {
+type UserMenuProps = {
+  profileImageUrl?: string;
+};
+
+export default function UserMenu({ profileImageUrl }: UserMenuProps) {
   const { data: session } = useSession();
 
   return (
@@ -29,7 +33,11 @@ export default function UserMenu() {
             href="profile"
             className="flex h-16 items-center gap-3 rounded-md p-2 hover:bg-neutral-100"
           >
-            <UserImage width={50} height={50} />
+            <UserImage
+              width={50}
+              height={50}
+              profileImageUrl={profileImageUrl}
+            />
             <span className="text-default">{session?.user.email}</span>
             <Edit className="opacity-70" />
           </Link>
