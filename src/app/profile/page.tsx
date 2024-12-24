@@ -1,22 +1,17 @@
 import { Metadata } from 'next';
-import { auth } from '@/auth';
 import Header from '@/components/ProfilePage/Header';
 import ProfileSettingsContent from '@/components/ProfilePage/ProfileSettingsContent';
 import UpdateProfileForm from '@/components/ProfilePage/UpdateProfileForm';
 import UploadProfileImage from '@/components/ProfilePage/UploadProfileImage';
 import ErrorMessage from '@/components/general/ErrorMessage';
-import { fetchUserById } from '@/lib/users';
+import { getProfilePageData } from '@/data/profilePageData';
 
 export const metadata: Metadata = {
   title: 'Profile Settings',
 };
 
 export default async function ProfilePage() {
-  const session = await auth();
-  const user = await fetchUserById(session?.user.id);
-  const isOAuth2 =
-    session?.user?.image?.includes('google') ||
-    session?.user?.image?.includes('github');
+  const { user, isOAuth2 } = await getProfilePageData();
 
   if (user && 'error' in user) {
     return <ErrorMessage message={user.error} />;

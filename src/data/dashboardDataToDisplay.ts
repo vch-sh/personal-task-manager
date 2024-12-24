@@ -2,7 +2,7 @@ import { getTasksByStatus } from '@/lib/helpers';
 import Task from '@/types/Task';
 import TaskCategory from '@/types/TaskCategory';
 
-export function getDashboardData(
+export function getDashboardDataToDisplay(
   tasks: Task[],
   taskCategories: TaskCategory[],
 ) {

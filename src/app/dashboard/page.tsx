@@ -1,28 +1,17 @@
 import { Metadata } from 'next';
 import { ChartColumn } from 'lucide-react';
-import { auth } from '@/auth';
 import Header from '@/components/DashboardPage/Header';
 import TaskStatistics from '@/components/DashboardPage/TaskStatistics';
 import ErrorMessage from '@/components/general/ErrorMessage';
-import { fetchUserById } from '@/lib/users';
-import { getDashboardData } from '@/data/dashboardData';
-import { fetchTaskCategories } from '@/data/taskCategories';
-import { fetchTasks } from '@/data/tasksData';
+import { getDashboardDataToDisplay } from '@/data/dashboardDataToDisplay';
+import { getDashboardPageData } from '@/data/dashboardPageData';
 
 export const metadata: Metadata = {
   title: 'Dashboard',
 };
 
 export default async function DashboardPage() {
-  const session = await auth();
-
-  if (!session?.user?.id) {
-    return <ErrorMessage message="User is not authenticated" />;
-  }
-
-  const tasks = await fetchTasks(session.user.id);
-  const taskCategories = await fetchTaskCategories(session.user.id);
-  const user = await fetchUserById(session?.user.id);
+  const { tasks, taskCategories, user } = await getDashboardPageData();
 
   if ('error' in tasks) {
     return <ErrorMessage message={tasks.error} />;
@@ -41,13 +30,11 @@ export default async function DashboardPage() {
     inProgressTasks,
     todoTasks,
     tasksQuantityByCategory,
-  } = getDashboardData(tasks, taskCategories);
+  } = getDashboardDataToDisplay(tasks, taskCategories);
 
   return (
     <main className="container mx-auto min-h-screen min-w-[360px] max-w-5xl px-4 py-8 sm:py-4">
-      <Header
-        username={`Hi, ${user?.name || session?.user.name}!` || 'Dashboard'}
-      />
+      <Header username={`Hi, ${user?.name}!` || 'Dashboard'} />
 
       {tasks.length > 0 ? (
         <TaskStatistics
