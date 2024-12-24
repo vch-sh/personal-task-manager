@@ -19,7 +19,11 @@ import UpdateProfileSettingsFormData from '@/types/UpdateProfileSettingsFormData
 import ChangePassword from './ChangePassword';
 import SessionFormDataProvider from './SessionFormDataProvider';
 
-export default function UpdateProfileForm() {
+type UpdateProfileFormProps = { isOAuth2: boolean };
+
+export default function UpdateProfileForm({
+  isOAuth2,
+}: UpdateProfileFormProps) {
   // const [formStatus, setFormStatus] = useState<FormStatusType>({});
 
   const formMethods = useForm<UpdateProfileSettingsFormData>({
@@ -77,13 +81,23 @@ export default function UpdateProfileForm() {
               <FormItem>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input {...field} type="email" value={field.value} />
+                  <Input
+                    {...field}
+                    type="email"
+                    value={field.value}
+                    disabled={isOAuth2}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
-          <ChangePassword />
+          {isOAuth2 && (
+            <p className="-mt-3 text-right text-xs font-bold text-gray-500">
+              Email cannot be changed for Google or GitHub users
+            </p>
+          )}
+          {!isOAuth2 && <ChangePassword />}
           {/* <FormStatus status={formStatus} /> */}
           <SubmitButton
             label="Update"

@@ -13,13 +13,16 @@ export const metadata: Metadata = {
 export default async function ProfilePage() {
   const session = await auth();
   const user = await getUserByEmail(session?.user.email);
+  const isOAuth2 =
+    session?.user?.image?.includes('google') ||
+    session?.user?.image?.includes('github');
 
   return (
     <main className="container mx-auto min-h-screen min-w-[360px] max-w-xl px-4 py-8 sm:py-4">
       <Header />
       <ProfileSettingsContent>
         <UploadProfileImage profileImageUrl={user?.profileImage} />
-        <UpdateProfileForm />
+        <UpdateProfileForm isOAuth2={isOAuth2} />
       </ProfileSettingsContent>
     </main>
   );
