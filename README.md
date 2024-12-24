@@ -4,7 +4,7 @@ Personal Task Manager is a comprehensive web application designed to help users 
 
 ## Project Status
 
-As of December 17, 2024 - `in development`
+As of December 24, 2024 - `in development`
 
 ## Features
 
@@ -12,6 +12,7 @@ As of December 17, 2024 - `in development`
   - Secure login and registration system.
   - OAuth integration with Google and GitHub for easy sign-in.
 - **Responsive Design**: Fully responsive interface that works on desktop and mobile devices.
+
 - **User Menu** (in development):
   - Access profile settings and manage your account via a dropdown menu.
 - **Dashboard**:
@@ -28,6 +29,8 @@ As of December 17, 2024 - `in development`
   - Add, update, and delete custom categories.
   - Assign tasks to specific categories.
   - Filter tasks by selected category.
+- **Profile Settings Page**:
+  - Update profile details, including name, email, and profile picture (updating name and email is in development).
 
 **Note: This project is actively being developed. Many more exciting features are planned and will be added in future updates!**
 
@@ -156,6 +159,14 @@ Here's an overview of the main directories and files:
 - Add new categories in the **Categories** section.
 - Edit or update existing categories to better organize tasks.
 - Use categories to filter tasks on the **Tasks** page.
+
+**Profile Image Upload**
+
+- Go to the **Profile Settings** page.
+- Click the **Upload Photo** button to select an image.
+- A **preview** of the selected image will be displayed.
+- Click **Submit** to upload the image to your profile.
+- To **remove the selected image** before submission, click **Remove Photo**.
 
 ## Contributing
 
