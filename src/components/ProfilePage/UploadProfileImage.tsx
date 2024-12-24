@@ -1,16 +1,28 @@
-import UserImage from '@/components/general/UserImage';
-import { Button } from '@/components/ui/button';
+'use client';
 
-export default function UploadProfileImage() {
+import { useState } from 'react';
+import UserImage from '@/components/general/UserImage';
+import UploadProfileImageForm from './UploadProfileImageForm';
+
+type UploadProfileImageFormProps = { profileImageUrl: string };
+
+export default function UploadProfileImage({
+  profileImageUrl,
+}: UploadProfileImageFormProps) {
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+
   return (
     <section className="mb-4 flex flex-col items-center justify-center gap-4">
-      <UserImage width={100} height={100} />
-      <div className="flex gap-4">
-        <Button variant="outline">Upload Photo</Button>
-        <Button variant="ghost" className="text-red-500 hover:text-red-500">
-          Remove Photo
-        </Button>
-      </div>
+      <UserImage
+        width={100}
+        height={100}
+        selectedImage={selectedImage}
+        profileImageUrl={profileImageUrl}
+      />
+      <UploadProfileImageForm
+        selectedImage={selectedImage}
+        setSelectedImage={setSelectedImage}
+      />
     </section>
   );
 }

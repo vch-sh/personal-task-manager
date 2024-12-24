@@ -13,6 +13,11 @@ const nextConfig = {
         hostname: 'avatars.githubusercontent.com',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'fuwmyptiokyzcprw.public.blob.vercel-storage.com',
+        port: '',
+      },
     ],
   },
   reactStrictMode: true,
