@@ -45,9 +45,9 @@ export default function UpdateProfileForm({
     if (isOAuth2) {
       delete data.email;
       response = await updateNameOAuth2(data);
+    } else {
+      response = await updateNameEmailForCredentials(data);
     }
-
-    response = await updateNameEmailForCredentials(data);
 
     if (response?.error) {
       setFormStatus({ error: response.error });
