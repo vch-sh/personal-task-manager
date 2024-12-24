@@ -21,9 +21,7 @@ export function getTasksByStatus(tasks: Task[], value: string) {
 export function isAcceptedFileExtension(fileName: string) {
   const acceptedFileExtensions = ['jpg', 'jpeg', 'png'];
 
-  const isFileExtensionValid = acceptedFileExtensions.filter(
-    (acceptedFileExtension) => fileName.endsWith(acceptedFileExtension),
+  return acceptedFileExtensions.some((acceptedFileExtension) =>
+    fileName.endsWith(acceptedFileExtension),
   );
-
-  return isFileExtensionValid[0] ?? '';
 }

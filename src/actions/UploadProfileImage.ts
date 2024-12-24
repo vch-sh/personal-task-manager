@@ -1,6 +1,6 @@
 'use server';
 
-import { put } from '@vercel/blob';
+import { del, list, put } from '@vercel/blob';
 import { auth } from '@/auth';
 import { isAcceptedFileExtension } from '@/lib/helpers';
 
@@ -9,19 +9,32 @@ export async function uploadProfileImage(imageFile: File | null) {
     return { error: 'Image file is required' };
   }
 
+  const isAcceptedExtension = isAcceptedFileExtension(imageFile.name);
+
+  if (!isAcceptedExtension) {
+    return { error: 'File with this extension is not allowed' };
+  }
+
   const session = await auth();
-  const extension = isAcceptedFileExtension(imageFile.name);
-  const userImageFileName = `${session?.user.id}.${extension}`;
+  const imageFileName = `${session?.user.id}.${imageFile.name}`;
 
   try {
-    const blob = await put(userImageFileName, imageFile, {
+    const allImages = await list();
+    const deleteOldImages = allImages?.blobs
+      .filter((blob) => blob.url.includes(session?.user.id))
+      .map((blob) => del(blob.url));
+    if (deleteOldImages && deleteOldImages.length > 0) {
+      await Promise.all(deleteOldImages);
+    }
+
+    const uploadedImage = await put(imageFileName, imageFile, {
       access: 'public',
       addRandomSuffix: false,
     });
 
     return {
       success: 'Image uploaded successfully',
-      profileImageUrl: blob.url,
+      profileImageUrl: uploadedImage.url,
     };
   } catch (error) {
     if (error instanceof Error) {
