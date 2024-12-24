@@ -22,7 +22,10 @@ export default async function ProfilePage() {
       <Header />
       <ProfileSettingsContent>
         <UploadProfileImage profileImageUrl={user?.profileImage} />
-        <UpdateProfileForm isOAuth2={isOAuth2} />
+        <UpdateProfileForm
+          isOAuth2={isOAuth2}
+          user={JSON.parse(JSON.stringify(user))}
+        />
       </ProfileSettingsContent>
     </main>
   );

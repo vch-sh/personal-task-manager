@@ -4,6 +4,7 @@ import { auth } from '@/auth';
 import Header from '@/components/DashboardPage/Header';
 import TaskStatistics from '@/components/DashboardPage/TaskStatistics';
 import ErrorMessage from '@/components/general/ErrorMessage';
+import { getUserByEmail } from '@/lib/users';
 import { getDashboardData } from '@/data/dashboardData';
 import { fetchTaskCategories } from '@/data/taskCategories';
 import { fetchTasks } from '@/data/tasksData';
@@ -21,6 +22,7 @@ export default async function DashboardPage() {
 
   const tasks = await fetchTasks(session.user.id);
   const taskCategories = await fetchTaskCategories(session.user.id);
+  const user = await getUserByEmail(session?.user.email);
 
   if ('error' in tasks) {
     return <ErrorMessage message={tasks.error} />;
@@ -39,7 +41,9 @@ export default async function DashboardPage() {
 
   return (
     <main className="container mx-auto min-h-screen min-w-[360px] max-w-5xl px-4 py-8 sm:py-4">
-      <Header username={`Hi, ${session?.user.name}!` || 'Dashboard'} />
+      <Header
+        username={`Hi, ${user?.name || session?.user.name}!` || 'Dashboard'}
+      />
 
       {tasks.length > 0 ? (
         <TaskStatistics

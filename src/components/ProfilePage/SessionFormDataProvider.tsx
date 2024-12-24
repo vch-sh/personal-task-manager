@@ -2,12 +2,15 @@ import { PropsWithChildren, useEffect } from 'react';
 import { UseFormReturn } from 'react-hook-form';
 import { useSession } from 'next-auth/react';
 import UpdateProfileSettingsFormData from '@/types/UpdateProfileSettingsFormData';
+import User from '@/types/User';
 
 type SessionFormDataProviderProps = {
+  user: User;
   formMethods: UseFormReturn<UpdateProfileSettingsFormData>;
 } & PropsWithChildren;
 
 export default function SessionFormDataProvider({
+  user,
   formMethods,
   children,
 }: SessionFormDataProviderProps) {
@@ -16,8 +19,9 @@ export default function SessionFormDataProvider({
   useEffect(() => {
     if (status === 'authenticated' && session?.user) {
       formMethods.reset({
-        name: session.user.name || '',
-        email: session.user.email || '',
+        userId: session.user.id,
+        name: user.name || session.user.name || '',
+        email: user.email || session.user.email || '',
       });
     }
   }, [status, session, formMethods]);

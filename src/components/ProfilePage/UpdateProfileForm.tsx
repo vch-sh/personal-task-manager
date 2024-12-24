@@ -1,8 +1,8 @@
 'use client';
 
-// import { useState } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-// import FormStatus from '@/components/general/forms/FormStatus';
+import FormStatus from '@/components/general/forms/FormStatus';
 import SubmitButton from '@/components/general/forms/SubmitButton';
 import {
   Form,
@@ -13,21 +13,25 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { updateNameOAuth2 } from '@/actions/UpdateNameOAuth2';
 import { emailRegex } from '@/lib/helpers';
-// import FormStatusType from '@/types/FormStatus';
+import FormStatusType from '@/types/FormStatus';
 import UpdateProfileSettingsFormData from '@/types/UpdateProfileSettingsFormData';
+import User from '@/types/User';
 import ChangePassword from './ChangePassword';
 import SessionFormDataProvider from './SessionFormDataProvider';
 
-type UpdateProfileFormProps = { isOAuth2: boolean };
+type UpdateProfileFormProps = { isOAuth2: boolean; user: User };
 
 export default function UpdateProfileForm({
   isOAuth2,
+  user,
 }: UpdateProfileFormProps) {
-  // const [formStatus, setFormStatus] = useState<FormStatusType>({});
+  const [formStatus, setFormStatus] = useState<FormStatusType>({});
 
   const formMethods = useForm<UpdateProfileSettingsFormData>({
     defaultValues: {
+      userId: user._id?.toString(),
       name: '',
       email: '',
     },
@@ -35,11 +39,26 @@ export default function UpdateProfileForm({
   });
 
   async function onSubmit(data: UpdateProfileSettingsFormData) {
-    console.log('🚀 ~ UpdateProfileForm ~ data:', data);
+    let response;
+
+    if (isOAuth2) {
+      delete data.email;
+      response = await updateNameOAuth2(data);
+    }
+
+    if (response?.error) {
+      setFormStatus({ error: response.error });
+      return;
+    }
+
+    if (response?.success) {
+      setFormStatus({ success: response.success });
+      return;
+    }
   }
 
   return (
-    <SessionFormDataProvider formMethods={formMethods}>
+    <SessionFormDataProvider formMethods={formMethods} user={user}>
       <Form {...formMethods}>
         <form
           onSubmit={formMethods.handleSubmit(onSubmit)}
@@ -98,7 +117,7 @@ export default function UpdateProfileForm({
             </p>
           )}
           {!isOAuth2 && <ChangePassword />}
-          {/* <FormStatus status={formStatus} /> */}
+          <FormStatus status={formStatus} />
           <SubmitButton
             label="Update"
             isSubmitting={formMethods.formState.isSubmitting}
