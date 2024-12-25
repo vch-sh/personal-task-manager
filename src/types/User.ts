@@ -6,6 +6,7 @@ type User = {
   email: string;
   password: string | null;
   createdAt: Date;
+  profileImage?: string;
 };
 
 export default User;

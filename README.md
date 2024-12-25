@@ -4,7 +4,7 @@ Personal Task Manager is a comprehensive web application designed to help users 
 
 ## Project Status
 
-As of December 24, 2024 - `in development`
+As of December 25, 2024 - `in development`
 
 ## Features
 
@@ -30,7 +30,9 @@ As of December 24, 2024 - `in development`
   - Assign tasks to specific categories.
   - Filter tasks by selected category.
 - **Profile Settings Page**:
-  - Update profile details, including name, email, and profile picture (updating name and email is in development).
+  - Update profile details, including name, email, and profile picture.
+  - Email updates are not available for users authenticated through Google or GitHub.
+  - Password updates are available only for users registered via email and password. (in development)
 
 **Note: This project is actively being developed. Many more exciting features are planned and will be added in future updates!**
 

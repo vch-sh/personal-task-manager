@@ -15,7 +15,7 @@ export default function ChangePassword() {
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogTrigger className="w-fit" type="button">
+      <DialogTrigger className="py-2 sm:w-fit sm:py-0" type="button">
         <p className="text-default text-left text-sm hover:underline">
           Change password
         </p>

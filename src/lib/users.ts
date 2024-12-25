@@ -32,6 +32,28 @@ export async function getUserById(
   }
 }
 
+export async function fetchUserById(id: string) {
+  const { client, collection, error } = await connectToDatabase(
+    'user_db',
+    'users',
+  );
+
+  if (error) throw new Error(error);
+
+  try {
+    const user = await collection?.findOne({ _id: new ObjectId(id) });
+    await client?.close();
+    return JSON.parse(JSON.stringify(user));
+  } catch (error) {
+    if (error instanceof Error) {
+      return { error: 'Failed to fetch a user by id' };
+    }
+    return {
+      error: 'Unknown error occurred while connecting to the database',
+    };
+  }
+}
+
 export async function createUser(userData: User) {
   const { client, collection, error } = await connectToDatabase(
     'user_db',
