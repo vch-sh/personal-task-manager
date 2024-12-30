@@ -26,7 +26,7 @@ export default function ChangePassword() {
           <DialogDescription>Update your account password</DialogDescription>
           <DialogCloseButton handleClose={() => setIsOpen(false)} />
         </DialogHeader>
-        <ChangePasswordForm />
+        <ChangePasswordForm handleClose={() => setIsOpen(false)} />
       </DialogContent>
     </Dialog>
   );

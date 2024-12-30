@@ -1,6 +1,6 @@
-// import { useState } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-// import FormStatus from '@/components/general/forms/FormStatus';
+import FormStatus from '@/components/general/forms/FormStatus';
 import SubmitButton from '@/components/general/forms/SubmitButton';
 import {
   Form,
@@ -11,13 +11,19 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { changePassword } from '@/actions/ChangePassword';
 import { passwordRegex } from '@/lib/helpers';
 import ChangePasswordFormData from '@/types/ChangePasswordFormData';
+import FormStatusType from '@/types/FormStatus';
 
-// import FormStatusType from '@/types/FormStatus';
+type ChangePasswordFormProps = {
+  handleClose: () => void;
+};
 
-export default function ChangePasswordForm() {
-  // const [formStatus, setFormStatus] = useState<FormStatusType>({});
+export default function ChangePasswordForm({
+  handleClose,
+}: ChangePasswordFormProps) {
+  const [formStatus, setFormStatus] = useState<FormStatusType>({});
 
   const formMethods = useForm({
     defaultValues: {
@@ -29,7 +35,18 @@ export default function ChangePasswordForm() {
   });
 
   async function onSubmit(data: ChangePasswordFormData) {
-    console.log('🚀 ~ UpdateProfileForm ~ data:', data);
+    const response = await changePassword(data);
+
+    if (response?.error) {
+      setFormStatus({ error: response.error });
+      return;
+    }
+
+    if (response?.success) {
+      setFormStatus({ success: response.success });
+      setTimeout(() => handleClose(), 2000);
+      return;
+    }
   }
 
   return (
@@ -126,7 +143,7 @@ export default function ChangePasswordForm() {
             </FormItem>
           )}
         />
-        {/* <FormStatus status={formStatus} /> */}
+        <FormStatus status={formStatus} />
         <SubmitButton
           label="Change Password"
           isSubmitting={formMethods.formState.isSubmitting}
