@@ -35,12 +35,17 @@ export async function updateNameEmailForCredentials(
     return { error: 'Failed to update a user' };
   }
 
-  await userCollection.updateOne(
-    { _id: new ObjectId(existingUserId) },
-    { $set: { name: data.name, email: data.email } },
-  );
+  try {
+    await userCollection.updateOne(
+      { _id: new ObjectId(existingUserId) },
+      { $set: { name: data.name, email: data.email } },
+    );
 
-  revalidatePath('/profile');
-
-  return { success: 'Profile details updated successfully' };
+    revalidatePath('/profile');
+    return { success: 'Profile details updated successfully' };
+  } catch (error) {
+    return { error: error instanceof Error ? error.message : 'Database error' };
+  } finally {
+    await client?.close();
+  }
 }
