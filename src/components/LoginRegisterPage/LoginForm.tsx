@@ -44,7 +44,7 @@ export default function LoginForm() {
       if (response?.error === 'Configuration') {
         setFormStatus({ error: 'Invalid credentials' });
       } else {
-        setFormStatus({ success: 'Login successful' });
+        setFormStatus({ success: 'Logged in successfully' });
         router.push('/dashboard');
       }
     } catch (error) {
