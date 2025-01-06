@@ -3,7 +3,8 @@ import Credentials from 'next-auth/providers/credentials';
 import Github from 'next-auth/providers/github';
 import Google from 'next-auth/providers/google';
 import bcryptjs from 'bcryptjs';
-import { createUser, getUserByEmail } from './lib/users';
+import { createUser } from './actions/CreateUser';
+import { getUserByEmail } from './lib/users';
 import LoginFormData from './types/LoginFormData';
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
