@@ -27,7 +27,7 @@ export async function getTaskCategories(id: string) {
   let collection;
 
   try {
-    const connection = await connectToDatabase('task_db', 'categories');
+    const connection = await connectToDatabase('categories');
     client = connection.client;
     collection = connection.collection;
 
@@ -60,7 +60,7 @@ export async function getCategoryById(id: string) {
   let collection;
 
   try {
-    const connection = await connectToDatabase('task_db', 'categories');
+    const connection = await connectToDatabase('categories');
     client = connection.client;
     collection = connection.collection;
 

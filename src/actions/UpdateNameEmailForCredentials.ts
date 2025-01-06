@@ -13,11 +13,13 @@ export async function updateNameEmailForCredentials(
     return { error: 'Profile data is required' };
   }
 
-  const { client, error } = await connectToDatabase('user_db', 'users');
+  const { client, error } = await connectToDatabase('users');
 
   if (error) return { error };
 
-  const userCollection = client?.db('user_db').collection<Document>('users');
+  const userCollection = client
+    ?.db(process.env.MONGODB_DB)
+    .collection<Document>('users');
 
   if (!userCollection) {
     return { error: 'Failed to connect to the user collection' };

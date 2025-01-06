@@ -25,7 +25,7 @@ export async function getTasks(id: string) {
   let collection;
 
   try {
-    const connection = await connectToDatabase('task_db', 'tasks');
+    const connection = await connectToDatabase('tasks');
     client = connection.client;
     collection = connection.collection;
 
@@ -55,7 +55,7 @@ export async function getTaskById(id: string) {
   let collection;
 
   try {
-    const connection = await connectToDatabase('task_db', 'tasks');
+    const connection = await connectToDatabase('tasks');
     client = connection.client;
     collection = connection.collection;
 

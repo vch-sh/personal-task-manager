@@ -11,15 +11,12 @@ export async function editCategory(data: AddEditCategoryFormData) {
     return { error: 'Data is missing' };
   }
 
-  const { client, collection, error } = await connectToDatabase(
-    'task_db',
-    'categories',
-  );
+  const { client, collection, error } = await connectToDatabase('categories');
 
   if (error) return { error };
 
   try {
-    const userCollection = client?.db('user_db').collection<Document>('users');
+    const userCollection = client?.db(process.env.MONGODB_DB).collection<Document>('users');
 
     if (!userCollection) {
       return { error: 'Failed to connect to the user collection' };

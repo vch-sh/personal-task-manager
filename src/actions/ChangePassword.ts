@@ -52,10 +52,7 @@ export async function changePassword(data: ChangePasswordFormData) {
 
   const hashedPassword = await hash(data.newPassword, 10);
 
-  const { client, collection, error } = await connectToDatabase(
-    'user_db',
-    'users',
-  );
+  const { client, collection, error } = await connectToDatabase('users');
 
   if (error) return { error };
 

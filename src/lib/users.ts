@@ -2,10 +2,7 @@ import { Collection, ObjectId } from 'mongodb';
 import { connectToDatabase } from './mongodb';
 
 export async function getUserByEmail(email: string) {
-  const { client, collection, error } = await connectToDatabase(
-    'user_db',
-    'users',
-  );
+  const { client, collection, error } = await connectToDatabase('users');
 
   if (error) throw new Error(error);
 
@@ -32,10 +29,7 @@ export async function getUserById(
 }
 
 export async function fetchUserById(id: string) {
-  const { client, collection, error } = await connectToDatabase(
-    'user_db',
-    'users',
-  );
+  const { client, collection, error } = await connectToDatabase('users');
 
   if (error) throw new Error(error);
 
