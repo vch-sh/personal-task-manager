@@ -2,11 +2,8 @@
 
 import { ObjectId } from 'mongodb';
 import { connectToDatabase } from '@/lib/mongodb';
-import GetCategoriesResult from '@/types/GetCategoriesResult';
 
-export async function fetchTaskCategories(
-  userId: string,
-): Promise<GetCategoriesResult> {
+export async function fetchTaskCategories(userId: string) {
   try {
     const res = await fetch(
       `${process.env.NEXTAUTH_URL}/api/task-categories?userId=${encodeURIComponent(userId)}`,

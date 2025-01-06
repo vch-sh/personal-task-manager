@@ -3,26 +3,22 @@ import { ChartColumn } from 'lucide-react';
 import Header from '@/components/DashboardPage/Header';
 import TaskStatistics from '@/components/DashboardPage/TaskStatistics';
 import ErrorMessage from '@/components/general/ErrorMessage';
+import { getDashboardTasksPagesData } from '@/data/commonPageData';
 import { getDashboardDataToDisplay } from '@/data/dashboardDataToDisplay';
-import { getDashboardPageData } from '@/data/dashboardPageData';
 
 export const metadata: Metadata = {
   title: 'Dashboard',
 };
 
 export default async function DashboardPage() {
-  const { tasks, taskCategories, user } = await getDashboardPageData();
+  const { tasks, taskCategories, user } = await getDashboardTasksPagesData();
 
-  if ('error' in tasks) {
-    return <ErrorMessage message={tasks.error} />;
-  }
-
-  if ('error' in taskCategories) {
-    return <ErrorMessage message={taskCategories.error} />;
-  }
-
-  if (user && 'error' in user) {
-    return <ErrorMessage message={user.error} />;
+  if ('error' in tasks || 'error' in taskCategories || 'error' in user) {
+    return (
+      <ErrorMessage
+        message={tasks.error || taskCategories.error || user.error}
+      />
+    );
   }
 
   const {

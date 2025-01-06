@@ -2,9 +2,8 @@
 
 import { ObjectId } from 'mongodb';
 import { connectToDatabase } from '@/lib/mongodb';
-import GetTasksResult from '@/types/GetTasksResult';
 
-export async function fetchTasks(userId: string): Promise<GetTasksResult> {
+export async function fetchTasks(userId: string) {
   try {
     const res = await fetch(
       `${process.env.NEXTAUTH_URL}/api/tasks?userId=${encodeURIComponent(userId)}`,
@@ -21,7 +20,7 @@ export async function fetchTasks(userId: string): Promise<GetTasksResult> {
   }
 }
 
-export async function getTasks(id: string): Promise<GetTasksResult> {
+export async function getTasks(id: string) {
   let client;
   let collection;
 
