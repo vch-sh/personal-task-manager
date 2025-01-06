@@ -3,15 +3,17 @@
 import { ObjectId } from 'mongodb';
 import { connectToDatabase } from '@/lib/mongodb';
 
-export async function fetchTasks(userId: string) {
+export async function fetchTaskCategories(userId: string) {
   try {
     const res = await fetch(
-      `${process.env.NEXTAUTH_URL}/api/tasks?userId=${encodeURIComponent(userId)}`,
-      { cache: 'force-cache' },
+      `${process.env.NEXTAUTH_URL}/api/task-categories?userId=${encodeURIComponent(userId)}`,
+      {
+        cache: 'force-cache',
+      },
     );
 
     if (!res.ok) {
-      return { error: 'Failed to fetch tasks' };
+      return { error: 'Failed to fetch task categories' };
     }
 
     return await res.json();
@@ -20,12 +22,12 @@ export async function fetchTasks(userId: string) {
   }
 }
 
-export async function getTasks(id: string) {
+export async function getTaskCategories(id: string) {
   let client;
   let collection;
 
   try {
-    const connection = await connectToDatabase('tasks');
+    const connection = await connectToDatabase('categories');
     client = connection.client;
     collection = connection.collection;
 
@@ -33,13 +35,16 @@ export async function getTasks(id: string) {
       return { error: 'Collection not found' };
     }
 
-    const userTasks = await collection.find({ userId: id }).toArray();
-    return JSON.parse(JSON.stringify(userTasks)) || [];
+    const taskCategories = await collection
+      .find({ $or: [{ name: 'all' }, { userId: id }] })
+      .toArray();
+    return JSON.parse(JSON.stringify(taskCategories)) || [];
   } catch (error) {
     if (error instanceof Error) {
       return {
         error:
-          error.message || 'Failed to fetch tasks. Please, try again later.',
+          error.message ||
+          'Failed to fetch task categories. Please, try again later.',
       };
     }
     return [];
@@ -50,12 +55,12 @@ export async function getTasks(id: string) {
   }
 }
 
-export async function getTaskById(id: string) {
+export async function getCategoryById(id: string) {
   let client;
   let collection;
 
   try {
-    const connection = await connectToDatabase('tasks');
+    const connection = await connectToDatabase('categories');
     client = connection.client;
     collection = connection.collection;
 
@@ -63,18 +68,19 @@ export async function getTaskById(id: string) {
       return { error: 'Collection not found' };
     }
 
-    const userTask = await collection.findOne({ _id: new ObjectId(id) });
+    const category = await collection.findOne({ _id: new ObjectId(id) });
 
-    if (!userTask) {
-      return { error: 'Task not found' };
+    if (!category) {
+      return { error: 'Category not found' };
     }
 
-    return JSON.parse(JSON.stringify(userTask));
+    return JSON.parse(JSON.stringify(category));
   } catch (error) {
     if (error instanceof Error) {
       return {
         error:
-          error.message || 'Failed to fetch a task. Please, try again later.',
+          error.message ||
+          'Failed to fetch a category. Please, try again later.',
       };
     }
     return {};

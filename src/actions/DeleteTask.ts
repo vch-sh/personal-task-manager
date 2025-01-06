@@ -9,10 +9,7 @@ export async function deleteTask(taskId: string) {
     return { error: 'Task ID is required' };
   }
 
-  const { client, collection, error } = await connectToDatabase(
-    'task_db',
-    'tasks',
-  );
+  const { client, collection, error } = await connectToDatabase('tasks');
 
   if (error) return { error };
 

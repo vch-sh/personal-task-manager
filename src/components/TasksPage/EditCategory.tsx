@@ -1,6 +1,6 @@
 import { FormProvider, useForm } from 'react-hook-form';
 import { editCategory } from '@/actions/EditCategory';
-import { getCategoryById } from '@/actions/GetCategoryById';
+import { getCategoryById } from '@/lib/categories';
 import AddEditCategoryFormData from '@/types/AddEditCategoryFormData';
 import AddEditCategoryForm from './AddEditCategoryForm';
 

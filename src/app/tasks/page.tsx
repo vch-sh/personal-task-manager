@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import Header from '@/components/TasksPage/Header';
 import Tasks from '@/components/TasksPage/Tasks';
 import ErrorMessage from '@/components/general/ErrorMessage';
-import { getTasksPageData } from '@/data/tasksPageData';
+import { getDashboardTasksPagesData } from '@/data/commonPageData';
 import { CompletedTasksContextProvider } from '@/contexts/CompletedTasksContextProvider';
 import { FilteredTasksQuantityContextProvider } from '@/contexts/FilteredTasksQuantityContextProvider';
 import { TaskCategoryContextProvider } from '@/contexts/TaskCategoryContextProvider';
@@ -12,18 +12,14 @@ export const metadata: Metadata = {
 };
 
 export default async function TasksPage() {
-  const { tasks, taskCategories, user } = await getTasksPageData();
+  const { tasks, taskCategories, user } = await getDashboardTasksPagesData();
 
-  if ('error' in tasks) {
-    return <ErrorMessage message={tasks.error} />;
-  }
-
-  if ('error' in taskCategories) {
-    return <ErrorMessage message={taskCategories.error} />;
-  }
-
-  if (user && 'error' in user) {
-    return <ErrorMessage message={user.error} />;
+  if ('error' in tasks || 'error' in taskCategories || 'error' in user) {
+    return (
+      <ErrorMessage
+        message={tasks.error || taskCategories.error || user.error}
+      />
+    );
   }
 
   return (

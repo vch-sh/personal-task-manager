@@ -9,10 +9,7 @@ export async function deleteCategory(categoryId: string) {
     return { error: 'Category ID is required' };
   }
 
-  const { client, collection, error } = await connectToDatabase(
-    'task_db',
-    'categories',
-  );
+  const { client, collection, error } = await connectToDatabase('categories');
 
   if (error) return { error };
 
@@ -25,7 +22,9 @@ export async function deleteCategory(categoryId: string) {
       return { error: 'Category not found or deletion failed' };
     }
 
-    const taskCollection = client?.db('task_db').collection<Document>('tasks');
+    const taskCollection = client
+      ?.db(process.env.MONGODB_DB)
+      .collection<Document>('tasks');
 
     if (!taskCollection) {
       return { error: 'Failed to connect to the task collection' };

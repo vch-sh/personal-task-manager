@@ -1,6 +1,6 @@
 import { FormProvider, useForm } from 'react-hook-form';
 import { editTask } from '@/actions/EditTask';
-import { getTaskById } from '@/actions/GetTaskById';
+import { getTaskById } from '@/lib/tasks';
 import AddEditTaskFormData from '@/types/AddEditFormData';
 import TaskCategory from '@/types/TaskCategory';
 import AddEditTaskForm from './AddEditTaskForm';

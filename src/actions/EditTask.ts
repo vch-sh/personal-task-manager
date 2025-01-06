@@ -10,10 +10,7 @@ export async function editTask(data: AddEditTaskFormData, taskId?: string) {
     return { error: 'Data is missing' };
   }
 
-  const { client, collection, error } = await connectToDatabase(
-    'task_db',
-    'tasks',
-  );
+  const { client, collection, error } = await connectToDatabase('tasks');
 
   if (error) return { error };
 
