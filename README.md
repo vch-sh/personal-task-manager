@@ -4,7 +4,7 @@ Personal Task Manager is a comprehensive web application designed to help users 
 
 ## Project Status
 
-As of December 30, 2024 - `in development`
+As of January 06, 2025 - `in development`
 
 ## Features
 
