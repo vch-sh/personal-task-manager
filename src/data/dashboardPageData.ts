@@ -1,5 +1,6 @@
 import { auth } from '@/auth';
-import { fetchTaskCategories, fetchTasks } from '@/lib/tasks';
+import { fetchTaskCategories } from '@/lib/categories';
+import { fetchTasks } from '@/lib/tasks';
 import { fetchUserById } from '@/lib/users';
 
 export async function getDashboardPageData() {

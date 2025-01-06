@@ -29,11 +29,11 @@ export default function TasksQuantityByCategory({
           <CardHeader className="flex flex-row items-center justify-between gap-2">
             <CardTitle className="font-semibold">Tasks By Category</CardTitle>
           </CardHeader>
-          <CardContent className="font-bold flex gap-2 flex-wrap">
+          <CardContent className="flex flex-wrap gap-2 font-bold">
             {tasksQuantityByCategory.map((task, index) => (
               <div
                 key={`${task}_${index}`}
-                className={`${colorVariants[task.color]} ${opacity === 100 ? 'opacity-100' : 'opacity-0'} transition mb-2 text-white p-2 rounded-md shadow-md`}
+                className={`${colorVariants[task.color]} ${opacity === 100 ? 'opacity-100' : 'opacity-0'} mb-2 rounded-md p-2 text-white shadow-md transition`}
               >
                 <p>
                   {task.category} {task.count}

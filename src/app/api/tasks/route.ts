@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getTasks } from '@/actions/GetTasks';
+import { getTasks } from '@/lib/tasks';
 
 export async function GET(req: NextRequest) {
   const url = new URL(req.url);
