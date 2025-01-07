@@ -48,14 +48,9 @@ export default function UserMenu({ user }: UserMenuProps) {
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem className="flex justify-center p-0">
-          {/* <Link
-            href="/settings"
-            className="w-full text-center"
-          > */}
-          <Button variant="link" disabled>
-            Settings
-          </Button>
-          {/* </Link> */}
+          <Link href="/settings" className="w-full text-center">
+            <Button variant="link">Settings</Button>
+          </Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator className="mx-[1px]" />
         <DropdownMenuItem className="p-0">
