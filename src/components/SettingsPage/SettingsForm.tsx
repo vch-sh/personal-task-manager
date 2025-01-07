@@ -13,6 +13,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { updateSettings } from '@/actions/UpdateSettings';
 import FormStatusType from '@/types/FormStatus';
 import SettingsFormData from '@/types/SettingsFormData';
 
@@ -36,7 +37,28 @@ export default function SettingsForm({ userId }: SettingsFormProps) {
       ...data,
       userId,
     };
-    console.log('🚀 ~ onSubmit ~ formData:', formData);
+
+    setFormStatus({});
+
+    try {
+      const response = await updateSettings(formData);
+
+      if (response?.error) {
+        setFormStatus({ error: response.error });
+        return;
+      }
+
+      if (response?.success) {
+        setFormStatus({ success: response.success });
+        return;
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        setFormStatus({ error: 'Something went wrong' });
+      } else {
+        setFormStatus({ error: 'Unknown error occurred. Please try later.' });
+      }
+    }
   }
 
   return (
