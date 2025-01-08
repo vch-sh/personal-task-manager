@@ -35,7 +35,7 @@ export default async function TasksPage() {
           <Tasks
             tasks={tasks}
             taskCategories={taskCategories}
-            completedHidden={settings.completedHidden}
+            settings={settings}
           />
         </main>
       </FilteredTasksQuantityContextProvider>

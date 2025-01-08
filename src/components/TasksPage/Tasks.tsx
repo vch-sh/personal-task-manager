@@ -18,22 +18,22 @@ import {
 } from '@/components/ui/table';
 import { priorities, status } from '@/lib/table';
 import { useFilterSortTasks } from '@/hooks/useFilterSortTasks';
+import Settings from '@/types/Settings';
 import Task from '@/types/Task';
 import TaskCategory from '@/types/TaskCategory';
 
 type TasksProps = {
   tasks: Task[];
   taskCategories: TaskCategory[];
-  completedHidden: boolean;
+  settings: Settings;
 };
 
-export default function Tasks({
-  tasks,
-  taskCategories,
-  completedHidden,
-}: TasksProps) {
+export default function Tasks({ tasks, taskCategories, settings }: TasksProps) {
   const [isCompletedHidden, setCompletedHidden] = useState(
-    completedHidden ?? false,
+    settings.completedHidden ?? false,
+  );
+  const [isFilteringSortingOpen, setFilteringSortingOpen] = useState(
+    settings.isFilteringSortingOpen ?? false,
   );
 
   const { filteredSortedTasks, filter, sort, setFilter, setSort } =
@@ -45,7 +45,10 @@ export default function Tasks({
   return (
     <>
       {!!tasks.length && (
-        <FilterSortToggle>
+        <FilterSortToggle
+          isFilteringSortingOpen={isFilteringSortingOpen}
+          setFilteringSortingOpen={setFilteringSortingOpen}
+        >
           <Filtering
             tasksQuantity={tasks.length}
             filter={filter}
