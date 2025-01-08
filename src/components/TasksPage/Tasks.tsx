@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { format } from 'date-fns';
 import { FolderOpen } from 'lucide-react';
 import Categories from '@/components/TasksPage/Categories';
@@ -23,12 +24,22 @@ import TaskCategory from '@/types/TaskCategory';
 type TasksProps = {
   tasks: Task[];
   taskCategories: TaskCategory[];
+  completedHidden: boolean;
 };
 
-export default function Tasks({ tasks, taskCategories }: TasksProps) {
+export default function Tasks({
+  tasks,
+  taskCategories,
+  completedHidden,
+}: TasksProps) {
+  const [isCompletedHidden, setCompletedHidden] = useState(
+    completedHidden ?? false,
+  );
+
   const { filteredSortedTasks, filter, sort, setFilter, setSort } =
     useFilterSortTasks({
       tasks,
+      isCompletedHidden,
     });
 
   return (
@@ -42,7 +53,10 @@ export default function Tasks({ tasks, taskCategories }: TasksProps) {
             setFilter={setFilter}
             setSort={setSort}
           />
-          <HideCompleted />
+          <HideCompleted
+            isCompletedHidden={isCompletedHidden}
+            setCompletedHidden={setCompletedHidden}
+          />
           <Categories taskCategories={taskCategories} />
         </FilterSortToggle>
       )}

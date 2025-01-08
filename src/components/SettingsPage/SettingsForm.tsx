@@ -15,17 +15,17 @@ import {
 import { Input } from '@/components/ui/input';
 import { updateSettings } from '@/actions/UpdateSettings';
 import FormStatusType from '@/types/FormStatus';
-import SettingsFormData from '@/types/SettingsFormData';
+import Settings from '@/types/Settings';
 
 type SettingsFormProps = {
   userId: string;
-  settings: SettingsFormData;
+  settings: Settings;
 };
 
 export default function SettingsForm({ userId, settings }: SettingsFormProps) {
   const [formStatus, setFormStatus] = useState<FormStatusType>({});
 
-  const formMethods = useForm<SettingsFormData>({
+  const formMethods = useForm<Settings>({
     defaultValues: {
       darkMode: settings.darkMode ?? false,
       isFilteringSortingOpen: settings.isFilteringSortingOpen ?? false,
@@ -33,7 +33,7 @@ export default function SettingsForm({ userId, settings }: SettingsFormProps) {
     },
   });
 
-  async function onSubmit(data: SettingsFormData) {
+  async function onSubmit(data: Settings) {
     const formData = {
       ...data,
       userId,

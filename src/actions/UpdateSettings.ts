@@ -3,7 +3,7 @@
 import { revalidatePath } from 'next/cache';
 import { connectToDatabase } from '@/lib/mongodb';
 import { getUserById } from '@/lib/users';
-import SettingsFormData from '@/types/SettingsFormData';
+import SettingsFormData from '@/types/Settings';
 
 export async function updateSettings(data: SettingsFormData) {
   const { client, collection, error } = await connectToDatabase('settings');

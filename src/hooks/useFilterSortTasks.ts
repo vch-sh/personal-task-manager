@@ -1,19 +1,21 @@
 import { useCallback, useEffect, useState } from 'react';
 import Task from '@/types/Task';
-import { useCompletedTasks } from './useCompletedTasks';
 import { useFilteredTasksQuantity } from './useFilteredTasksQuantity';
 import { useTaskCategory } from './useTaskCategory';
 
 type useFilterSortTasksProps = {
   tasks: Task[];
+  isCompletedHidden: boolean;
 };
 
-export function useFilterSortTasks({ tasks }: useFilterSortTasksProps) {
+export function useFilterSortTasks({
+  tasks,
+  isCompletedHidden,
+}: useFilterSortTasksProps) {
   const [filter, setFilter] = useState('all');
   const [sort, setSort] = useState('due-date');
 
   const { category, setCategory } = useTaskCategory();
-  const { isCompletedHidden } = useCompletedTasks();
   const { setFilteredTasksQuantity } = useFilteredTasksQuantity();
 
   const filterByCompleted = useCallback(

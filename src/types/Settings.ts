@@ -1,4 +1,4 @@
-type SettingsFormData = {
+type Settings = {
   _id: string;
   userId: string;
   darkMode: boolean;
@@ -6,4 +6,4 @@ type SettingsFormData = {
   completedHidden: boolean;
 };
 
-export default SettingsFormData;
+export default Settings;
