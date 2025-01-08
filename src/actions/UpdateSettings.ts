@@ -1,5 +1,6 @@
 'use server';
 
+import { revalidatePath } from 'next/cache';
 import { connectToDatabase } from '@/lib/mongodb';
 import { getUserById } from '@/lib/users';
 import SettingsFormData from '@/types/SettingsFormData';
@@ -36,6 +37,8 @@ export async function updateSettings(data: SettingsFormData) {
       },
       { upsert: true },
     );
+
+    revalidatePath('/settings');
 
     return {
       success: 'Application settings updated successfully',

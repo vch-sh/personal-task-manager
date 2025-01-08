@@ -19,16 +19,17 @@ import SettingsFormData from '@/types/SettingsFormData';
 
 type SettingsFormProps = {
   userId: string;
+  settings: SettingsFormData;
 };
 
-export default function SettingsForm({ userId }: SettingsFormProps) {
+export default function SettingsForm({ userId, settings }: SettingsFormProps) {
   const [formStatus, setFormStatus] = useState<FormStatusType>({});
 
   const formMethods = useForm<SettingsFormData>({
     defaultValues: {
-      darkMode: false,
-      isFilteringSortingOpen: false,
-      completedHidden: false,
+      darkMode: settings.darkMode ?? false,
+      isFilteringSortingOpen: settings.isFilteringSortingOpen ?? false,
+      completedHidden: settings.completedHidden ?? false,
     },
   });
 
@@ -54,7 +55,7 @@ export default function SettingsForm({ userId }: SettingsFormProps) {
       }
     } catch (error) {
       if (error instanceof Error) {
-        setFormStatus({ error: 'Something went wrong' });
+        setFormStatus({ error: error.message || 'Something went wrong' });
       } else {
         setFormStatus({ error: 'Unknown error occurred. Please try later.' });
       }
