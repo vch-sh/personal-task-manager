@@ -60,7 +60,5 @@ export async function addCategory(data: AddEditCategoryFormData) {
     return {
       error: 'Unknown error occurred while connecting to the database',
     };
-  } finally {
-    await client?.close();
   }
 }

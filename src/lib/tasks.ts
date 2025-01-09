@@ -43,10 +43,6 @@ export async function getTasks(id: string) {
       };
     }
     return [];
-  } finally {
-    if (client) {
-      await client.close();
-    }
   }
 }
 
@@ -78,9 +74,5 @@ export async function getTaskById(id: string) {
       };
     }
     return {};
-  } finally {
-    if (client) {
-      await client.close();
-    }
   }
 }

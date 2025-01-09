@@ -17,7 +17,7 @@ export async function updateUserWithImageUrl(url: string) {
     return { error: 'User ID is invalid' };
   }
 
-  const { client, collection, error } = await connectToDatabase('users');
+  const { collection, error } = await connectToDatabase('users');
 
   if (error) return { error };
 
@@ -41,7 +41,5 @@ export async function updateUserWithImageUrl(url: string) {
     return {
       error: 'Unknown error occurred while connecting to the database',
     };
-  } finally {
-    await client?.close();
   }
 }

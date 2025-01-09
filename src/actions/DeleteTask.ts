@@ -9,7 +9,7 @@ export async function deleteTask(taskId: string) {
     return { error: 'Task ID is required' };
   }
 
-  const { client, collection, error } = await connectToDatabase('tasks');
+  const { collection, error } = await connectToDatabase('tasks');
 
   if (error) return { error };
 
@@ -34,7 +34,5 @@ export async function deleteTask(taskId: string) {
     return {
       error: 'Unknown error occurred while connecting to the database',
     };
-  } finally {
-    await client?.close();
   }
 }

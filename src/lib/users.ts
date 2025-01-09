@@ -2,12 +2,11 @@ import { Collection, ObjectId } from 'mongodb';
 import { connectToDatabase } from './mongodb';
 
 export async function getUserByEmail(email: string) {
-  const { client, collection, error } = await connectToDatabase('users');
+  const { collection, error } = await connectToDatabase('users');
 
   if (error) throw new Error(error);
 
   const user = await collection?.findOne({ email });
-  await client?.close();
   return user;
 }
 
@@ -29,7 +28,7 @@ export async function getUserById(
 }
 
 export async function fetchUserById(id: string) {
-  const { client, collection, error } = await connectToDatabase('users');
+  const { collection, error } = await connectToDatabase('users');
 
   if (error) throw new Error(error);
 
@@ -43,7 +42,5 @@ export async function fetchUserById(id: string) {
     return {
       error: 'Unknown error occurred while connecting to the database',
     };
-  } finally {
-    await client?.close();
   }
 }

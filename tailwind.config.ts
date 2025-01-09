@@ -11,6 +11,9 @@ export default {
   plugins: [require('tailwindcss-animate')],
   theme: {
     extend: {
+      colors: {
+        dark: '#12ae8f',
+      },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',

@@ -25,9 +25,5 @@ export async function getSettings(id: string) {
       };
     }
     return [];
-  } finally {
-    if (client) {
-      await client.close();
-    }
   }
 }

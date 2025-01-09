@@ -4,7 +4,7 @@ import { connectToDatabase } from '@/lib/mongodb';
 import User from '@/types/User';
 
 export async function createUser(userData: User) {
-  const { client, collection, error } = await connectToDatabase('users');
+  const { collection, error } = await connectToDatabase('users');
 
   if (error) throw new Error(error);
 
@@ -12,6 +12,5 @@ export async function createUser(userData: User) {
     ...userData,
   });
 
-  await client?.close();
   return result;
 }

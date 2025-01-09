@@ -29,10 +29,8 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body
-        className={`${inter.className} dark:bg-slate-800 dark:text-[#12ae8f]`}
-      >
-        <LoadingIndicator />
+      <body className={`${inter.className} dark:text-dark dark:bg-slate-800`}>
+        <LoadingIndicator darkMode={darkMode} />
         <AuthProvider>
           <ThemeProvider darkMode={darkMode}>{children}</ThemeProvider>
         </AuthProvider>

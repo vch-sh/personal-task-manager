@@ -27,7 +27,7 @@ export default async function DashboardPage() {
 
   return (
     <main className="container mx-auto min-h-screen min-w-[360px] max-w-5xl px-4 py-8 sm:py-4">
-      <Header username={`Hi, ${user?.name}!` || 'Dashboard'} />
+      <Header username={user ? `Hi, ${user.name}!` : 'Dashboard'} />
 
       {tasks.length > 0 ? (
         <TaskStatistics

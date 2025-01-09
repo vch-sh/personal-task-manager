@@ -48,10 +48,6 @@ export async function getTaskCategories(id: string) {
       };
     }
     return [];
-  } finally {
-    if (client) {
-      await client.close();
-    }
   }
 }
 
@@ -84,9 +80,5 @@ export async function getCategoryById(id: string) {
       };
     }
     return {};
-  } finally {
-    if (client) {
-      await client.close();
-    }
   }
 }

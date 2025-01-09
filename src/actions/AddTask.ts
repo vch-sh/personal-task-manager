@@ -55,7 +55,5 @@ export async function addTask(data: AddEditTaskFormData) {
     return {
       error: 'Unknown error occurred while connecting to the database',
     };
-  } finally {
-    await client?.close();
   }
 }

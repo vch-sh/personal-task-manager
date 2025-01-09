@@ -45,7 +45,5 @@ export async function updateSettings(data: SettingsFormData) {
     };
   } catch (error) {
     return { error: error instanceof Error ? error.message : 'Database error' };
-  } finally {
-    await client?.close();
   }
 }

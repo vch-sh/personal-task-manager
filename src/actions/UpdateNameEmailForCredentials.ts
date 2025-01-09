@@ -47,7 +47,5 @@ export async function updateNameEmailForCredentials(
     return { success: 'Profile details updated successfully' };
   } catch (error) {
     return { error: error instanceof Error ? error.message : 'Database error' };
-  } finally {
-    await client?.close();
   }
 }
