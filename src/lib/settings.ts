@@ -3,12 +3,10 @@
 import { connectToDatabase } from '@/lib/mongodb';
 
 export async function getSettings(id: string) {
-  let client;
   let collection;
 
   try {
     const connection = await connectToDatabase('settings');
-    client = connection.client;
     collection = connection.collection;
 
     if (!collection) {

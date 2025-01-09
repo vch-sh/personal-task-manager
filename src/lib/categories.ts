@@ -23,12 +23,10 @@ export async function fetchTaskCategories(userId: string) {
 }
 
 export async function getTaskCategories(id: string) {
-  let client;
   let collection;
 
   try {
     const connection = await connectToDatabase('categories');
-    client = connection.client;
     collection = connection.collection;
 
     if (!collection) {
@@ -62,12 +60,10 @@ export async function getTaskCategories(id: string) {
 }
 
 export async function getCategoryById(id: string) {
-  let client;
   let collection;
 
   try {
     const connection = await connectToDatabase('categories');
-    client = connection.client;
     collection = connection.collection;
 
     if (!collection) {
