@@ -9,7 +9,7 @@ import {
 
 export default function SettingsPageContent({ children }: PropsWithChildren) {
   return (
-    <Card className="mt-4 dark:border dark:bg-slate-700/80">
+    <Card className="mt-4">
       <CardTitle></CardTitle>
       <CardHeader className="text-center">
         <CardTitle></CardTitle>

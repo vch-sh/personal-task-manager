@@ -32,7 +32,7 @@ export default function UserImage({
 
   return (
     <div
-      className="flex items-center overflow-hidden rounded-full border"
+      className="flex items-center overflow-hidden rounded-full border dark:border-neutral-700"
       style={{
         width: `${width}px`,
         height: `${height}px`,

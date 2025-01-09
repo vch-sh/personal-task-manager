@@ -115,7 +115,7 @@ export default function UpdateProfileForm({
             )}
           />
           {isOAuth2 && (
-            <p className="-mt-3 text-right text-xs text-gray-500">
+            <p className="dark:text-dark -mt-3 text-right text-xs text-gray-500">
               Email cannot be changed for Google or GitHub users
             </p>
           )}
