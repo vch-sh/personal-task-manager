@@ -28,7 +28,7 @@ export default function UserImage({
     } else {
       return session?.user.image ?? DefaultUserImage;
     }
-  }, [selectedImage, session?.user.image]);
+  }, [selectedImage, session?.user.image, profileImageUrl]);
 
   return (
     <div
