@@ -20,7 +20,9 @@ export default function HideCompleted({
         checked={isCompletedHidden}
         onChange={(e) => setCompletedHidden(e.target.checked)}
       />
-      <Label htmlFor="hideCompleted">Hide completed</Label>
+      <Label htmlFor="hideCompleted" className="dark:text-neutral-50/90">
+        Hide completed
+      </Label>
     </div>
   );
 }
