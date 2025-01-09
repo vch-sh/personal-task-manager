@@ -97,7 +97,7 @@ export default function AddEditCategoryForm({
                 htmlFor="name"
                 className="flex items-center font-semibold"
               >
-                <span>Name</span>
+                <span className="dark:text-neutral-50/90">Name</span>
                 {textLength >= 20 && (
                   <span className="ml-auto text-xs">
                     {formMethods.watch('name').length}/25
@@ -108,6 +108,7 @@ export default function AddEditCategoryForm({
                 <Input
                   id="name"
                   placeholder="Enter category name..."
+                  className="dark:text-neutral-50/90"
                   {...field}
                   value={field.value || ''}
                   onChange={(e) => {
@@ -129,7 +130,10 @@ export default function AddEditCategoryForm({
           name="color"
           render={({ field }) => (
             <FormItem className="mb-4">
-              <FormLabel htmlFor="color" className="font-semibold">
+              <FormLabel
+                htmlFor="color"
+                className="font-semibold dark:text-neutral-50/90"
+              >
                 Color
               </FormLabel>
               <FormControl>

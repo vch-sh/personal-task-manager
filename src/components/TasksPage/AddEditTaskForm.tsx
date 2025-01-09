@@ -82,7 +82,10 @@ export default function AddEditTaskForm({
 
   return (
     <Form {...formMethods}>
-      <form onSubmit={formMethods.handleSubmit(onSubmit)} className="space-y-4">
+      <form
+        onSubmit={formMethods.handleSubmit(onSubmit)}
+        className="space-y-4 dark:text-neutral-50/90"
+      >
         <FormField
           control={formMethods.control}
           name="text"

@@ -70,10 +70,12 @@ export default function Tasks({ tasks, taskCategories, settings }: TasksProps) {
           Looks like your list is empty
         </p>
       ) : (
-        <Table className="text-center">
+        <Table className="text-center dark:text-neutral-50/90">
           <TableHeader>
             <TableRow>
-              <TableHead>Text</TableHead>
+              <TableHead className="dark:rounded-bl-lg dark:rounded-tl-lg">
+                Text
+              </TableHead>
               <TableHead className="w-4 px-2">Status</TableHead>
               <TableHead className="hidden w-4 px-2 sm:table-cell">
                 Priority
@@ -81,7 +83,9 @@ export default function Tasks({ tasks, taskCategories, settings }: TasksProps) {
               <TableHead className="hidden w-[84px] px-2 sm:table-cell">
                 Due Date
               </TableHead>
-              <TableHead className="w-4 px-2">Actions</TableHead>
+              <TableHead className="w-4 px-2 dark:rounded-br-lg dark:rounded-tr-lg">
+                Actions
+              </TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -101,9 +105,7 @@ export default function Tasks({ tasks, taskCategories, settings }: TasksProps) {
                   key={task._id}
                   className={`${task.status === 'done' && 'line-through'}`}
                 >
-                  <TableCell
-                    className={`max-w-[100px] break-words text-justify sm:max-w-sm`}
-                  >
+                  <TableCell className="max-w-[100px] break-words text-justify dark:rounded-bl-lg dark:rounded-tl-lg sm:max-w-sm">
                     <time dateTime={createdAt} className="font-semibold">
                       {createdAt}
                     </time>
@@ -117,7 +119,7 @@ export default function Tasks({ tasks, taskCategories, settings }: TasksProps) {
                     <p>{dayMonth}</p>
                     <p>{year}</p>
                   </TableCell>
-                  <TableCell className="px-2">
+                  <TableCell className="px-2 dark:rounded-br-lg dark:rounded-tr-lg">
                     <TaskActions
                       taskId={task._id}
                       taskCategories={taskCategories}
