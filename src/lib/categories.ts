@@ -23,12 +23,10 @@ export async function fetchTaskCategories(userId: string) {
 }
 
 export async function getTaskCategories(id: string) {
-  let client;
   let collection;
 
   try {
     const connection = await connectToDatabase('categories');
-    client = connection.client;
     collection = connection.collection;
 
     if (!collection) {
@@ -38,6 +36,16 @@ export async function getTaskCategories(id: string) {
     const taskCategories = await collection
       .find({ $or: [{ name: 'all' }, { userId: id }] })
       .toArray();
+
+    const allCategoryIndex = taskCategories.findIndex(
+      (category) => category._id.toString() === 'all',
+    );
+
+    if (allCategoryIndex !== -1) {
+      const allCategory = taskCategories.splice(allCategoryIndex, 1)[0];
+      taskCategories.unshift(allCategory);
+    }
+
     return JSON.parse(JSON.stringify(taskCategories)) || [];
   } catch (error) {
     if (error instanceof Error) {
@@ -48,20 +56,14 @@ export async function getTaskCategories(id: string) {
       };
     }
     return [];
-  } finally {
-    if (client) {
-      await client.close();
-    }
   }
 }
 
 export async function getCategoryById(id: string) {
-  let client;
   let collection;
 
   try {
     const connection = await connectToDatabase('categories');
-    client = connection.client;
     collection = connection.collection;
 
     if (!collection) {
@@ -84,9 +86,5 @@ export async function getCategoryById(id: string) {
       };
     }
     return {};
-  } finally {
-    if (client) {
-      await client.close();
-    }
   }
 }

@@ -14,7 +14,7 @@ export async function register({
     return { error: 'Passwords do not match' };
   }
 
-  const { client, collection, error } = await connectToDatabase('users');
+  const { collection, error } = await connectToDatabase('users');
 
   if (error) return { error };
 
@@ -42,7 +42,5 @@ export async function register({
     return {
       error: 'Unknown error occurred while connecting to the database',
     };
-  } finally {
-    await client?.close();
-  }
+  } 
 }

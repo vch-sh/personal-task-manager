@@ -52,7 +52,7 @@ export async function changePassword(data: ChangePasswordFormData) {
 
   const hashedPassword = await hash(data.newPassword, 10);
 
-  const { client, collection, error } = await connectToDatabase('users');
+  const { collection, error } = await connectToDatabase('users');
 
   if (error) return { error };
 
@@ -65,7 +65,5 @@ export async function changePassword(data: ChangePasswordFormData) {
     return { success: 'Password updated successfully' };
   } catch (error) {
     return { error: error instanceof Error ? error.message : 'Database error' };
-  } finally {
-    await client?.close();
   }
 }

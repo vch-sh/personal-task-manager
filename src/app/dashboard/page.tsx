@@ -11,14 +11,11 @@ export const metadata: Metadata = {
 };
 
 export default async function DashboardPage() {
-  const { tasks, taskCategories, user } = await getDashboardTasksPagesData();
+  const { tasks, taskCategories, user, error } =
+    await getDashboardTasksPagesData();
 
-  if ('error' in tasks || 'error' in taskCategories || 'error' in user) {
-    return (
-      <ErrorMessage
-        message={tasks.error || taskCategories.error || user.error}
-      />
-    );
+  if (error) {
+    return <ErrorMessage message={error} />;
   }
 
   const {
@@ -30,7 +27,7 @@ export default async function DashboardPage() {
 
   return (
     <main className="container mx-auto min-h-screen min-w-[360px] max-w-5xl px-4 py-8 sm:py-4">
-      <Header username={`Hi, ${user?.name}!` || 'Dashboard'} />
+      <Header username={user ? `Hi, ${user.name}!` : 'Dashboard'} />
 
       {tasks.length > 0 ? (
         <TaskStatistics

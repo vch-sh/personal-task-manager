@@ -21,12 +21,10 @@ export async function fetchTasks(userId: string) {
 }
 
 export async function getTasks(id: string) {
-  let client;
   let collection;
 
   try {
     const connection = await connectToDatabase('tasks');
-    client = connection.client;
     collection = connection.collection;
 
     if (!collection) {
@@ -43,20 +41,14 @@ export async function getTasks(id: string) {
       };
     }
     return [];
-  } finally {
-    if (client) {
-      await client.close();
-    }
   }
 }
 
 export async function getTaskById(id: string) {
-  let client;
   let collection;
 
   try {
     const connection = await connectToDatabase('tasks');
-    client = connection.client;
     collection = connection.collection;
 
     if (!collection) {
@@ -78,9 +70,5 @@ export async function getTaskById(id: string) {
       };
     }
     return {};
-  } finally {
-    if (client) {
-      await client.close();
-    }
   }
 }

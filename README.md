@@ -4,7 +4,7 @@ Personal Task Manager is a comprehensive web application designed to help users 
 
 ## Project Status
 
-As of January 06, 2025 - `in development`
+As of January 09, 2025 - `in development`
 
 ## Features
 
@@ -32,6 +32,10 @@ As of January 06, 2025 - `in development`
 - **Profile Settings Page**:
   - Update profile details, including name, email, password and profile picture.
   - Email and password updates are not available for users authenticated through Google or GitHub.
+- **Settings Page**:
+  - Dark Mode: Enable dark theme for better readability in low-light environments.
+  - Always Open Filter Section: Option to keep the filtering section expanded for quicker access to filters and sorting options.
+  - Auto-hide Completed Tasks: Automatically hide completed tasks to maintain a focused interface.
 
 **Note: This project is actively being developed. Many more exciting features are planned and will be added in future updates!**
 

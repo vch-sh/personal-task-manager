@@ -1,7 +1,10 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import { auth } from '@/auth';
 import AuthProvider from '@/components/general/AuthProvider';
 import LoadingIndicator from '@/components/general/LoadingIndicator';
+import ThemeProvider from '@/components/general/ThemeProvider';
+import { getSettings } from '@/lib/settings';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -20,11 +23,17 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await auth();
+  const settings = session ? await getSettings(session?.user.id) : null;
+  const darkMode = settings?.darkMode ?? false;
+
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <LoadingIndicator />
-        <AuthProvider>{children}</AuthProvider>
+      <body className={`${inter.className} dark:text-dark dark:bg-slate-800`}>
+        <LoadingIndicator darkMode={darkMode} />
+        <AuthProvider>
+          <ThemeProvider darkMode={darkMode}>{children}</ThemeProvider>
+        </AuthProvider>
       </body>
     </html>
   );

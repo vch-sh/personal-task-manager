@@ -16,7 +16,9 @@ export async function editCategory(data: AddEditCategoryFormData) {
   if (error) return { error };
 
   try {
-    const userCollection = client?.db(process.env.MONGODB_DB).collection<Document>('users');
+    const userCollection = client
+      ?.db(process.env.MONGODB_DB)
+      .collection<Document>('users');
 
     if (!userCollection) {
       return { error: 'Failed to connect to the user collection' };
@@ -63,7 +65,5 @@ export async function editCategory(data: AddEditCategoryFormData) {
     return {
       error: 'Unknown error occurred while connecting to the database',
     };
-  } finally {
-    await client?.close();
   }
 }

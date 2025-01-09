@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { format } from 'date-fns';
 import { FolderOpen } from 'lucide-react';
 import Categories from '@/components/TasksPage/Categories';
@@ -17,24 +18,37 @@ import {
 } from '@/components/ui/table';
 import { priorities, status } from '@/lib/table';
 import { useFilterSortTasks } from '@/hooks/useFilterSortTasks';
+import Settings from '@/types/Settings';
 import Task from '@/types/Task';
 import TaskCategory from '@/types/TaskCategory';
 
 type TasksProps = {
   tasks: Task[];
   taskCategories: TaskCategory[];
+  settings: Settings;
 };
 
-export default function Tasks({ tasks, taskCategories }: TasksProps) {
+export default function Tasks({ tasks, taskCategories, settings }: TasksProps) {
+  const [isCompletedHidden, setCompletedHidden] = useState(
+    settings.completedHidden ?? false,
+  );
+  const [isFilteringSortingOpen, setFilteringSortingOpen] = useState(
+    settings.isFilteringSortingOpen ?? false,
+  );
+
   const { filteredSortedTasks, filter, sort, setFilter, setSort } =
     useFilterSortTasks({
       tasks,
+      isCompletedHidden,
     });
 
   return (
     <>
       {!!tasks.length && (
-        <FilterSortToggle>
+        <FilterSortToggle
+          isFilteringSortingOpen={isFilteringSortingOpen}
+          setFilteringSortingOpen={setFilteringSortingOpen}
+        >
           <Filtering
             tasksQuantity={tasks.length}
             filter={filter}
@@ -42,7 +56,10 @@ export default function Tasks({ tasks, taskCategories }: TasksProps) {
             setFilter={setFilter}
             setSort={setSort}
           />
-          <HideCompleted />
+          <HideCompleted
+            isCompletedHidden={isCompletedHidden}
+            setCompletedHidden={setCompletedHidden}
+          />
           <Categories taskCategories={taskCategories} />
         </FilterSortToggle>
       )}
@@ -53,10 +70,12 @@ export default function Tasks({ tasks, taskCategories }: TasksProps) {
           Looks like your list is empty
         </p>
       ) : (
-        <Table className="text-center">
+        <Table className="text-center dark:text-neutral-50/90">
           <TableHeader>
             <TableRow>
-              <TableHead>Text</TableHead>
+              <TableHead className="dark:rounded-bl-lg dark:rounded-tl-lg">
+                Text
+              </TableHead>
               <TableHead className="w-4 px-2">Status</TableHead>
               <TableHead className="hidden w-4 px-2 sm:table-cell">
                 Priority
@@ -64,7 +83,9 @@ export default function Tasks({ tasks, taskCategories }: TasksProps) {
               <TableHead className="hidden w-[84px] px-2 sm:table-cell">
                 Due Date
               </TableHead>
-              <TableHead className="w-4 px-2">Actions</TableHead>
+              <TableHead className="w-4 px-2 dark:rounded-br-lg dark:rounded-tr-lg">
+                Actions
+              </TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -84,9 +105,7 @@ export default function Tasks({ tasks, taskCategories }: TasksProps) {
                   key={task._id}
                   className={`${task.status === 'done' && 'line-through'}`}
                 >
-                  <TableCell
-                    className={`max-w-[100px] break-words text-justify sm:max-w-sm`}
-                  >
+                  <TableCell className="max-w-[100px] break-words text-justify dark:rounded-bl-lg dark:rounded-tl-lg sm:max-w-sm">
                     <time dateTime={createdAt} className="font-semibold">
                       {createdAt}
                     </time>
@@ -100,7 +119,7 @@ export default function Tasks({ tasks, taskCategories }: TasksProps) {
                     <p>{dayMonth}</p>
                     <p>{year}</p>
                   </TableCell>
-                  <TableCell className="px-2">
+                  <TableCell className="px-2 dark:rounded-br-lg dark:rounded-tr-lg">
                     <TaskActions
                       taskId={task._id}
                       taskCategories={taskCategories}

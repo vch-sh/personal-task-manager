@@ -1,19 +1,21 @@
 import { useCallback, useEffect, useState } from 'react';
 import Task from '@/types/Task';
-import { useCompletedTasks } from './useCompletedTasks';
 import { useFilteredTasksQuantity } from './useFilteredTasksQuantity';
 import { useTaskCategory } from './useTaskCategory';
 
 type useFilterSortTasksProps = {
   tasks: Task[];
+  isCompletedHidden: boolean;
 };
 
-export function useFilterSortTasks({ tasks }: useFilterSortTasksProps) {
+export function useFilterSortTasks({
+  tasks,
+  isCompletedHidden,
+}: useFilterSortTasksProps) {
   const [filter, setFilter] = useState('all');
   const [sort, setSort] = useState('due-date');
 
   const { category, setCategory } = useTaskCategory();
-  const { isCompletedHidden } = useCompletedTasks();
   const { setFilteredTasksQuantity } = useFilteredTasksQuantity();
 
   const filterByCompleted = useCallback(
@@ -37,22 +39,16 @@ export function useFilterSortTasks({ tasks }: useFilterSortTasksProps) {
     [filter],
   );
 
-  const sortByDueDate = useCallback(
-    (a: Task, b: Task) => {
-      const dateA = new Date(a.dueDate || 0);
-      const dateB = new Date(b.dueDate || 0);
-      return dateA.getTime() - dateB.getTime();
-    },
-    [sort],
-  );
+  const sortByDueDate = useCallback((a: Task, b: Task) => {
+    const dateA = new Date(a.dueDate || 0);
+    const dateB = new Date(b.dueDate || 0);
+    return dateA.getTime() - dateB.getTime();
+  }, []);
 
-  const sortByPriority = useCallback(
-    (a: Task, b: Task) => {
-      const priorityOrder = { high: 0, medium: 1, low: 2 };
-      return priorityOrder[a.priority] - priorityOrder[b.priority];
-    },
-    [sort],
-  );
+  const sortByPriority = useCallback((a: Task, b: Task) => {
+    const priorityOrder = { high: 0, medium: 1, low: 2 };
+    return priorityOrder[a.priority] - priorityOrder[b.priority];
+  }, []);
 
   const filteredSortedTasks = tasks
     .filter(filterByCompleted)

@@ -20,7 +20,7 @@ export default function DeleteCategoryDialog() {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger>
-        <FolderX className="opacity-70" />
+        <FolderX className="opacity-70 dark:text-white" />
       </DialogTrigger>
       <DialogContent>
         <DialogHeader className="relative">

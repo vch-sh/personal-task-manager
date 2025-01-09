@@ -29,7 +29,11 @@ export default function AddEditCategoryDialog({
         className="cursor-pointer opacity-70"
         onClick={() => setIsOpen(true)}
       >
-        {label === 'Add' ? <PlusCircle /> : <Pen />}
+        {label === 'Add' ? (
+          <PlusCircle className="dark:text-white" />
+        ) : (
+          <Pen className="dark:text-white" />
+        )}
       </DialogTrigger>
       <DialogContent>
         <DialogHeader className="relative">

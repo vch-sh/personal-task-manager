@@ -1,18 +1,24 @@
 import { Collection, MongoClient } from 'mongodb';
 
-const client = new MongoClient(process.env.MONGODB_URI || '');
+let cachedClient: MongoClient | null = null;
 
 export async function connectToDatabase(
   collectionName: string,
 ): Promise<{ client?: MongoClient; collection?: Collection; error?: string }> {
   try {
-    await client.connect();
-    const collection = client
+    if (!cachedClient) {
+      cachedClient = new MongoClient(process.env.MONGODB_URI || '');
+      await cachedClient.connect();
+      console.log('MongoDB connected');
+    }
+
+    const collection = cachedClient
       .db(process.env.MONGODB_DB)
       .collection(collectionName);
 
-    return { client, collection };
+    return { client: cachedClient, collection };
   } catch (error) {
+    console.error('Error while connecting to MongoDB:', error);
     return error instanceof Error
       ? { error: error.message }
       : {
@@ -20,3 +26,11 @@ export async function connectToDatabase(
         };
   }
 }
+
+process.on('SIGINT', async () => {
+  if (cachedClient) {
+    await cachedClient.close();
+    console.log('MongoDB connection closed');
+  }
+  process.exit(0);
+});

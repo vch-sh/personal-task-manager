@@ -44,7 +44,5 @@ export async function deleteCategory(categoryId: string) {
     };
   } catch (error) {
     return { error: error instanceof Error ? error.message : 'Unknown error' };
-  } finally {
-    await client?.close();
   }
 }

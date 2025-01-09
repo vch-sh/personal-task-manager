@@ -24,7 +24,7 @@ export default function SessionFormDataProvider({
         email: user?.email || session?.user.email,
       });
     }
-  }, [status, session, formMethods]);
+  }, [status, session, formMethods, user?.email, user?.name]);
 
   if (status === 'loading') {
     return (

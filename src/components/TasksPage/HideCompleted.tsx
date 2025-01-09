@@ -1,19 +1,28 @@
+import { Dispatch, SetStateAction } from 'react';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { useCompletedTasks } from '@/hooks/useCompletedTasks';
 
-export default function HideCompleted() {
-  const { setCompletedHidden } = useCompletedTasks();
+type HideCompletedProps = {
+  isCompletedHidden: boolean;
+  setCompletedHidden: Dispatch<SetStateAction<boolean>>;
+};
 
+export default function HideCompleted({
+  isCompletedHidden,
+  setCompletedHidden,
+}: HideCompletedProps) {
   return (
-    <div className="flex items-center mb-4 gap-1">
+    <div className="mb-4 flex items-center gap-1">
       <Input
         type="checkbox"
         id="hideCompleted"
         className="h-4 w-4"
+        checked={isCompletedHidden}
         onChange={(e) => setCompletedHidden(e.target.checked)}
       />
-      <Label htmlFor="hideCompleted">Hide completed</Label>
+      <Label htmlFor="hideCompleted" className="dark:text-neutral-50/90">
+        Hide completed
+      </Label>
     </div>
   );
 }

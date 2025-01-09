@@ -28,14 +28,14 @@ export default function Filtering({
       {!!tasksQuantity && (
         <div className="mb-4 flex items-center justify-between gap-4">
           <fieldset className="w-full">
-            <Label htmlFor="filter" className="w-full">
+            <Label htmlFor="filter" className="w-full dark:text-neutral-50/90">
               Filter by Status{' '}
             </Label>
             <Select defaultValue={filter} onValueChange={setFilter}>
-              <SelectTrigger id="filter">
+              <SelectTrigger id="filter" className="dark:text-neutral-50/90">
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="dark:text-neutral-50/90">
                 <SelectItem value="all">All</SelectItem>
                 <SelectItem value="to-do">To Do</SelectItem>
                 <SelectItem value="in-progress">In Progress</SelectItem>
@@ -45,14 +45,14 @@ export default function Filtering({
           </fieldset>
 
           <fieldset className="hidden w-full sm:block">
-            <Label htmlFor="sort" className="w-full">
+            <Label htmlFor="sort" className="w-full dark:text-neutral-50/90">
               Sort{' '}
             </Label>
             <Select defaultValue={sort} onValueChange={setSort}>
-              <SelectTrigger id="sort">
+              <SelectTrigger id="sort" className="dark:text-neutral-50/90">
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="dark:text-neutral-50/90">
                 <SelectItem value="due-date">Due Date</SelectItem>
                 <SelectItem value="priority">Priority</SelectItem>
               </SelectContent>

@@ -23,21 +23,23 @@ export default function UserMenu({ user }: UserMenuProps) {
     <DropdownMenu>
       <DropdownMenuTrigger>
         <Button variant="ghost" className="p-2" size="icon" asChild>
-          <UserIcon className="h-10 w-10 opacity-70" />
+          <UserIcon className="h-10 w-10 opacity-70 dark:text-white" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuLabel className="p-0">
           <Link
             href="profile"
-            className="flex h-16 items-center gap-3 rounded-md p-2 hover:bg-neutral-100"
+            className="flex h-16 items-center gap-3 rounded-md p-2 hover:bg-neutral-100 dark:hover:bg-neutral-50/10"
           >
             <UserImage
               width={50}
               height={50}
               profileImageUrl={user.profileImage}
             />
-            <span className="text-default">{user.email}</span>
+            <span className="text-default dark:text-neutral-50">
+              {user.email}
+            </span>
             <Edit className="opacity-70" />
           </Link>
         </DropdownMenuLabel>
@@ -48,14 +50,9 @@ export default function UserMenu({ user }: UserMenuProps) {
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem className="flex justify-center p-0">
-          {/* <Link
-            href="/settings"
-            className="w-full text-center"
-          > */}
-          <Button variant="link" disabled>
-            Settings
-          </Button>
-          {/* </Link> */}
+          <Link href="/settings" className="w-full text-center">
+            <Button variant="link">Settings</Button>
+          </Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator className="mx-[1px]" />
         <DropdownMenuItem className="p-0">

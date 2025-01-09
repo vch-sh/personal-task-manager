@@ -28,11 +28,11 @@ export default function UserImage({
     } else {
       return session?.user.image ?? DefaultUserImage;
     }
-  }, [selectedImage, session?.user.image]);
+  }, [selectedImage, session?.user.image, profileImageUrl]);
 
   return (
     <div
-      className="flex items-center overflow-hidden rounded-full border"
+      className="flex items-center overflow-hidden rounded-full border dark:border-neutral-700"
       style={{
         width: `${width}px`,
         height: `${height}px`,
