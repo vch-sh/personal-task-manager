@@ -11,20 +11,11 @@ export const metadata: Metadata = {
 };
 
 export default async function TasksPage() {
-  const { tasks, taskCategories, user, settings } =
+  const { tasks, taskCategories, user, settings, error } =
     await getDashboardTasksPagesData();
 
-  if (
-    'error' in tasks ||
-    'error' in taskCategories ||
-    'error' in user ||
-    'error' in settings
-  ) {
-    return (
-      <ErrorMessage
-        message={tasks.error || taskCategories.error || user.error}
-      />
-    );
+  if (error) {
+    return <ErrorMessage message={error} />;
   }
 
   return (

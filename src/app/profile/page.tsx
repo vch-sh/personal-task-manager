@@ -11,10 +11,10 @@ export const metadata: Metadata = {
 };
 
 export default async function ProfilePage() {
-  const { user, isOAuth2 } = await getProfilePageData();
+  const { user, isOAuth2, error } = await getProfilePageData();
 
-  if (user && 'error' in user) {
-    return <ErrorMessage message={user.error} />;
+  if (error) {
+    return <ErrorMessage message={error} />;
   }
 
   return (

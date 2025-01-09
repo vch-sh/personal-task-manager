@@ -2,11 +2,22 @@ import { auth } from '@/auth';
 import { fetchUserById } from '@/lib/users';
 
 export async function getProfilePageData() {
-  const session = await auth();
-  const user = await fetchUserById(session?.user.id);
-  const isOAuth2 =
-    session?.user?.image?.includes('google') ||
-    session?.user?.image?.includes('github');
+  try {
+    const session = await auth();
 
-  return { user, isOAuth2 };
+    if (!session?.user?.id) {
+      throw new Error('User not authenticated');
+    }
+
+    const user = await fetchUserById(session?.user.id);
+    const isOAuth2 =
+      session?.user?.image?.includes('google') ||
+      session?.user?.image?.includes('github');
+
+    return { user, isOAuth2 };
+  } catch (error) {
+    return {
+      error: error instanceof Error ? error.message : 'Unknown error occurred',
+    };
+  }
 }

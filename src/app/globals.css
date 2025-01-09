@@ -7,6 +7,10 @@
   }
 }
 
+html {
+  @apply transition-colors duration-500;
+}
+
 .text-default {
   @apply text-gray-700;
 }

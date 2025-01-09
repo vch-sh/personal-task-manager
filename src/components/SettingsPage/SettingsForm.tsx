@@ -51,6 +51,13 @@ export default function SettingsForm({ userId, settings }: SettingsFormProps) {
 
       if (response?.success) {
         setFormStatus({ success: response.success });
+
+        if (data.darkMode) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+
         return;
       }
     } catch (error) {

@@ -35,14 +35,15 @@ export async function fetchUserById(id: string) {
 
   try {
     const user = await collection?.findOne({ _id: new ObjectId(id) });
-    await client?.close();
     return JSON.parse(JSON.stringify(user));
   } catch (error) {
     if (error instanceof Error) {
-      return { error: 'Failed to fetch a user by id' };
+      return { error: error.message || 'Failed to fetch a user by id' };
     }
     return {
       error: 'Unknown error occurred while connecting to the database',
     };
+  } finally {
+    await client?.close();
   }
 }
