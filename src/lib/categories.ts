@@ -38,6 +38,16 @@ export async function getTaskCategories(id: string) {
     const taskCategories = await collection
       .find({ $or: [{ name: 'all' }, { userId: id }] })
       .toArray();
+
+    const allCategoryIndex = taskCategories.findIndex(
+      (category) => category._id.toString() === 'all',
+    );
+
+    if (allCategoryIndex !== -1) {
+      const allCategory = taskCategories.splice(allCategoryIndex, 1)[0];
+      taskCategories.unshift(allCategory);
+    }
+
     return JSON.parse(JSON.stringify(taskCategories)) || [];
   } catch (error) {
     if (error instanceof Error) {
