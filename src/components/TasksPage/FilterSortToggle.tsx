@@ -24,14 +24,16 @@ export default function FilterSortToggle({
     >
       <AccordionItem value="open" className="my-4">
         <AccordionTrigger
-          className={`${isFilteringSortingOpen && 'bg-indigo-50'} flex items-center justify-center gap-2 rounded-md bg-indigo-50 p-2 text-sm hover:bg-indigo-100 dark:bg-indigo-300 dark:text-slate-800 dark:hover:bg-indigo-300/90 sm:mb-0 sm:flex-initial sm:justify-start`}
+          className={`flex items-center justify-center gap-2 rounded-md px-2 py-1 sm:mb-0 sm:flex-initial sm:justify-start dark:bg-indigo-300 dark:bg-opacity-70 dark:text-slate-800 dark:hover:bg-indigo-300/90`}
           onClick={() => setFilteringSortingOpen(!isFilteringSortingOpen)}
         >
           {isFilteringSortingOpen
             ? 'Hide Filters & Sorting'
             : 'Show Filters & Sorting'}
         </AccordionTrigger>
-        <AccordionContent className="mx-2 mt-1">{children}</AccordionContent>
+        <AccordionContent className="mt-1 rounded-lg p-2">
+          {children}
+        </AccordionContent>
       </AccordionItem>
     </Accordion>
   );

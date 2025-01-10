@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Quantico } from 'next/font/google';
 import { auth } from '@/auth';
 import AuthProvider from '@/components/general/AuthProvider';
 import LoadingIndicator from '@/components/general/LoadingIndicator';
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     'Streamline your productivity with our intuitive task management system. Organize, prioritize, and accomplish your goals with ease.',
 };
 
-const inter = Inter({ subsets: ['latin'] });
+const quantico = Quantico({ subsets: ['latin'], weight: '400' });
 
 export default async function RootLayout({
   children,
@@ -29,8 +29,10 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className={`${inter.className} dark:text-dark dark:bg-slate-800`}>
-        <LoadingIndicator darkMode={darkMode} />
+      <body
+        className={`${quantico.className} bg-main-bg text-neutral-900 dark:bg-slate-800 dark:text-dark`}
+      >
+        <LoadingIndicator />
         <AuthProvider>
           <ThemeProvider darkMode={darkMode}>{children}</ThemeProvider>
         </AuthProvider>

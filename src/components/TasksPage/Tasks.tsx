@@ -64,26 +64,28 @@ export default function Tasks({ tasks, taskCategories, settings }: TasksProps) {
         </FilterSortToggle>
       )}
 
+      <hr className="dark:hidden" />
+
       {filteredSortedTasks?.length === 0 ? (
         <p className="text-default mt-12 flex items-center justify-center gap-2 text-sm font-bold">
           <FolderOpen />
           Looks like your list is empty
         </p>
       ) : (
-        <Table className="text-center dark:text-neutral-50/90">
+        <Table className="text-md text-center dark:text-neutral-50/90">
           <TableHeader>
-            <TableRow>
-              <TableHead className="dark:rounded-bl-lg dark:rounded-tl-lg">
+            <TableRow className="">
+              <TableHead className="rounded-bl-lg rounded-tl-lg">
                 Text
               </TableHead>
               <TableHead className="w-4 px-2">Status</TableHead>
               <TableHead className="hidden w-4 px-2 sm:table-cell">
                 Priority
               </TableHead>
-              <TableHead className="hidden w-[84px] px-2 sm:table-cell">
+              <TableHead className="hidden w-[90px] px-2 sm:table-cell">
                 Due Date
               </TableHead>
-              <TableHead className="w-4 px-2 dark:rounded-br-lg dark:rounded-tr-lg">
+              <TableHead className="w-4 rounded-br-lg rounded-tr-lg px-2">
                 Actions
               </TableHead>
             </TableRow>
@@ -105,8 +107,11 @@ export default function Tasks({ tasks, taskCategories, settings }: TasksProps) {
                   key={task._id}
                   className={`${task.status === 'done' && 'line-through'}`}
                 >
-                  <TableCell className="max-w-[100px] break-words text-justify dark:rounded-bl-lg dark:rounded-tl-lg sm:max-w-sm">
-                    <time dateTime={createdAt} className="font-semibold">
+                  <TableCell className="max-w-[100px] break-words rounded-bl-lg rounded-tl-lg text-justify sm:max-w-sm">
+                    <time
+                      dateTime={createdAt}
+                      className="font-semibold dark:font-normal dark:text-dark"
+                    >
                       {createdAt}
                     </time>
                     <p>{task.text}</p>
@@ -119,7 +124,7 @@ export default function Tasks({ tasks, taskCategories, settings }: TasksProps) {
                     <p>{dayMonth}</p>
                     <p>{year}</p>
                   </TableCell>
-                  <TableCell className="px-2 dark:rounded-br-lg dark:rounded-tr-lg">
+                  <TableCell className="rounded-br-lg rounded-tr-lg px-2">
                     <TaskActions
                       taskId={task._id}
                       taskCategories={taskCategories}

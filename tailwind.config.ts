@@ -6,13 +6,15 @@ export default {
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/lib/*.ts',
+    './src/lib/*.{ts,tsx}',
   ],
   plugins: [require('tailwindcss-animate')],
   theme: {
     extend: {
       colors: {
         dark: '#12ae8f',
+        'main-bg': '#eef7ff',
+        'card-bg': '#8b93ff',
       },
       borderRadius: {
         lg: 'var(--radius)',

@@ -26,7 +26,7 @@ export default async function DashboardPage() {
   } = getDashboardDataToDisplay(tasks, taskCategories);
 
   return (
-    <main className="container mx-auto min-h-screen min-w-[360px] max-w-5xl px-4 py-8 sm:py-4">
+    <main className="container mx-auto min-h-screen min-w-[360px] max-w-5xl px-4 py-8 text-lg sm:py-4">
       <Header username={user ? `Hi, ${user.name}!` : 'Dashboard'} />
 
       {tasks.length > 0 ? (

@@ -26,7 +26,7 @@ export default function UserMenu({ user }: UserMenuProps) {
           <UserIcon className="h-10 w-10 opacity-70 dark:text-white" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent align="end" className="bg-opacity-95">
         <DropdownMenuLabel className="p-0">
           <Link
             href="profile"
@@ -37,7 +37,7 @@ export default function UserMenu({ user }: UserMenuProps) {
               height={50}
               profileImageUrl={user.profileImage}
             />
-            <span className="text-default dark:text-neutral-50">
+            <span className="text-default font-normal dark:text-neutral-50">
               {user.email}
             </span>
             <Edit className="opacity-70" />

@@ -12,7 +12,7 @@ export default function DialogCloseButton({
     <Button
       variant="outline"
       size="sm"
-      className="absolute -right-2 -top-4 dark:text-neutral-50/90"
+      className="absolute -right-2 -top-4 bg-opacity-70 dark:text-neutral-50/90"
       type="button"
       onClick={handleClose}
     >

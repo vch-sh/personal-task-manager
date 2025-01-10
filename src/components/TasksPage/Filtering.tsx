@@ -32,7 +32,10 @@ export default function Filtering({
               Filter by Status{' '}
             </Label>
             <Select defaultValue={filter} onValueChange={setFilter}>
-              <SelectTrigger id="filter" className="dark:text-neutral-50/90">
+              <SelectTrigger
+                id="filter"
+                className="border-2 bg-opacity-50 dark:bg-opacity-45 dark:text-neutral-50/90"
+              >
                 <SelectValue />
               </SelectTrigger>
               <SelectContent className="dark:text-neutral-50/90">
@@ -49,7 +52,10 @@ export default function Filtering({
               Sort{' '}
             </Label>
             <Select defaultValue={sort} onValueChange={setSort}>
-              <SelectTrigger id="sort" className="dark:text-neutral-50/90">
+              <SelectTrigger
+                id="sort"
+                className="border-2 bg-opacity-50 dark:bg-opacity-45 dark:text-neutral-50/90"
+              >
                 <SelectValue />
               </SelectTrigger>
               <SelectContent className="dark:text-neutral-50/90">

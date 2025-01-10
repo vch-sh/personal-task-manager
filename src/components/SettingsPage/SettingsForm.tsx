@@ -72,7 +72,7 @@ export default function SettingsForm({ userId, settings }: SettingsFormProps) {
   return (
     <Form {...formMethods}>
       <form
-        className="flex flex-col gap-4"
+        className="flex flex-col gap-2"
         onSubmit={formMethods.handleSubmit(onSubmit)}
       >
         <FormField
@@ -89,7 +89,9 @@ export default function SettingsForm({ userId, settings }: SettingsFormProps) {
                   onChange={field.onChange}
                 />
               </FormControl>
-              <FormLabel htmlFor="darkMode">Enable dark mode</FormLabel>
+              <FormLabel htmlFor="darkMode" className="text-base">
+                Enable dark mode
+              </FormLabel>
               <FormMessage />
             </FormItem>
           )}
@@ -108,7 +110,7 @@ export default function SettingsForm({ userId, settings }: SettingsFormProps) {
                   onChange={field.onChange}
                 />
               </FormControl>
-              <FormLabel htmlFor="isFilteringSortingOpen">
+              <FormLabel htmlFor="isFilteringSortingOpen" className="text-base">
                 Filtering & Sorting open by default
               </FormLabel>
               <FormMessage />
@@ -119,7 +121,7 @@ export default function SettingsForm({ userId, settings }: SettingsFormProps) {
           name="completedHidden"
           control={formMethods.control}
           render={({ field }) => (
-            <FormItem className="flex items-center gap-1 space-y-0.5">
+            <FormItem className="mb-2 flex items-center gap-1 space-y-0.5">
               <FormControl>
                 <Input
                   type="checkbox"
@@ -129,7 +131,7 @@ export default function SettingsForm({ userId, settings }: SettingsFormProps) {
                   onChange={field.onChange}
                 />
               </FormControl>
-              <FormLabel htmlFor="completedHidden">
+              <FormLabel htmlFor="completedHidden" className="text-base">
                 Completed tasks hidden by default
               </FormLabel>
               <FormMessage />
