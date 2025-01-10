@@ -15,7 +15,7 @@ export default function SocialAuthButtons() {
       >
         <Button
           variant="outline"
-          className="w-full"
+          className="w-full border-none bg-opacity-30 hover:bg-opacity-50"
           aria-label="Continue with Github"
         >
           <Github />
@@ -32,7 +32,7 @@ export default function SocialAuthButtons() {
       >
         <Button
           variant="outline"
-          className="w-full"
+          className="w-full border-none bg-opacity-30 hover:bg-opacity-50"
           aria-label="Continue with Google"
         >
           <Mail />

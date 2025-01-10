@@ -1,11 +1,11 @@
 export default function DividerWithText() {
   return (
-    <div className="w-full text-center flex items-center justify-center gap-2">
-      <div className="h-[1px] bg-black/20 w-full"></div>
-      <span className="uppercase text-xs text-gray-500 min-w-fit">
+    <div className="flex w-full items-center justify-center gap-2 text-center">
+      <div className="h-[1px] w-full bg-black/20"></div>
+      <span className="min-w-fit text-xs uppercase text-gray-600">
         Or continue with
       </span>
-      <div className="h-[1px] bg-black/20 w-full"></div>
+      <div className="h-[1px] w-full bg-black/20"></div>
     </div>
   );
 }

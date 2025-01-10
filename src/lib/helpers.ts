@@ -6,7 +6,11 @@ export const passwordRegex = /[!@#$%]+/;
 export function getFormattedLabel(label: string) {
   if (label.endsWith('e')) {
     return `${label.slice(0, -1)}ing...`;
-  } else if (label === 'Log in' || label === 'Change Password') {
+  } else if (
+    label === 'Log in' ||
+    label === 'Change Password' ||
+    label === 'Create Account'
+  ) {
     return label;
   } else if (label === 'Submit') {
     return `${label}ting...`;

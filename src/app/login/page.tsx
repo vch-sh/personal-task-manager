@@ -14,8 +14,8 @@ export const metadata: Metadata = {
 
 export default function LoginRegisterPage() {
   return (
-    <main className="flex min-h-screen items-center justify-center p-4 min-w-[320px] bg-slate-100">
-      <Card className="w-full max-w-md">
+    <main className="flex min-h-screen min-w-[320px] items-center justify-center bg-gradient-to-r from-indigo-500/50 to-blue-500/50 p-4">
+      <Card className="w-full max-w-md border-none bg-neutral-100/30">
         <FormHeader />
 
         <CardContent className="flex flex-col gap-4">
