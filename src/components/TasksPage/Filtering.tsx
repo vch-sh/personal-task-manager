@@ -34,7 +34,7 @@ export default function Filtering({
             <Select defaultValue={filter} onValueChange={setFilter}>
               <SelectTrigger
                 id="filter"
-                className="border-2 bg-opacity-50 dark:text-neutral-50/90"
+                className="border-2 bg-opacity-50 dark:bg-opacity-45 dark:text-neutral-50/90"
               >
                 <SelectValue />
               </SelectTrigger>
@@ -54,7 +54,7 @@ export default function Filtering({
             <Select defaultValue={sort} onValueChange={setSort}>
               <SelectTrigger
                 id="sort"
-                className="border-2 bg-opacity-50 dark:text-neutral-50/90"
+                className="border-2 bg-opacity-50 dark:bg-opacity-45 dark:text-neutral-50/90"
               >
                 <SelectValue />
               </SelectTrigger>

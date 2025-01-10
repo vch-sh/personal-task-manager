@@ -27,7 +27,7 @@ export default function DatePicker({ id, field }: DatePickerProps) {
           id={id}
           variant={'outline'}
           className={cn(
-            'w-full justify-start bg-opacity-70 text-left font-normal',
+            'w-full justify-start bg-opacity-70 text-left font-normal dark:bg-opacity-70',
             !field.value && 'text-muted-foreground',
           )}
         >

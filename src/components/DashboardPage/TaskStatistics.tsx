@@ -31,7 +31,7 @@ export default function TaskStatistics({
             <CardTitle className="text-xl">Total Tasks</CardTitle>
             <ListTodo className="h-6 w-6" />
           </CardHeader>
-          <CardContent className="text-3xl font-bold">
+          <CardContent className="text-3xl font-bold dark:font-normal">
             {tasksQuantity}
           </CardContent>
         </Card>
@@ -40,7 +40,7 @@ export default function TaskStatistics({
             <CardTitle className="text-xl font-semibold">Completed</CardTitle>
             <CheckCircle2 className="h-6 w-6" />
           </CardHeader>
-          <CardContent className="text-3xl font-bold">
+          <CardContent className="text-3xl font-bold dark:font-normal">
             {completedTasksQuantity}
           </CardContent>
         </Card>
@@ -49,7 +49,7 @@ export default function TaskStatistics({
             <CardTitle className="text-xl font-semibold">In Progress</CardTitle>
             <Clock className="h-6 w-6" />
           </CardHeader>
-          <CardContent className="text-3xl font-bold">
+          <CardContent className="text-3xl font-bold dark:font-normal">
             {inProgressTasksQuantity}
           </CardContent>
         </Card>
@@ -58,7 +58,7 @@ export default function TaskStatistics({
             <CardTitle className="text-xl font-semibold">To Do</CardTitle>
             <Circle className="h-6 w-6" />
           </CardHeader>
-          <CardContent className="text-3xl font-bold">
+          <CardContent className="text-3xl font-bold dark:font-normal">
             {todoTasksQuantity}
           </CardContent>
         </Card>

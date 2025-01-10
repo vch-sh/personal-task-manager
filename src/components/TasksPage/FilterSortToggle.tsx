@@ -24,7 +24,7 @@ export default function FilterSortToggle({
     >
       <AccordionItem value="open" className="my-4">
         <AccordionTrigger
-          className={`flex items-center justify-center gap-2 rounded-md p-2 sm:mb-0 sm:flex-initial sm:justify-start dark:bg-indigo-300/90 dark:text-slate-800 dark:hover:bg-indigo-300`}
+          className={`flex items-center justify-center gap-2 rounded-md px-2 py-1 sm:mb-0 sm:flex-initial sm:justify-start dark:bg-indigo-300 dark:bg-opacity-70 dark:text-slate-800 dark:hover:bg-indigo-300/90`}
           onClick={() => setFilteringSortingOpen(!isFilteringSortingOpen)}
         >
           {isFilteringSortingOpen

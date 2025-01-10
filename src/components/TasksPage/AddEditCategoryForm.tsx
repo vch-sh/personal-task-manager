@@ -95,7 +95,7 @@ export default function AddEditCategoryForm({
             <FormItem>
               <FormLabel
                 htmlFor="name"
-                className="flex items-center font-semibold"
+                className="flex items-center font-semibold dark:font-normal"
               >
                 <span className="dark:text-neutral-50/90">Name</span>
                 {textLength >= 20 && (
@@ -132,7 +132,7 @@ export default function AddEditCategoryForm({
             <FormItem className="mb-4">
               <FormLabel
                 htmlFor="color"
-                className="font-semibold dark:text-neutral-50/90"
+                className="font-semibold dark:font-normal dark:text-neutral-50/90"
               >
                 Color
               </FormLabel>

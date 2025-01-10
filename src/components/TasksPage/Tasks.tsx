@@ -64,6 +64,8 @@ export default function Tasks({ tasks, taskCategories, settings }: TasksProps) {
         </FilterSortToggle>
       )}
 
+      <hr className="dark:hidden" />
+
       {filteredSortedTasks?.length === 0 ? (
         <p className="text-default mt-12 flex items-center justify-center gap-2 text-sm font-bold">
           <FolderOpen />

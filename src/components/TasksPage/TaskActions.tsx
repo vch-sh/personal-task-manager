@@ -33,7 +33,7 @@ export default function TaskActions({
           <Button
             variant="outline"
             size="sm"
-            className="border-gray-300 bg-neutral-900 p-2 hover:bg-neutral-900"
+            className="border-gray-300 bg-neutral-900 p-2 hover:bg-neutral-900 dark:bg-opacity-60"
           >
             <Pen className="text-neutral-50" />
           </Button>
@@ -58,7 +58,7 @@ export default function TaskActions({
           <Button
             variant="outline"
             size="sm"
-            className="border-gray-300 bg-neutral-900 p-2 hover:bg-neutral-900"
+            className="border-gray-300 bg-neutral-900 p-2 hover:bg-neutral-900 dark:bg-opacity-60"
           >
             <Trash2 className="text-neutral-50" />
           </Button>
