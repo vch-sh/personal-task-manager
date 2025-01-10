@@ -23,7 +23,7 @@ export default function SubmitButton({
     <Button
       type="submit"
       variant={variant}
-      className="w-full font-semibold"
+      className="w-full"
       disabled={isSubmitting}
     >
       {isSubmitting && <LoaderCircleIcon className="animate-spin" />}

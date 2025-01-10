@@ -7,7 +7,7 @@ export default function Tips() {
       {settingsPageTips.map((tip) => (
         <p
           key={tip}
-          className="text-default dark:text-dark mt-2 flex gap-2 text-justify text-sm"
+          className="text-default mt-2 flex gap-2 text-justify dark:text-dark"
         >
           <Info size={22} className="text-blue-500" />
           {tip}
