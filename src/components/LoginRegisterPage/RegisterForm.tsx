@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { LoaderCircleIcon } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import FormStatus from '@/components/general/forms/FormStatus';
+import SubmitButton from '@/components/general/forms/SubmitButton';
 import {
   Form,
   FormControl,
@@ -17,7 +17,6 @@ import { register } from '@/actions/Register';
 import { emailRegex, passwordRegex } from '@/lib/helpers';
 import FormStatusType from '@/types/FormStatus';
 import RegisterFormData from '@/types/RegisterFormData';
-import FormStatus from '../general/forms/FormStatus';
 
 export default function RegisterForm() {
   const [formStatus, setFormStatus] = useState<FormStatusType>({});
@@ -70,14 +69,13 @@ export default function RegisterForm() {
           }}
           render={({ field }) => (
             <FormItem>
-              <FormLabel htmlFor="name" className="font-semibold">
-                Name
-              </FormLabel>
+              <FormLabel htmlFor="name">Name</FormLabel>
               <FormControl>
                 <Input
                   type="text"
                   id="name"
                   placeholder="John Doe"
+                  className="bg-opacity-50"
                   {...field}
                 />
               </FormControl>
@@ -102,14 +100,13 @@ export default function RegisterForm() {
           }}
           render={({ field }) => (
             <FormItem>
-              <FormLabel htmlFor="email" className="font-semibold">
-                Email
-              </FormLabel>
+              <FormLabel htmlFor="email">Email</FormLabel>
               <FormControl>
                 <Input
                   type="email"
                   id="email"
                   placeholder="example@email.com"
+                  className="bg-opacity-50"
                   {...field}
                 />
               </FormControl>
@@ -138,14 +135,13 @@ export default function RegisterForm() {
           }}
           render={({ field }) => (
             <FormItem>
-              <FormLabel htmlFor="password" className="font-semibold">
-                Password
-              </FormLabel>
+              <FormLabel htmlFor="password">Password</FormLabel>
               <FormControl>
                 <Input
                   type="password"
                   id="password"
                   placeholder="********"
+                  className="bg-opacity-50"
                   {...field}
                 />
               </FormControl>
@@ -174,14 +170,13 @@ export default function RegisterForm() {
           }}
           render={({ field }) => (
             <FormItem>
-              <FormLabel htmlFor="confirmPassword" className="font-semibold">
-                Confirm Password
-              </FormLabel>
+              <FormLabel htmlFor="confirmPassword">Confirm Password</FormLabel>
               <FormControl>
                 <Input
                   type="password"
                   id="confirmPassword"
                   placeholder="********"
+                  className="bg-opacity-50"
                   {...field}
                 />
               </FormControl>
@@ -192,16 +187,10 @@ export default function RegisterForm() {
 
         <FormStatus status={formStatus} />
 
-        <Button
-          type="submit"
-          className="w-full font-semibold"
-          disabled={formMethods.formState.isSubmitting}
-        >
-          {formMethods.formState.isSubmitting && (
-            <LoaderCircleIcon className="animate-spin" />
-          )}
-          Create Account
-        </Button>
+        <SubmitButton
+          label="Create Account"
+          isSubmitting={formMethods.formState.isSubmitting}
+        />
       </form>
     </Form>
   );
