@@ -11,10 +11,7 @@ type HeaderProps = {
   user: User;
 };
 
-export default function Header({
-  taskCategories,
-  user,
-}: HeaderProps) {
+export default function Header({ taskCategories, user }: HeaderProps) {
   return (
     <header className="flex items-center justify-between">
       <HeaderTitle />

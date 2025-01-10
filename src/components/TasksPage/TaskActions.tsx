@@ -27,11 +27,15 @@ export default function TaskActions({
   const deleteButtonRef = useRef<HTMLButtonElement>(null);
 
   return (
-    <div className="flex flex-col sm:flex-row gap-2 ">
+    <div className="flex flex-col gap-2 sm:flex-row">
       <Dialog>
         <DialogTrigger asChild ref={editButtonRef}>
-          <Button variant="outline" size="sm" className="p-2">
-            <Pen />
+          <Button
+            variant="outline"
+            size="sm"
+            className="border-gray-300 bg-neutral-900 p-2 hover:bg-neutral-900"
+          >
+            <Pen className="text-neutral-50" />
           </Button>
         </DialogTrigger>
         <DialogContent>
@@ -51,8 +55,12 @@ export default function TaskActions({
       </Dialog>
       <Dialog>
         <DialogTrigger asChild ref={deleteButtonRef}>
-          <Button variant="outline" size="sm" className="p-2">
-            <Trash2 />
+          <Button
+            variant="outline"
+            size="sm"
+            className="border-gray-300 bg-neutral-900 p-2 hover:bg-neutral-900"
+          >
+            <Trash2 className="text-neutral-50" />
           </Button>
         </DialogTrigger>
         <DialogContent>

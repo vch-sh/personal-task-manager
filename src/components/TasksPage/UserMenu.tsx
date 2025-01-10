@@ -26,7 +26,7 @@ export default function UserMenu({ user }: UserMenuProps) {
           <UserIcon className="h-10 w-10 opacity-70 dark:text-white" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent align="end" className="bg-opacity-95">
         <DropdownMenuLabel className="p-0">
           <Link
             href="profile"

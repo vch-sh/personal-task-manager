@@ -13,6 +13,8 @@ export default {
     extend: {
       colors: {
         dark: '#12ae8f',
+        'main-bg': '#eef7ff',
+        'card-bg': '#8b93ff',
       },
       borderRadius: {
         lg: 'var(--radius)',

@@ -17,7 +17,7 @@ export default function Categories({ taskCategories }: CategoriesProps) {
       {taskCategories?.map((taskCategory) => (
         <Badge
           key={taskCategory._id}
-          className={`${taskCategory.name.toLowerCase() === category.name.toLowerCase() && 'scale-105 underline underline-offset-2 transition-all'} ${colorVariants[taskCategory.color]} cursor-pointer px-3.5 py-1 text-white shadow-md sm:px-2.5 sm:py-0.5`}
+          className={`${taskCategory.name.toLowerCase() === category.name.toLowerCase() && 'scale-105 underline underline-offset-2 transition-all'} ${colorVariants[taskCategory.color]} cursor-pointer px-3.5 py-1 text-[13px] font-normal text-white shadow-md sm:px-2.5 sm:py-0.5`}
           onClick={() =>
             setCategory({
               _id: taskCategory._id,
