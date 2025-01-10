@@ -31,7 +31,7 @@ export default function TasksProgress({
           value={progress}
           max={tasksQuantity}
         />
-        <p className="text-default mt-2 text-sm">
+        <p className="text-default mt-2 text-sm dark:text-neutral-50">
           {completedTasksQuantity} out of {tasksQuantity} tasks completed
         </p>
       </CardContent>
