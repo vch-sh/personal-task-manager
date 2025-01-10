@@ -12,7 +12,7 @@ const Progress = React.forwardRef<
     ref={ref}
     max={max}
     className={cn(
-      'relative h-4 w-full overflow-hidden rounded-full bg-neutral-100 dark:bg-neutral-800',
+      'relative h-4 w-full overflow-hidden rounded-full bg-neutral-100 dark:bg-neutral-900/70',
       className,
     )}
     {...props}

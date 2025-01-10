@@ -106,7 +106,10 @@ export default function Tasks({ tasks, taskCategories, settings }: TasksProps) {
                   className={`${task.status === 'done' && 'line-through'}`}
                 >
                   <TableCell className="max-w-[100px] break-words rounded-bl-lg rounded-tl-lg text-justify sm:max-w-sm">
-                    <time dateTime={createdAt} className="font-semibold">
+                    <time
+                      dateTime={createdAt}
+                      className="font-semibold dark:font-normal dark:text-dark"
+                    >
                       {createdAt}
                     </time>
                     <p>{task.text}</p>

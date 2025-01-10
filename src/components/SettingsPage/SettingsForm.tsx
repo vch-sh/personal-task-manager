@@ -121,7 +121,7 @@ export default function SettingsForm({ userId, settings }: SettingsFormProps) {
           name="completedHidden"
           control={formMethods.control}
           render={({ field }) => (
-            <FormItem className="flex items-center gap-1 space-y-0.5">
+            <FormItem className="mb-2 flex items-center gap-1 space-y-0.5">
               <FormControl>
                 <Input
                   type="checkbox"

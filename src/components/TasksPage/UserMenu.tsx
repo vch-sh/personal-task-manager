@@ -37,7 +37,7 @@ export default function UserMenu({ user }: UserMenuProps) {
               height={50}
               profileImageUrl={user.profileImage}
             />
-            <span className="text-default dark:text-neutral-50">
+            <span className="text-default font-normal dark:text-neutral-50">
               {user.email}
             </span>
             <Edit className="opacity-70" />

@@ -119,7 +119,6 @@ export default function UploadProfileImageForm({
           ) : (
             <SubmitButton
               label="Submit"
-              variant="outline"
               isSubmitting={formMethods.formState.isSubmitting}
             />
           )}
@@ -128,7 +127,7 @@ export default function UploadProfileImageForm({
             <Button
               type="button"
               variant="ghost"
-              className="text-red-500 hover:text-red-500"
+              className="font-semibold text-red-500 hover:bg-transparent hover:text-red-500"
               disabled={formMethods.formState.isSubmitting}
               onClick={() => {
                 setSelectedImage(null);
