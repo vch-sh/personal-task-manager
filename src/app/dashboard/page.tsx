@@ -38,7 +38,7 @@ export default async function DashboardPage() {
           tasksQuantityByCategory={tasksQuantityByCategory.slice(1)}
         />
       ) : (
-        <p className="text-default flex items-center justify-center gap-2 text-sm font-semibold">
+        <p className="text-default flex items-center justify-center gap-2 text-sm font-semibold dark:text-neutral-200">
           <ChartColumn />
           Add your first task to get started with statistics
         </p>

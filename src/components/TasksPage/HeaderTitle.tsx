@@ -5,7 +5,7 @@ export default function HeaderTitle() {
 
   return (
     <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
-      Tasks: {!!filteredTasksQuantity && <span>{filteredTasksQuantity}</span>}
+      Tasks {!!filteredTasksQuantity && <span>: {filteredTasksQuantity}</span>}
     </h2>
   );
 }

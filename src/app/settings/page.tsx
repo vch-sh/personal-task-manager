@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default async function SettingsPage() {
   const session = await auth();
-  const settings = await getSettings(session?.user.id);
+  const settings = session ? await getSettings(session?.user.id) : null;
 
   return (
     <main className="container mx-auto min-h-screen min-w-[360px] max-w-xl px-4 py-8 sm:py-4">
