@@ -22,7 +22,12 @@ export default function UserMenu({ user }: UserMenuProps) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
-        <Button variant="ghost" className="p-2" size="icon" asChild>
+        <Button
+          variant="ghost"
+          className="p-2 dark:hover:bg-transparent"
+          size="icon"
+          asChild
+        >
           <UserIcon className="h-10 w-10 opacity-70 dark:text-white" />
         </Button>
       </DropdownMenuTrigger>

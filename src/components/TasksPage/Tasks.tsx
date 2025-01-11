@@ -30,10 +30,10 @@ type TasksProps = {
 
 export default function Tasks({ tasks, taskCategories, settings }: TasksProps) {
   const [isCompletedHidden, setCompletedHidden] = useState(
-    settings.completedHidden ?? false,
+    settings?.completedHidden ?? false,
   );
   const [isFilteringSortingOpen, setFilteringSortingOpen] = useState(
-    settings.isFilteringSortingOpen ?? false,
+    settings?.isFilteringSortingOpen ?? false,
   );
 
   const { filteredSortedTasks, filter, sort, setFilter, setSort } =
@@ -64,10 +64,10 @@ export default function Tasks({ tasks, taskCategories, settings }: TasksProps) {
         </FilterSortToggle>
       )}
 
-      <hr className="dark:hidden" />
+      {tasks.length > 0 && <hr className="dark:hidden" />}
 
       {filteredSortedTasks?.length === 0 ? (
-        <p className="text-default mt-12 flex items-center justify-center gap-2 text-sm font-bold">
+        <p className="text-default mt-12 flex items-center justify-center gap-2 text-sm font-bold dark:text-neutral-200">
           <FolderOpen />
           Looks like your list is empty
         </p>

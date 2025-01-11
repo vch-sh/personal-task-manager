@@ -27,9 +27,9 @@ export default function SettingsForm({ userId, settings }: SettingsFormProps) {
 
   const formMethods = useForm<Settings>({
     defaultValues: {
-      darkMode: settings.darkMode ?? false,
-      isFilteringSortingOpen: settings.isFilteringSortingOpen ?? false,
-      completedHidden: settings.completedHidden ?? false,
+      darkMode: settings?.darkMode ?? false,
+      isFilteringSortingOpen: settings?.isFilteringSortingOpen ?? false,
+      completedHidden: settings?.completedHidden ?? false,
     },
   });
 
