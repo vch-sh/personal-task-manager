@@ -5,7 +5,7 @@ import { isAfter } from 'date-fns';
 import { ObjectId } from 'mongodb';
 import { auth } from '@/auth';
 import { connectToDatabase } from '@/lib/mongodb';
-import { fetchUserById } from '@/lib/users';
+import { getUserByIdFromDb } from '@/lib/users';
 import ChangePasswordFormData from '@/types/ChangePasswordFormData';
 
 export async function changePassword(data: ChangePasswordFormData) {
@@ -35,7 +35,7 @@ export async function changePassword(data: ChangePasswordFormData) {
     };
   }
 
-  const existingUser = await fetchUserById(session?.user.id);
+  const existingUser = await getUserByIdFromDb(session?.user.id);
 
   if (!existingUser) {
     return { error: 'User not found' };

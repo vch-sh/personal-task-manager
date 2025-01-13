@@ -3,7 +3,7 @@
 import { revalidatePath } from 'next/cache';
 import { ObjectId } from 'mongodb';
 import { connectToDatabase } from '@/lib/mongodb';
-import { getUserById } from '@/lib/users';
+import { findUserInCollection } from '@/lib/users';
 import AddEditTaskFormData from '@/types/AddEditFormData';
 
 export async function addTask(data: AddEditTaskFormData) {
@@ -24,7 +24,10 @@ export async function addTask(data: AddEditTaskFormData) {
       return { error: 'Failed to connect to the user collection' };
     }
 
-    const existingUser = await getUserById(data.userId || '', userCollection);
+    const existingUser = await findUserInCollection(
+      data.userId || '',
+      userCollection,
+    );
 
     if (!existingUser) {
       return { error: 'User not found' };

@@ -1,5 +1,5 @@
 import { auth } from '@/auth';
-import { fetchUserById } from '@/lib/users';
+import { getUserByIdFromDb } from '@/lib/users';
 
 export async function getProfilePageData() {
   try {
@@ -9,7 +9,7 @@ export async function getProfilePageData() {
       throw new Error('User not authenticated');
     }
 
-    const user = await fetchUserById(session?.user.id);
+    const user = await getUserByIdFromDb(session?.user.id);
     const isOAuth2 =
       session?.user?.image?.includes('google') ||
       session?.user?.image?.includes('github');
