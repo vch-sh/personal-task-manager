@@ -44,6 +44,8 @@ export async function updateSettings(data: SettingsFormData) {
       success: 'Application settings updated successfully',
     };
   } catch (error) {
-    return { error: error instanceof Error ? error.message : 'Database error' };
+    return {
+      error: error instanceof Error ? error.message : 'Unknown error occurred',
+    };
   }
 }

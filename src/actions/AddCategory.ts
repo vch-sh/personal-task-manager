@@ -57,11 +57,8 @@ export async function addCategory(data: AddEditCategoryFormData) {
       categoryId: createdCategory?.insertedId.toString(),
     };
   } catch (error) {
-    if (error instanceof Error) {
-      return { error: error.message };
-    }
     return {
-      error: 'Unknown error occurred while connecting to the database',
+      error: error instanceof Error ? error.message : 'Unknown error occurred',
     };
   }
 }

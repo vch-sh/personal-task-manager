@@ -18,7 +18,9 @@ export async function getTaskCategoriesFromApi(userId: string) {
 
     return await res.json();
   } catch (error) {
-    return { error: error instanceof Error ? error.message : 'Unknown error' };
+    return {
+      error: error instanceof Error ? error.message : 'Unknown error occurred',
+    };
   }
 }
 
@@ -44,13 +46,13 @@ export async function getTaskCategoriesFromDb(id: string) {
 
     return JSON.parse(JSON.stringify(taskCategories)) || [];
   } catch (error) {
-    return error instanceof Error
-      ? {
-          error:
-            error.message ||
-            'Failed to fetch task categories. Please, try again later.',
-        }
-      : [];
+    return {
+      error:
+        error instanceof Error
+          ? error.message ||
+            'Failed to fetch task categories. Please, try again later.'
+          : [],
+    };
   }
 }
 
@@ -68,12 +70,12 @@ export async function getCategoryById(id: string) {
 
     return JSON.parse(JSON.stringify(category));
   } catch (error) {
-    return error instanceof Error
-      ? {
-          error:
-            error.message ||
-            'Failed to fetch a category. Please, try again later.',
-        }
-      : {};
+    return {
+      error:
+        error instanceof Error
+          ? error.message ||
+            'Failed to fetch a category. Please, try again later.'
+          : {},
+    };
   }
 }

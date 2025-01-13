@@ -9,11 +9,12 @@ export async function findUserInCollection(
     const user = await collection?.findOne({ _id: new ObjectId(id) });
     return user;
   } catch (error) {
-    return error instanceof Error
-      ? { error: 'Failed to fetch a user by id' }
-      : {
-          error: 'Unknown error occurred while connecting to the database',
-        };
+    return {
+      error:
+        error instanceof Error
+          ? error.message || 'Failed to fetch a user by id'
+          : 'Unknown error occurred',
+    };
   }
 }
 
@@ -32,10 +33,11 @@ export async function getUserByIdFromDb(id: string) {
     const user = await collection?.findOne({ _id: new ObjectId(id) });
     return JSON.parse(JSON.stringify(user));
   } catch (error) {
-    return error instanceof Error
-      ? { error: error.message || 'Failed to fetch a user by id' }
-      : {
-          error: 'Unknown error occurred while connecting to the database',
-        };
+    return {
+      error:
+        error instanceof Error
+          ? error.message || 'Failed to fetch a user by id'
+          : 'Unknown error occurred',
+    };
   }
 }

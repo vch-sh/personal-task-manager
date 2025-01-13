@@ -43,6 +43,8 @@ export async function deleteCategory(categoryId: string) {
       deleteAllTasksFromCategory,
     };
   } catch (error) {
-    return { error: error instanceof Error ? error.message : 'Unknown error' };
+    return {
+      error: error instanceof Error ? error.message : 'Unknown error occurred',
+    };
   }
 }

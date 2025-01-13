@@ -16,7 +16,9 @@ export async function getTasksFromApi(userId: string) {
 
     return await res.json();
   } catch (error) {
-    return { error: error instanceof Error ? error.message : 'Unknown error' };
+    return {
+      error: error instanceof Error ? error.message : 'Unknown error occurred',
+    };
   }
 }
 
@@ -29,12 +31,12 @@ export async function getTasksFromDb(id: string) {
     const userTasks = await collection?.find({ userId: id }).toArray();
     return JSON.parse(JSON.stringify(userTasks)) || [];
   } catch (error) {
-    return error instanceof Error
-      ? {
-          error:
-            error.message || 'Failed to fetch tasks. Please, try again later.',
-        }
-      : [];
+    return {
+      error:
+        error instanceof Error
+          ? error.message || 'Failed to fetch tasks. Please, try again later.'
+          : [],
+    };
   }
 }
 
@@ -52,11 +54,11 @@ export async function getTaskById(id: string) {
 
     return JSON.parse(JSON.stringify(userTask));
   } catch (error) {
-    return error instanceof Error
-      ? {
-          error:
-            error.message || 'Failed to fetch a task. Please, try again later.',
-        }
-      : {};
+    return {
+      error:
+        error instanceof Error
+          ? error.message || 'Failed to fetch a task. Please, try again later.'
+          : {},
+    };
   }
 }

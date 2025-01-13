@@ -46,6 +46,8 @@ export async function updateNameEmailForCredentials(
     revalidatePath('/profile');
     return { success: 'Profile details updated successfully' };
   } catch (error) {
-    return { error: error instanceof Error ? error.message : 'Database error' };
+    return {
+      error: error instanceof Error ? error.message : 'Unknown error occurred',
+    };
   }
 }

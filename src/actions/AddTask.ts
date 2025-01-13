@@ -52,11 +52,8 @@ export async function addTask(data: AddEditTaskFormData) {
       taskId: task?.insertedId.toString(),
     };
   } catch (error) {
-    if (error instanceof Error) {
-      return { error: error.message };
-    }
     return {
-      error: 'Unknown error occurred while connecting to the database',
+      error: error instanceof Error ? error.message : 'Unknown error occurred',
     };
   }
 }

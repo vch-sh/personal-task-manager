@@ -64,6 +64,8 @@ export async function changePassword(data: ChangePasswordFormData) {
 
     return { success: 'Password updated successfully' };
   } catch (error) {
-    return { error: error instanceof Error ? error.message : 'Database error' };
+    return {
+      error: error instanceof Error ? error.message : 'Unknown error occurred',
+    };
   }
 }
