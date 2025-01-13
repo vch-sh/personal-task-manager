@@ -4,7 +4,7 @@ Personal Task Manager is a comprehensive web application designed to help users 
 
 ## Project Status
 
-As of January 11, 2025 - `in development`
+As of January 13, 2025 - `in development`
 
 ## Features
 
@@ -13,7 +13,7 @@ As of January 11, 2025 - `in development`
   - OAuth integration with Google and GitHub for easy sign-in.
 - **Responsive Design**: Fully responsive interface that works on desktop and mobile devices.
 
-- **User Menu** (in development):
+- **User Menu**:
   - Access profile settings and manage your account via a dropdown menu.
 - **Dashboard**:
   - View task statistics, including total tasks, completed tasks, tasks in progress, and to-do tasks.
