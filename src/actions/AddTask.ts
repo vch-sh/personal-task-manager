@@ -15,24 +15,24 @@ export async function addTask(data: AddEditTaskFormData) {
 
   if (error) return { error };
 
+  const userCollection = client
+    ?.db(process.env.MONGODB_DB)
+    .collection<Document>('users');
+
+  if (!userCollection) {
+    return { error: 'Failed to connect to the user collection' };
+  }
+
+  const existingUser = await findUserInCollection(
+    data.userId || '',
+    userCollection,
+  );
+
+  if (!existingUser) {
+    return { error: 'User not found' };
+  }
+
   try {
-    const userCollection = client
-      ?.db(process.env.MONGODB_DB)
-      .collection<Document>('users');
-
-    if (!userCollection) {
-      return { error: 'Failed to connect to the user collection' };
-    }
-
-    const existingUser = await findUserInCollection(
-      data.userId || '',
-      userCollection,
-    );
-
-    if (!existingUser) {
-      return { error: 'User not found' };
-    }
-
     const task = await collection?.insertOne({
       _id: new ObjectId(data._id),
       userId: data.userId,

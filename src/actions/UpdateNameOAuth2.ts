@@ -35,12 +35,18 @@ export async function updateNameOAuth2(data: UpdateProfileSettingsFormData) {
     return { error: 'Failed to update a user' };
   }
 
-  await userCollection.updateOne(
-    { _id: new ObjectId(existingUserId) },
-    { $set: { name: data.name } },
-  );
+  try {
+    await userCollection.updateOne(
+      { _id: new ObjectId(existingUserId) },
+      { $set: { name: data.name } },
+    );
 
-  revalidatePath('/profile');
+    revalidatePath('/profile');
 
-  return { success: 'Profile details updated successfully' };
+    return { success: 'Profile details updated successfully' };
+  } catch (error) {
+    return {
+      error: error instanceof Error ? error.message : 'Unknown error occurred',
+    };
+  }
 }

@@ -23,6 +23,7 @@ export async function uploadProfileImage(imageFile: File | null) {
     const deleteOldImages = allImages?.blobs
       .filter((blob) => blob.url.includes(session?.user.id))
       .map((blob) => del(blob.url));
+
     if (deleteOldImages && deleteOldImages.length > 0) {
       await Promise.all(deleteOldImages);
     }
