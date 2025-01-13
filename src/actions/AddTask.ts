@@ -3,7 +3,7 @@
 import { revalidatePath } from 'next/cache';
 import { ObjectId } from 'mongodb';
 import { connectToDatabase } from '@/lib/mongodb';
-import { getUserById } from '@/lib/users';
+import { findUserInCollection } from '@/lib/users';
 import AddEditTaskFormData from '@/types/AddEditFormData';
 
 export async function addTask(data: AddEditTaskFormData) {
@@ -15,21 +15,24 @@ export async function addTask(data: AddEditTaskFormData) {
 
   if (error) return { error };
 
+  const userCollection = client
+    ?.db(process.env.MONGODB_DB)
+    .collection<Document>('users');
+
+  if (!userCollection) {
+    return { error: 'Failed to connect to the user collection' };
+  }
+
+  const existingUser = await findUserInCollection(
+    data.userId || '',
+    userCollection,
+  );
+
+  if (!existingUser) {
+    return { error: 'User not found' };
+  }
+
   try {
-    const userCollection = client
-      ?.db(process.env.MONGODB_DB)
-      .collection<Document>('users');
-
-    if (!userCollection) {
-      return { error: 'Failed to connect to the user collection' };
-    }
-
-    const existingUser = await getUserById(data.userId || '', userCollection);
-
-    if (!existingUser) {
-      return { error: 'User not found' };
-    }
-
     const task = await collection?.insertOne({
       _id: new ObjectId(data._id),
       userId: data.userId,
@@ -49,11 +52,8 @@ export async function addTask(data: AddEditTaskFormData) {
       taskId: task?.insertedId.toString(),
     };
   } catch (error) {
-    if (error instanceof Error) {
-      return { error: error.message };
-    }
     return {
-      error: 'Unknown error occurred while connecting to the database',
+      error: error instanceof Error ? error.message : 'Unknown error occurred',
     };
   }
 }

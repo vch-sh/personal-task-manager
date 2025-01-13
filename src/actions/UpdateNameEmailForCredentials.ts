@@ -3,7 +3,7 @@
 import { revalidatePath } from 'next/cache';
 import { ObjectId } from 'mongodb';
 import { connectToDatabase } from '@/lib/mongodb';
-import { getUserById } from '@/lib/users';
+import { findUserInCollection } from '@/lib/users';
 import UpdateProfileSettingsFormData from '@/types/UpdateProfileSettingsFormData';
 
 export async function updateNameEmailForCredentials(
@@ -25,7 +25,7 @@ export async function updateNameEmailForCredentials(
     return { error: 'Failed to connect to the user collection' };
   }
 
-  const existingUser = await getUserById(data.userId, userCollection);
+  const existingUser = await findUserInCollection(data.userId, userCollection);
 
   if (!existingUser) {
     return { error: 'User not found' };
@@ -46,6 +46,8 @@ export async function updateNameEmailForCredentials(
     revalidatePath('/profile');
     return { success: 'Profile details updated successfully' };
   } catch (error) {
-    return { error: error instanceof Error ? error.message : 'Database error' };
+    return {
+      error: error instanceof Error ? error.message : 'Unknown error occurred',
+    };
   }
 }

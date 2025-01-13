@@ -1,3 +1,4 @@
+import { NextRequest } from 'next/server';
 import Task from '@/types/Task';
 
 export const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/g;
@@ -28,4 +29,15 @@ export function isAcceptedFileExtension(fileName: string) {
   return acceptedFileExtensions.some((acceptedFileExtension) =>
     fileName.endsWith(acceptedFileExtension),
   );
+}
+
+export function extractUserIdFromRequest(req: NextRequest) {
+  const url = new URL(req.url);
+  const userId = url.searchParams.get('userId');
+
+  if (!userId) {
+    throw new Error('User ID is required');
+  }
+
+  return userId;
 }

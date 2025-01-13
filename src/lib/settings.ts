@@ -3,25 +3,20 @@
 import { connectToDatabase } from '@/lib/mongodb';
 
 export async function getSettings(id: string) {
-  let collection;
-
   try {
-    const connection = await connectToDatabase('settings');
-    collection = connection.collection;
+    const { collection, error } = await connectToDatabase('settings');
 
-    if (!collection) {
-      return { error: 'Collection not found' };
-    }
+    if (error) return { error };
 
-    const userSettings = await collection.findOne({ userId: id });
+    const userSettings = await collection?.findOne({ userId: id });
     return JSON.parse(JSON.stringify(userSettings));
   } catch (error) {
-    if (error instanceof Error) {
-      return {
-        error:
-          error.message || 'Failed to fetch settings. Please, try again later.',
-      };
-    }
-    return [];
+    return {
+      error:
+        error instanceof Error
+          ? error.message ||
+            'Failed to fetch settings. Please, try again later.'
+          : 'Unknown error occurred',
+    };
   }
 }

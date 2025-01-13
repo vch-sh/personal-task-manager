@@ -4,7 +4,7 @@ import Github from 'next-auth/providers/github';
 import Google from 'next-auth/providers/google';
 import bcryptjs from 'bcryptjs';
 import { createUser } from './actions/CreateUser';
-import { getUserByEmail } from './lib/users';
+import { getUserByEmailFromDb } from './lib/users';
 import LoginFormData from './types/LoginFormData';
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
@@ -27,7 +27,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       async authorize(credentials) {
         const { email, password } = credentials as LoginFormData;
 
-        const existingUser = await getUserByEmail(email);
+        const existingUser = await getUserByEmailFromDb(email);
 
         if (!existingUser) {
           throw new Error('Invalid credentials');
@@ -57,7 +57,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         return true;
       }
 
-      const existingUser = await getUserByEmail(user?.email || '');
+      const existingUser = await getUserByEmailFromDb(user?.email || '');
 
       if (existingUser?.email === user?.email) {
         return true;
@@ -74,7 +74,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     },
     async jwt({ token, user }) {
       if (user) {
-        const existingUser = await getUserByEmail(user?.email || '');
+        const existingUser = await getUserByEmailFromDb(user?.email || '');
 
         if (existingUser) {
           token.id = existingUser._id.toString();

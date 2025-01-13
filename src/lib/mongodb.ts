@@ -19,11 +19,13 @@ export async function connectToDatabase(
     return { client: cachedClient, collection };
   } catch (error) {
     console.error('Error while connecting to MongoDB:', error);
-    return error instanceof Error
-      ? { error: error.message }
-      : {
-          error: 'Unknown error occurred while connecting to the database',
-        };
+    return {
+      error:
+        error instanceof Error
+          ? error.message ||
+            'Failed to fetch a category. Please, try again later.'
+          : 'Unknown error occurred while connecting to the database',
+    };
   }
 }
 

@@ -23,6 +23,7 @@ export async function uploadProfileImage(imageFile: File | null) {
     const deleteOldImages = allImages?.blobs
       .filter((blob) => blob.url.includes(session?.user.id))
       .map((blob) => del(blob.url));
+
     if (deleteOldImages && deleteOldImages.length > 0) {
       await Promise.all(deleteOldImages);
     }
@@ -37,11 +38,8 @@ export async function uploadProfileImage(imageFile: File | null) {
       profileImageUrl: uploadedImage.url,
     };
   } catch (error) {
-    if (error instanceof Error) {
-      return { error: error.message };
-    }
     return {
-      error: 'Unknown error occurred while connecting to the database',
+      error: error instanceof Error ? error.message : 'Unknown error occurred',
     };
   }
 }

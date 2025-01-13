@@ -2,7 +2,7 @@
 
 import { revalidatePath } from 'next/cache';
 import { connectToDatabase } from '@/lib/mongodb';
-import { getUserById } from '@/lib/users';
+import { findUserInCollection } from '@/lib/users';
 import SettingsFormData from '@/types/Settings';
 
 export async function updateSettings(data: SettingsFormData) {
@@ -18,7 +18,7 @@ export async function updateSettings(data: SettingsFormData) {
     return { error: 'Failed to connect to the user collection' };
   }
 
-  const existingUser = await getUserById(data.userId, userCollection);
+  const existingUser = await findUserInCollection(data.userId, userCollection);
 
   if (!existingUser) {
     return { error: 'User not found' };
@@ -44,6 +44,8 @@ export async function updateSettings(data: SettingsFormData) {
       success: 'Application settings updated successfully',
     };
   } catch (error) {
-    return { error: error instanceof Error ? error.message : 'Database error' };
+    return {
+      error: error instanceof Error ? error.message : 'Unknown error occurred',
+    };
   }
 }

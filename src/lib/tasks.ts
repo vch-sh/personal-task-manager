@@ -3,59 +3,31 @@
 import { ObjectId } from 'mongodb';
 import { connectToDatabase } from '@/lib/mongodb';
 
-export async function fetchTasks(userId: string) {
+export async function getTasksFromDb(id: string) {
   try {
-    const res = await fetch(
-      `${process.env.NEXTAUTH_URL}/api/tasks?userId=${encodeURIComponent(userId)}`,
-      { cache: 'force-cache' },
-    );
+    const { collection, error } = await connectToDatabase('tasks');
 
-    if (!res.ok) {
-      return { error: 'Failed to fetch tasks' };
-    }
+    if (error) return { error };
 
-    return await res.json();
-  } catch (error) {
-    return { error: error instanceof Error ? error.message : 'Unknown error' };
-  }
-}
-
-export async function getTasks(id: string) {
-  let collection;
-
-  try {
-    const connection = await connectToDatabase('tasks');
-    collection = connection.collection;
-
-    if (!collection) {
-      return { error: 'Collection not found' };
-    }
-
-    const userTasks = await collection.find({ userId: id }).toArray();
+    const userTasks = await collection?.find({ userId: id }).toArray();
     return JSON.parse(JSON.stringify(userTasks)) || [];
   } catch (error) {
-    if (error instanceof Error) {
-      return {
-        error:
-          error.message || 'Failed to fetch tasks. Please, try again later.',
-      };
-    }
-    return [];
+    return {
+      error:
+        error instanceof Error
+          ? error.message || 'Failed to fetch tasks. Please, try again later.'
+          : [],
+    };
   }
 }
 
 export async function getTaskById(id: string) {
-  let collection;
-
   try {
-    const connection = await connectToDatabase('tasks');
-    collection = connection.collection;
+    const { collection, error } = await connectToDatabase('tasks');
 
-    if (!collection) {
-      return { error: 'Collection not found' };
-    }
+    if (error) return { error };
 
-    const userTask = await collection.findOne({ _id: new ObjectId(id) });
+    const userTask = await collection?.findOne({ _id: new ObjectId(id) });
 
     if (!userTask) {
       return { error: 'Task not found' };
@@ -63,12 +35,11 @@ export async function getTaskById(id: string) {
 
     return JSON.parse(JSON.stringify(userTask));
   } catch (error) {
-    if (error instanceof Error) {
-      return {
-        error:
-          error.message || 'Failed to fetch a task. Please, try again later.',
-      };
-    }
-    return {};
+    return {
+      error:
+        error instanceof Error
+          ? error.message || 'Failed to fetch a task. Please, try again later.'
+          : {},
+    };
   }
 }

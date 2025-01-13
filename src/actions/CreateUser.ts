@@ -8,9 +8,15 @@ export async function createUser(userData: User) {
 
   if (error) throw new Error(error);
 
-  const result = await collection?.insertOne({
-    ...userData,
-  });
+  try {
+    const result = await collection?.insertOne({
+      ...userData,
+    });
 
-  return result;
+    return result;
+  } catch (error) {
+    return {
+      error: error instanceof Error ? error.message : 'Unknown error occurred',
+    };
+  }
 }

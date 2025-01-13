@@ -1,8 +1,7 @@
 import { auth } from '@/auth';
-import { fetchTaskCategories } from '@/lib/categories';
+import { getTasksAndCategoriesFromApi } from '@/lib/api';
 import { getSettings } from '@/lib/settings';
-import { fetchTasks } from '@/lib/tasks';
-import { fetchUserById } from '@/lib/users';
+import { getUserByIdFromDb } from '@/lib/users';
 
 export async function getDashboardTasksPagesData() {
   try {
@@ -12,9 +11,17 @@ export async function getDashboardTasksPagesData() {
       throw new Error('User not authenticated');
     }
 
-    const tasks = await fetchTasks(session?.user.id);
-    const taskCategories = await fetchTaskCategories(session?.user.id);
-    const user = await fetchUserById(session?.user.id);
+    const tasks = await getTasksAndCategoriesFromApi(
+      'tasks',
+      session?.user.id,
+      'Failed to fetch tasks',
+    );
+    const taskCategories = await getTasksAndCategoriesFromApi(
+      'task-categories',
+      session?.user.id,
+      'Failed to fetch task categories',
+    );
+    const user = await getUserByIdFromDb(session?.user.id);
     const settings = await getSettings(session?.user.id);
 
     return { tasks, taskCategories, user, settings };
