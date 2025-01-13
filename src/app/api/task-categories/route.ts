@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getTaskCategories } from '@/lib/categories';
+import { getTaskCategoriesFromDb } from '@/lib/categories';
 
 export async function GET(req: NextRequest) {
   const url = new URL(req.url);
@@ -9,6 +9,6 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: 'User ID is required' }, { status: 400 });
   }
 
-  const taskCategories = await getTaskCategories(userId);
+  const taskCategories = await getTaskCategoriesFromDb(userId);
   return NextResponse.json(taskCategories);
 }
