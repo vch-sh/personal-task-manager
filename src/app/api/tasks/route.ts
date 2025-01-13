@@ -1,14 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { extractUserIdFromRequest } from '@/lib/helpers';
 import { getTasksFromDb } from '@/lib/tasks';
 
 export async function GET(req: NextRequest) {
-  const url = new URL(req.url);
-  const userId = url.searchParams.get('userId');
-
-  if (!userId) {
-    return NextResponse.json({ error: 'User ID is required' }, { status: 400 });
+  try {
+    const userId = extractUserIdFromRequest(req);
+    const tasks = await getTasksFromDb(userId);
+    return NextResponse.json(tasks);
+  } catch (error) {
+    const errorMessage =
+      error instanceof Error ? error.message : 'Unknown error occured';
+    return NextResponse.json(
+      {
+        error: errorMessage,
+      },
+      { status: 400 },
+    );
   }
-
-  const tasks = await getTasksFromDb(userId);
-  return NextResponse.json(tasks);
 }
