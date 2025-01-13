@@ -3,25 +3,6 @@
 import { ObjectId } from 'mongodb';
 import { connectToDatabase } from '@/lib/mongodb';
 
-export async function getTasksFromApi(userId: string) {
-  try {
-    const res = await fetch(
-      `${process.env.NEXTAUTH_URL}/api/tasks?userId=${encodeURIComponent(userId)}`,
-      { cache: 'force-cache' },
-    );
-
-    if (!res.ok) {
-      return { error: 'Failed to fetch tasks' };
-    }
-
-    return await res.json();
-  } catch (error) {
-    return {
-      error: error instanceof Error ? error.message : 'Unknown error occurred',
-    };
-  }
-}
-
 export async function getTasksFromDb(id: string) {
   try {
     const { collection, error } = await connectToDatabase('tasks');
