@@ -1,30 +1,35 @@
 # Personal Task Manager
 
-Personal Task Manager is a comprehensive web application designed to help users organize, prioritize, and manage their tasks effectively. Built with Next.js and React, it offers a user-friendly interface for managing personal and professional tasks.
+Personal Task Manager is a web application designed to help users organize, prioritize, and manage their tasks effectively. Built with Next.js and React, it offers a user-friendly interface for managing personal and professional tasks.
 
 ## Project Status
 
-As of January 13, 2025 - `in development`
+As of January 21, 2025 - `completed`
 
 ## Features
 
 - **User Authentication**:
+
   - Secure login and registration system.
   - OAuth integration with Google and GitHub for easy sign-in.
+
 - **Responsive Design**: Fully responsive interface that works on desktop and mobile devices.
 
-- **User Menu**:
-  - Access profile settings and manage your account via a dropdown menu.
+- **User Menu**: Access profile settings and manage your account via a dropdown menu.
 - **Dashboard**:
   - View task statistics, including total tasks, completed tasks, tasks in progress, and to-do tasks.
   - Progress tracking to see how much work has been completed.
   - Tasks By Category: Visual breakdown of tasks organized by categories with color-coded labels.
 - **Task Management**:
+
   - Create, edit, and delete tasks with ease.
   - Filter and sort tasks by status, priority, or due date.
   - Organize tasks into categories for better management and filtering.
   - Hide Completed Tasks: Easily toggle visibility of completed tasks for a cleaner and more focused interface.
   - Toggle Filter & Sorting Section: Collapse or expand the filtering and sorting options to make the task management interface cleaner and more focused.
+
+- **Scroll to Top Button**: Quickly scroll back to the top of the page when managing long lists of tasks.
+
 - **Task Categories**:
   - Add, update, and delete custom categories.
   - Assign tasks to specific categories.
@@ -36,8 +41,6 @@ As of January 13, 2025 - `in development`
   - Dark Mode: Enable dark theme for better readability in low-light environments.
   - Always Open Filter Section: Option to keep the filtering section expanded for quicker access to filters and sorting options.
   - Auto-hide Completed Tasks: Automatically hide completed tasks to maintain a focused interface.
-
-**Note: This project is actively being developed. Many more exciting features are planned and will be added in future updates!**
 
 ## Technologies Used
 
@@ -71,7 +74,7 @@ Here's an overview of the main directories and files:
   - Dependencies:
     - `package.json`: Project dependencies and scripts.
 
-- `src/`: A main folder of the application.
+- `src/`: The main folder of the application.
   - `actions/`: Server actions.
   - `app/`: Contains the main application code using the Next.js App Router.
     - `api/`: API routes, including authentication.
@@ -94,7 +97,7 @@ Here's an overview of the main directories and files:
 
 ### Prerequisites
 
-- Node.js (v14 or later)
+- Node.js (v18 or later)
 - npm or yarn
 - MongoDB database (these links might be helpful: [link 1](https://www.geeksforgeeks.org/how-to-integrate-mongodb-in-next-js/), [link2](https://www.mongodb.com/developer/languages/javascript/nextjs-with-mongodb/#example-3--next-js-static-generation-with-mongodb))
 
@@ -153,11 +156,14 @@ Here's an overview of the main directories and files:
 - **Filtering Tasks**:
   - By status: To Do, In Progress, Done.
   - By category.
+  - By task text: Use the search bar to filter tasks based on their text content.
 - **Sorting Tasks**:
   - By due date (default sorting).
   - By priority: High, Medium, Low.
 - **Hide Completed Tasks**:
   - Enable the "Hide completed" checkbox to hide all tasks marked as "done."
+
+**Scroll to Top**: A button appears when scrolling down the page, allowing users to quickly return to the top.
 
 **Managing Categories**:
 
