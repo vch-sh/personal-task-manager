@@ -13,9 +13,11 @@ export default function ScrollTop() {
 
   useEffect(() => {
     function toggleVisibility() {
-      document.documentElement.scrollTop > 100
-        ? setIsVisible(true)
-        : setIsVisible(false);
+      if (document.documentElement.scrollTop > 100) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
     }
 
     window.addEventListener('scroll', toggleVisibility);
