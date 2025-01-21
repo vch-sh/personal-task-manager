@@ -36,11 +36,18 @@ export default function Tasks({ tasks, taskCategories, settings }: TasksProps) {
     settings?.isFilteringSortingOpen ?? false,
   );
 
-  const { filteredSortedTasks, filter, sort, setFilter, setSort } =
-    useFilterSortTasks({
-      tasks,
-      isCompletedHidden,
-    });
+  const {
+    filteredSortedTasks,
+    filter,
+    sort,
+    search,
+    setSearch,
+    setFilter,
+    setSort,
+  } = useFilterSortTasks({
+    tasks,
+    isCompletedHidden,
+  });
 
   return (
     <>
@@ -53,8 +60,10 @@ export default function Tasks({ tasks, taskCategories, settings }: TasksProps) {
             tasksQuantity={tasks.length}
             filter={filter}
             sort={sort}
+            search={search}
             setFilter={setFilter}
             setSort={setSort}
+            setSearch={setSearch}
           />
           <HideCompleted
             isCompletedHidden={isCompletedHidden}

@@ -14,9 +14,17 @@ export function useFilterSortTasks({
 }: useFilterSortTasksProps) {
   const [filter, setFilter] = useState('all');
   const [sort, setSort] = useState('due-date');
+  const [search, setSearch] = useState('');
 
   const { category, setCategory } = useTaskCategory();
   const { setFilteredTasksQuantity } = useFilteredTasksQuantity();
+
+  const filteredBySearch = useCallback(
+    (task: Task) =>
+      !!task.text &&
+      (!search || task.text.toLowerCase().includes(search.toLowerCase())),
+    [search],
+  );
 
   const filterByCompleted = useCallback(
     (task: Task) => (isCompletedHidden ? task.status !== 'done' : task),
@@ -51,6 +59,7 @@ export function useFilterSortTasks({
   }, []);
 
   const filteredSortedTasks = tasks
+    .filter(filteredBySearch)
     .filter(filterByCompleted)
     .filter(filterByCategory)
     .filter(filterByStatus)
@@ -73,8 +82,10 @@ export function useFilterSortTasks({
     filter,
     sort,
     category,
+    search,
     setCategory,
     setFilter,
     setSort,
+    setSearch,
   };
 }
