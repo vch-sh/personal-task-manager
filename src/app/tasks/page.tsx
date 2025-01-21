@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import Header from '@/components/TasksPage/Header';
 import Tasks from '@/components/TasksPage/Tasks';
 import ErrorMessage from '@/components/general/ErrorMessage';
+import ScrollTop from '@/components/general/ScrollTop';
 import { getDashboardTasksPagesData } from '@/data/commonPageData';
 import { FilteredTasksQuantityContextProvider } from '@/contexts/FilteredTasksQuantityContextProvider';
 import { TaskCategoryContextProvider } from '@/contexts/TaskCategoryContextProvider';
@@ -28,6 +29,7 @@ export default async function TasksPage() {
             taskCategories={taskCategories}
             settings={settings}
           />
+          <ScrollTop />
         </main>
       </FilteredTasksQuantityContextProvider>
     </TaskCategoryContextProvider>
